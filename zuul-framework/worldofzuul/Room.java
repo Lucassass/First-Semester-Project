@@ -4,6 +4,14 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
+/*
+*                        Map over current rooms 
+* 
+*                               Computer Lab ------------- Computer admin Office 
+*                                  |                        
+*                                  |                         
+*       Campus Pub ------------ Main entrence ------------- Lecture hall \
+*/
 
 public class Room 
 {
