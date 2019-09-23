@@ -11,6 +11,7 @@ public enum CommandWord
         this.commandString = commandString;
     }
     
+    // returns the command as a string 
     public String toString()
     {
         return commandString;

@@ -10,7 +10,9 @@ public class Game
         Game game = new Game();
         game.play();
     }
-
+    /*
+    Create the game and initialise its internal map.
+    */
     public Game() 
     {
         createRooms();
@@ -44,11 +46,16 @@ public class Game
         currentRoom = outside;
     }
 
+    /* 
+    Main play routine.  Loops until end of play.
+     */
+
     public void play() 
     {            
         printWelcome();
 
-                
+        // Enter the main command loop.  Here we repeatedly read commands and
+        // execute them until the game is over.        
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -57,6 +64,9 @@ public class Game
         System.out.println("Thank you for playing.  Good bye.");
     }
 
+     /*
+    Print out the opening message for the player.
+     */
     private void printWelcome()
     {
         System.out.println();
@@ -67,6 +77,11 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
 
+     /**
+     Given a command, process (that is: execute) the command.
+     If this command ends the game, true is returned, otherwise false is
+     returned.
+     */
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
@@ -89,7 +104,11 @@ public class Game
         }
         return wantToQuit;
     }
-
+    /*
+    Print out some help information.
+    Here we print some stupid, cryptic message and a list of the 
+    command words.
+     */
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
@@ -118,7 +137,11 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
-
+    /*
+     "Quit" was entered. Check the rest of the command to see
+     whether we really quit the game. Return true, if this command
+     quits the game, false otherwise.
+     */
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
