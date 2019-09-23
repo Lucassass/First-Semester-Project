@@ -1,0 +1,1 @@
+This is our first semester project studying Software Engineering at Southern University of Denmark (SDU) 
