@@ -6,7 +6,10 @@ public class Game
     private Room currentRoom;
     
 // To Start game run main function bellow
- 
+public static void main(String[] args) {
+    Game game = new Game();
+    game.play();
+    
     /*
     Create the game and initialise its internal map.
     */
