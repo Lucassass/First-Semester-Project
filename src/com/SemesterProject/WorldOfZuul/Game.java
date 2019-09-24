@@ -9,7 +9,8 @@ public class Game
 public static void main(String[] args) {
     Game game = new Game();
     game.play();
-    
+}
+
     /*
     Create the game and initialise its internal map.
     */
