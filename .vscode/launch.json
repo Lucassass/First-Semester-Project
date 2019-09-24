@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "First-Semester-Project_cd71e7a2"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Game",
             "request": "launch",
             "mainClass": "Game",
