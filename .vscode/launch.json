@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Game",
+            "request": "launch",
+            "mainClass": "worldofzuul.Game",
+            "projectName": "First-Semester-Project_cd71e7a2"
+        }
+    ]
+}
