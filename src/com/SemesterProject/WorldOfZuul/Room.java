@@ -1,7 +1,8 @@
-package worldofzuul;
+package com.SemesterProject.WorldOfZuul;
 
 import java.util.Set;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /*
 *                        Map over current rooms 

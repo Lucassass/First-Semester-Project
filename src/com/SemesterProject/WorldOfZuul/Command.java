@@ -14,7 +14,7 @@
  * If the command had only one word, then the second word is <null>.
  */
 
-package worldofzuul;
+package com.SemesterProject.WorldOfZuul;
 
 public class Command
 {
