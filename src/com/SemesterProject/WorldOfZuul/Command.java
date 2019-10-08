@@ -22,9 +22,10 @@ public class Command
     private String secondWord;
 
     /**
-     * Create a command object. First and second word must be supplied, but
-     * either one (or both) can be null. The command word should be null to
-     * indicate that this was a command that is not recognised by this game.
+     * Creates a command object. First and second word must be defined, but
+     * either one or both words can be null. If the command is only one command word
+     * then the second command word should be null to indicate that the second command 
+     * is not to be recognised by this game.
      */
     public Command(CommandWord commandWord, String secondWord)
     {
@@ -33,8 +34,8 @@ public class Command
     }
 
      /**
-     * Return the command word (the first word) of this command. If the
-     * command was not understood, the result is null.
+     * Returns the first part of the command.
+     * If a command is not understood, the result will be null.
      */
     public CommandWord getCommandWord()
     {
@@ -42,8 +43,8 @@ public class Command
     }
 
      /**
-     * Return the second word of this command. Returns null if there was no
-     * second word.
+     * Returns the second part of the command. 
+     * Returns null if there was no second word.
      */
     public String getSecondWord()
     {
@@ -51,7 +52,7 @@ public class Command
     }
 
     /**
-     * Return true if this command was not understood.
+     * Returns true if the command was not understood.
      */
     public boolean isUnknown()
     {
@@ -59,7 +60,7 @@ public class Command
     }
 
     /**
-     * Return true if the command has a second word.
+     * Returns true if the command has a second word.
      */
     public boolean hasSecondWord()
     {

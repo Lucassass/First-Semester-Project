@@ -5,16 +5,20 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     
-    /*
-    Create the game and initialise its internal map.
-    */
+    /**
+     * Create the game and initialise the map.
+     */
     public Game() 
     {
         createRooms();
         parser = new Parser();
     }
 
-
+    /**
+     * creates rooms and giv them their description.
+     * Set exits.
+     * Makes currentRoom = outside.
+     */
     private void createRooms()
     {
         Room outside, theatre, pub, lab, office;
@@ -41,16 +45,20 @@ public class Game
         currentRoom = outside;
     }
 
-    /* 
-    Main play routine.  Loops until end of play.
+    /**
+     * play() loops until end of play.
      */
-
     public void play() 
     {            
+        /**
+         * Print the welcome command
+         */
         printWelcome();
 
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.        
+        /**
+         * The command loop.  
+         * Here we repeatedly read commands and execute them until the game is over.        
+         */
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -59,9 +67,9 @@ public class Game
         System.out.println("Thank you for playing.  Good bye.");
     }
 
-     /*
-    Print out the opening message for the player.
-     */
+     /** 
+      * Prints the opening message.
+      */
     private void printWelcome()
     {
         System.out.println();
@@ -72,11 +80,10 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
 
-     /**
-     Given a command, process (that is: execute) the command.
-     If this command ends the game, true is returned, otherwise false is
-     returned.
-     */
+    /**  
+     * Given a command, process and executes the command.
+     * If this command ends the game, true is returned, otherwise false is returned.
+    */
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
@@ -99,10 +106,10 @@ public class Game
         }
         return wantToQuit;
     }
-    /*
-    Print out some help information.
-    Here we print some stupid, cryptic message and a list of the 
-    command words.
+
+    /** 
+     * Prints out the help information. 
+     * Here we print some stupid, cryptic message and a list of the command words.
      */
     private void printHelp() 
     {
@@ -113,6 +120,14 @@ public class Game
         parser.showCommands();
     }
 
+    /**
+     * goRoom allows us to move from one room to another
+     * If second command is null, it will print "Go where?"
+     * Otherwise the second command will be compaired with the direction
+     * If direction is not possible(null) it will print "There is no door!"
+     * If there is a direction you will go to the next room asociated with the direction 
+     * Then it will print the Long description of the room you went into 
+     */
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
@@ -132,10 +147,10 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
-    /*
-     "Quit" was entered. Check the rest of the command to see
-     whether we really quit the game. Return true, if this command
-     quits the game, false otherwise.
+    /**
+     * "Quit" was entered. Checks the rest of the command to see
+     * whether we really quit the game. Return true, if this command
+     * really quits the game, false otherwise. 
      */
     private boolean quit(Command command) 
     {
