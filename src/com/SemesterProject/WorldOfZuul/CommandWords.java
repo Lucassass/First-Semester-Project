@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class CommandWords {
 
-    // a array that holds all the valid command words
+    // This is an array that holds all the valid command words
     private HashMap<String, CommandWord> validCommands;
 
     /**
-    Constructor - initialise the command words.
+     * The constructor that initialise the command words.
      */
     public CommandWords()
     {
@@ -20,6 +20,10 @@ public class CommandWords {
         }
     }
 
+    /**
+     * Allows us to call commandWords and check if they exist 
+     * if they do not it will return UNKOWN.
+     */
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);
@@ -32,8 +36,8 @@ public class CommandWords {
     }
     
     /**
-     Check whether a given String is a valid command word. 
-     Return true if it is, false if it isn't.
+     * Checks whether aString is a valid command word. 
+     * Return true if it is, false if it isn't.
      */
     public boolean isCommand(String aString)
     {
@@ -41,7 +45,7 @@ public class CommandWords {
     }
 
     /*
-     Print all valid commands to System.out.
+     Prints all valid commands to System.out.
      */
     public void showAll() 
     {

@@ -1,19 +1,21 @@
 package com.SemesterProject.WorldOfZuul;
 
-public enum CommandWord
-{
+// enum makes CommandWord Final/Constant
+public enum CommandWord {
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
     
     private String commandString;
     
-    CommandWord(String commandString)
-    {
+    /** 
+     * Sets the commands GO("go"), QUIT("quit"), HELP("help"), 
+     * and UNKNOWN("?") to be equal to the String appove (commanString)
+    */
+    CommandWord(String commandString){
         this.commandString = commandString;
     }
     
-    // returns the command as a string 
-    public String toString()
-    {
+    // Used when we need a string representation of an object. 
+    public String toString(){
         return commandString;
     }
 }

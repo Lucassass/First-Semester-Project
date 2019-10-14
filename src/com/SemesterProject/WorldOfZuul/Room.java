@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /*
-*                        Map over current rooms 
+*                               Map of rooms 
 * 
 *                               Computer Lab ------------- Computer admin Office 
 *                                  |                        
@@ -15,13 +15,12 @@ import java.util.Iterator;
 
 public class Room 
 {
-    private String description; // stores the description of rooms
-    private HashMap<String, Room> exits; // stores exits of this room.
+    private String description; /** Stores the description of rooms */
+    private HashMap<String, Room> exits; /** Stores exits of the room. */
 
     /**
-     * Create a room described "description". Initially, it has no exits.
-     * "description" is something like "in a kitchen" or "in an open court 
-     * yard".
+     * Creates a room described called "description". Initially, it has no exits.
+     * "description" is something like "in a kitchen" or "in an open court yard".
      */
     public Room(String description) 
     {
@@ -30,7 +29,7 @@ public class Room
     }
 
     /**
-     * Define an exit from this room.
+     * Defines an exit from the room.
      */
     public void setExit(String direction, Room neighbor) 
     {
@@ -38,8 +37,7 @@ public class Room
     }
 
      /**
-     * Return the description of the room (the one that was defined in the
-     * constructor).
+     * Returns the description of the room (the one that was defined in the constructor).
      */
     public String getShortDescription()
     {
@@ -47,9 +45,9 @@ public class Room
     }
     
     /**
-     * Return a long description of this room, in the form:
-     *     You are in the kitchen.
-     *     Exits: north west
+     * Returns a long description of the room, in the following form:
+     * "You are in the kitchen."
+     * "Exits: north west"
      */
     public String getLongDescription()
     {
@@ -57,7 +55,7 @@ public class Room
     }
     
     /**
-     * Return a string describing the room's exits, for example
+     * Returns a String describing the room's exits, for example:
      * "Exits: north west".
      */
     private String getExitString()
@@ -71,8 +69,8 @@ public class Room
     }
 
     /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
+     * Return the room that is reached, if we go from this room in direction x
+     * "direction" will be printed. If there is no room in that direction, it returns null.
      */
     public Room getExit(String direction) 
     {
