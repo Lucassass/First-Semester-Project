@@ -5,6 +5,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     
+// To Start game run main function bellow
+ 
     /*
     Create the game and initialise its internal map.
     */
