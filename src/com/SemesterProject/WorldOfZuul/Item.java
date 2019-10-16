@@ -11,4 +11,21 @@ package com.SemesterProject.WorldOfZuul;
  */
 public class Item {
     
+    
+    
+    
+    public Item(String name, ArrayList countryGood, int pointsGood,
+            ArrayList countryBad, int pointsBad)
+    {
+        
+    }
+    
+    public void getItem()
+    {
+        
+        Item.class.getConstructors();
+    }
+}
+
+    
 }
