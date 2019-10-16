@@ -16,20 +16,22 @@ public class Inventory extends Item
 
     private ArrayList <Item> inventory = new ArrayList(); //ArrayList that contains Items
 
-    public Inventory()
+    
+    public Inventory() // Create inventory constructor, so that we can use it later
     {
-        ArrayList <Item> inventory = new ArrayList();
-        this.inventory = inventory;
+        
     }
 
     /**
      * Gets inventory to other classes
-     * @param inventory
+     * @return 
      */
     public ArrayList<Item> getInventory()
     {
         return inventory;
     }
+    
+    
 
 
     /**
