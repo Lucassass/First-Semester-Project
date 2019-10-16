@@ -5,27 +5,62 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+
+
 /**
  *
  * @author tes_7
  */
 public class Item {
     
+    String name;
+    String countryGood;
+    int pointsGood;
+    String countryBad;
+    int pointsBad;
     
     
     
-    public Item(String name, ArrayList countryGood, int pointsGood,
-            ArrayList countryBad, int pointsBad)
+    
+    public Item(String name, String countryGood, int pointsGood,
+            Array countryBad, int pointsBad)
     {
         
     }
     
-    public void getItem()
-    {
-        
-        Item.class.getConstructors();
-    }
+    /**
+     * 
+     * @param item
+     * @return name
+     */   
+    public String getName(Item item){return name;}
+    /**
+     * 
+     * @param item
+     * @return countryGood
+     */
+    public String getCountryGood(Item item){return countryGood;}
+    /**
+     * 
+     * @param item
+     * @return contryBad
+     */
+    public String getcountryBad(Item item){return countryBad;}
+    /**
+     * 
+     * @param item
+     * @return pointsGood
+     */
+    public int getPointsGood(Item item){return pointsGood;}
+    /**
+     * 
+     * @param item
+     * @return pointsBad
+     */
+    public int getPointsBad(Item item){return pointsBad;}
 }
 
     
-}
