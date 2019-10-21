@@ -1,8 +1,9 @@
 package com.SemesterProject.WorldOfZuul;
 
+import com.SemesterProject.WorldOfZuul.Country.BaseCountry;
+
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /*
 *                               Map of rooms 
@@ -17,6 +18,7 @@ public class Room
 {
     private String description; /** Stores the description of rooms */
     private HashMap<String, Room> exits; /** Stores exits of the room. */
+    private HashMap<String, BaseCountry> countryExits; /** Stores exits of the room. */
 
     /**
      * Creates a room described called "description". Initially, it has no exits.
@@ -26,6 +28,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        countryExits = new HashMap<>();
     }
 
     /**
@@ -34,6 +37,17 @@ public class Room
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
+    }
+
+    public void setFlight(String countryName, BaseCountry baseCountry)
+    {
+        countryExits.put(countryName, baseCountry);
+    }
+
+
+    public boolean gotFlyPoint()
+    {
+        return countryExits.size() != 0;
     }
 
      /**
@@ -53,7 +67,12 @@ public class Room
     {
         return "You are " + description + ".\n" + getExitString();
     }
-    
+
+    public String getLongDescriptionWithFlights()
+    {
+        return "You are " + description + ".\n" + getExitString() + "\n" + getFlightString();
+    }
+
     /**
      * Returns a String describing the room's exits, for example:
      * "Exits: north west".
@@ -62,6 +81,16 @@ public class Room
     {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
+    }
+
+    private String getFlightString()
+    {
+        String returnString = "Exits:";
+        Set<String> keys = countryExits.keySet();
         for(String exit : keys) {
             returnString += " " + exit;
         }

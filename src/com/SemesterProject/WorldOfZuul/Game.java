@@ -1,9 +1,14 @@
 package com.SemesterProject.WorldOfZuul;
 
-public class Game 
+import com.SemesterProject.WorldOfZuul.Country.BaseCountry;
+import com.SemesterProject.WorldOfZuul.Country.China;
+import com.SemesterProject.WorldOfZuul.Country.USA;
+
+public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private BaseCountry currentCountry;
     
 // To Start game run main function bellow
  
@@ -24,7 +29,7 @@ public class Game
     private void createRooms()
     {
         Room outside, theatre, pub, lab, office;
-      
+      /*
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
@@ -43,8 +48,17 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+        */
 
-        currentRoom = outside;
+        BaseCountry usa, china;
+        china = new China();
+        usa = new USA();
+        china.setExit("USA", usa);
+        usa.setExit("China", china);
+
+        currentCountry = usa;
+        currentRoom = currentCountry.getStartRoom();
+        //currentRoom = outside;
     }
 
     /**
@@ -102,6 +116,9 @@ public class Game
         }
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
+        }else if (commandWord == CommandWord.FLY)
+        {
+            goCountry(command);
         }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -146,9 +163,37 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
+            if (currentRoom.gotFlyPoint())
+            {
+                System.out.println(currentRoom.getLongDescriptionWithFlights());
+            }
+            else {
+                System.out.println(currentRoom.getLongDescription());
+            }
+        }
+    }
+
+    private void goCountry(Command command)
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Go where?");
+            return;
+        }
+
+        String country = command.getSecondWord();
+
+        BaseCountry nextRoom = currentCountry.getExit(country);
+
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            currentCountry = nextRoom;
+            currentRoom = currentCountry.getStartRoom();
             System.out.println(currentRoom.getLongDescription());
         }
     }
+
     /**
      * "Quit" was entered. Checks the rest of the command to see
      * whether we really quit the game. Return true, if this command

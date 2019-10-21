@@ -2,7 +2,11 @@ package com.SemesterProject.WorldOfZuul;
 
 // enum makes CommandWord Final/Constant
 public enum CommandWord {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("go"),
+    FLY("fly"),
+    QUIT("quit"),
+    HELP("help"),
+    UNKNOWN("?");
     
     private String commandString;
     
