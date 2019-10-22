@@ -1,14 +1,10 @@
 package com.SemesterProject.WorldOfZuul;
 
-import com.SemesterProject.WorldOfZuul.Country.BaseCountry;
-import com.SemesterProject.WorldOfZuul.Country.China;
-import com.SemesterProject.WorldOfZuul.Country.USA;
-
 public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private BaseCountry currentCountry;
+    private Country currentCountry;
     
 // To Start game run main function bellow
  
@@ -28,37 +24,30 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
-      /*
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
 
-        theatre.setExit("west", outside);
+        Country usa, china, russia, japan, india, germany;
+        china = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
+        usa = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
+        russia = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
+        japan = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
+        india = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
+        germany = new Country("Airport", "Train",
+                "outside", "government", "culture", null);
 
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-        */
-
-        BaseCountry usa, china;
-        china = new China();
-        usa = new USA();
-        china.setExit("USA", usa);
-        usa.setExit("China", china);
+        china.setFlyExit("USA", usa);
+        usa.setFlyExit("China", china);
+        china.setTrainExit("USA", usa);
+        china.setTrainExit("Test", usa);
+        usa.setTrainExit("China", china);
+        usa.setTrainExit("Test", china);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();
-        //currentRoom = outside;
     }
 
     /**
@@ -120,6 +109,14 @@ public class Game
         {
             goCountry(command);
         }
+        else if (commandWord == CommandWord.TRAIN){
+            goTrainStation(command);
+        } else if (commandWord == CommandWord.GLOBALMAP){
+            printGlobalMap();
+        }
+        else if (commandWord == CommandWord.LOCALMAP){
+            printLocalMap();
+        }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -166,6 +163,9 @@ public class Game
             if (currentRoom.gotFlyPoint())
             {
                 System.out.println(currentRoom.getLongDescriptionWithFlights());
+            } else if(currentRoom.gotTrainPoint())
+            {
+                System.out.println(currentRoom.getLongDescriptionWithTrains());
             }
             else {
                 System.out.println(currentRoom.getLongDescription());
@@ -176,22 +176,60 @@ public class Game
     private void goCountry(Command command)
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("Fly where?");
             return;
         }
 
         String country = command.getSecondWord();
 
-        BaseCountry nextRoom = currentCountry.getExit(country);
+        Country nextCountry = currentCountry.getAirPortExit(country);
 
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+        if (nextCountry == null) {
+            System.out.println("There is no plains to " + command.getSecondWord() + "!");
         }
         else {
-            currentCountry = nextRoom;
+            currentCountry = nextCountry;
             currentRoom = currentCountry.getStartRoom();
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+
+    private void goTrainStation(Command command)
+    {
+        if (!command.hasSecondWord()  && command.getCommandWord() != CommandWord.TRAIN ){
+            System.out.println("Take the train to where?");
+            return;
+        }
+        String country = command.getSecondWord();
+
+        Country nextCountry = currentCountry.getTrainStationExit(country);
+
+        if (nextCountry == null) {
+            System.out.println("There is no station at " + command.getSecondWord() + "!");
+        }
+        else {
+            currentCountry = nextCountry;
+            currentRoom = currentCountry.getStartRoom();
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+
+    private void printLocalMap()
+    {
+        System.out.println();
+        System.out.println("                            Airport ");
+        System.out.println("                               |");
+        System.out.println("                               |");
+        System.out.println("Goverment --------------- Main entrence ------------- Trainstation");
+        System.out.println("                               |");
+        System.out.println("                               |");
+        System.out.println("                          Cultur room");
+        System.out.println();
+    }
+
+    private void printGlobalMap()
+    {
+        System.out.println("");
     }
 
     /**

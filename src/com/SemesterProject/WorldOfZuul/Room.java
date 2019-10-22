@@ -1,7 +1,5 @@
 package com.SemesterProject.WorldOfZuul;
 
-import com.SemesterProject.WorldOfZuul.Country.BaseCountry;
-
 import java.util.Set;
 import java.util.HashMap;
 
@@ -18,7 +16,9 @@ public class Room
 {
     private String description; /** Stores the description of rooms */
     private HashMap<String, Room> exits; /** Stores exits of the room. */
-    private HashMap<String, BaseCountry> countryExits; /** Stores exits of the room. */
+    private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
+    private HashMap<String, Country> trainExits;
+
 
     /**
      * Creates a room described called "description". Initially, it has no exits.
@@ -27,8 +27,9 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
-        countryExits = new HashMap<>();
+        exits = new HashMap<>();
+        flyExits = new HashMap<>();
+        trainExits = new HashMap<>();
     }
 
     /**
@@ -39,16 +40,21 @@ public class Room
         exits.put(direction, neighbor);
     }
 
-    public void setFlight(String countryName, BaseCountry baseCountry)
+    public void setFlight(String countryName, Country country)
     {
-        countryExits.put(countryName, baseCountry);
+        flyExits.put(countryName, country);
     }
 
-
-    public boolean gotFlyPoint()
-    {
-        return countryExits.size() != 0;
+    public void setTrainExits(String countryName, Country country) {
+        trainExits.put(countryName, country);
     }
+
+    boolean gotFlyPoint()
+    {
+        return flyExits.size() != 0;
+    }
+
+    boolean gotTrainPoint(){return trainExits.size() != 0;}
 
      /**
      * Returns the description of the room (the one that was defined in the constructor).
@@ -63,14 +69,20 @@ public class Room
      * "You are in the kitchen."
      * "Exits: north west"
      */
-    public String getLongDescription()
+    String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString();
     }
 
-    public String getLongDescriptionWithFlights()
+
+    String getLongDescriptionWithFlights()
     {
-        return "You are " + description + ".\n" + getExitString() + "\n" + getFlightString();
+        return "You are " + description + ".\nrooms " + getExitString() + "\nflights " + getFlightString();
+    }
+
+
+    String getLongDescriptionWithTrains(){
+        return "You are " + description + ".\nrooms " + getExitString() + "\ntrains " + getTrainString();
     }
 
     /**
@@ -79,18 +91,22 @@ public class Room
      */
     private String getExitString()
     {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
+        return getFormattedString(exits.keySet());
     }
 
     private String getFlightString()
     {
+        return getFormattedString(flyExits.keySet());
+    }
+
+    private String getTrainString()
+    {
+        return getFormattedString(trainExits.keySet());
+    }
+
+    private String getFormattedString(Set<String> set){
         String returnString = "Exits:";
-        Set<String> keys = countryExits.keySet();
+        Set<String> keys = set;
         for(String exit : keys) {
             returnString += " " + exit;
         }
@@ -101,9 +117,17 @@ public class Room
      * Return the room that is reached, if we go from this room in direction x
      * "direction" will be printed. If there is no room in that direction, it returns null.
      */
-    public Room getExit(String direction) 
+    Room getExit(String direction)
     {
         return exits.get(direction);
+    }
+
+    public Country getFlyExits(String country) {
+        return flyExits.get(country);
+    }
+
+    public Country getTrainExits(String country) {
+        return trainExits.get(country);
     }
 }
 

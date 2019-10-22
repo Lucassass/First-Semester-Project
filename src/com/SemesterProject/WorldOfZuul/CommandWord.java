@@ -4,6 +4,9 @@ package com.SemesterProject.WorldOfZuul;
 public enum CommandWord {
     GO("go"),
     FLY("fly"),
+    TRAIN("train"),
+    LOCALMAP("localmap"),
+    GLOBALMAP("globalmap"),
     QUIT("quit"),
     HELP("help"),
     UNKNOWN("?");
