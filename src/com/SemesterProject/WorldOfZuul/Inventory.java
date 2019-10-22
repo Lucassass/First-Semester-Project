@@ -15,13 +15,11 @@ public class Inventory extends Item
 {
 
     private ArrayList <Item> inventory = new ArrayList(); //ArrayList that contains Items
+    private ArrayList <Deal> inventoryDeals = new ArrayList(); // ArrayList that contains deals
 
     
-    public Inventory() // Create inventory constructor, so that we can use it later
-    {
-        
-    }
-
+    public Inventory(){} // Create inventory constructor, so that we can use it later
+   
     /**
      * Gets inventory to other classes
      * @return 
@@ -32,8 +30,6 @@ public class Inventory extends Item
     }
     
     
-
-
     /**
      * When player picks up item, add too inventory
      */
