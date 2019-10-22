@@ -14,13 +14,13 @@ import java.util.ArrayList;
  *
  * @author tes_7
  */
-public class Item {
+public class Item extends Deal {
     
-    String name;
-    String countryGood;
-    int pointsGood;
-    String countryBad;
-    int pointsBad;
+    String name; //Name of item
+    String countryGood; // Name of the country the item has a good effect on
+    int pointsGood; // The + points you get from being in the good country
+    String countryBad; //Name of the bad country the item has a bad effect on
+    int pointsBad; // The - points you get from being in the bad country
     
     
     
