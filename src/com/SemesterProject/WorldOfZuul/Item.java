@@ -5,13 +5,7 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-
-
 /**
- *
  * @author tes_7
  */
 public class Item extends Deal {
@@ -21,46 +15,49 @@ public class Item extends Deal {
     int pointsGood; // The + points you get from being in the good country
     String countryBad; //Name of the bad country the item has a bad effect on
     int pointsBad; // The - points you get from being in the bad country
-    
+    String textBad; // Text that prints during dice roll
+    String textGood; // Text that prints during dice roll
     
     
     
     public Item(String name, String countryGood, int pointsGood,
-            Array countryBad, int pointsBad)
+            String countryBad, int pointsBad)
     {
-        
+        name = this.name;
+        countryGood = this.countryGood;
+        pointsGood = this.pointsGood;
+        countryBad = this.countryBad;
+        pointsBad = this.pointsBad; 
+        String textBad0 = textBad;        
+        String textGood0 = textGood;       
     }
-    
+    /**
+     * TextBad
+     * @return 
+     */
+    public String getTextBad(){return textBad;} 
     /**
      * 
-     * @param item
-     * @return name
-     */   
-    public String getName(Item item){return name;}
+     * @param textBad 
+     */
+    public void setTextBad(String textBad){textBad = getTextBad();}
+
     /**
-     * 
-     * @param item
      * @return countryGood
      */
-    public String getCountryGood(Item item){return countryGood;}
+    public String getCountryGood(){return countryGood;}
     /**
-     * 
-     * @param item
      * @return contryBad
      */
-    public String getcountryBad(Item item){return countryBad;}
+    public String getcountryBad(){return countryBad;}
     /**
-     * 
-     * @param item
      * @return pointsGood
      */
-    public int getPointsGood(Item item){return pointsGood;}
+    public int getPointsGood(){return pointsGood;}
     /**
-     * 
-     * @param item
      * @return pointsBad
      */
-    public int getPointsBad(Item item){return pointsBad;}
+    public int getPointsBad(){return pointsBad;}
 }
 
     
