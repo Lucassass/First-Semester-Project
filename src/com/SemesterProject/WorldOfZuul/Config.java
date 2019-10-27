@@ -5,7 +5,6 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -13,51 +12,69 @@ public class Config extends Inventory
 {
     private static String dansk = "Danmark"; //slettes når opdatere rollDice
     private static int money;
-    public static int sustainability = 0;
-    public static int energy = 0;
-    public static int environment = 0;
-    private static int diceAdvantage = 0;
-    private static int diceResult = 0;
+           
     
-    Inventory inventory = new Inventory();
+    
 
     /**
-     * Needs to replace the dansk part with objekt country.
-     * when player rolls dice go through inventory and chek the advantages and
-     * disadvantages player gets from items depending on the country. 
-     * Then roll dice, if between 4 and 7 return true else return false.
-     */
-   public boolean rollDice()
+     * Needs to replace the dansk part with objekt country.when player rolls dice
+     * go through inventory and chek the advantages and disadvantages player gets
+     * from items depending on the country.Then roll dice, if between 4 and 7 return true else return false  
+     * @return 
+     */    
+   public static boolean rollDice()
    {
-       for(int i = 0; i < inventory.getInventory().size(); i++)
+       
+       int diceResult = 0;
+       int diceAdvantage = 0; //In here to have new advantage every time rollDice
+       for(int i = 0; i < inventory.size(); i++) //goes through inventory
        {
-         if(inventory.getInventory().get(i).getCountryGood(this).equals(dansk) )
+           //If in good good get good points
+         if(inventory.get(i).getCountryGood().equals(dansk) )
          {
-             diceAdvantage = inventory.getInventory().get(i).getPointsGood(this);
+             diceAdvantage = inventory.get(i).getPointsGood();
          }
-         else if(inventory.getInventory().get(i).getcountryBad(this).equals(dansk) )
+         // If bad country get bad points
+         else if(inventory.get(i).getcountryBad().equals(dansk) )
          {
-             diceAdvantage = inventory.getInventory().get(i).getPointsBad(this);
-         }else if(inventory.getInventory().get(i).getCountryGood(this).equals(dansk) 
-                 && inventory.getInventory().get(i).getcountryBad(this).equals(dansk))
+             diceAdvantage = inventory.get(i).getPointsBad();
+         // If in good and bad country get both points
+         }else if(inventory.get(i).getCountryGood().equals(dansk) 
+                 && inventory.get(i).getcountryBad().equals(dansk))
          {
-             diceAdvantage = inventory.getInventory().get(i).getPointsGood(this) 
-                     + inventory.getInventory().get(i).getPointsBad(this);
+             diceAdvantage = inventory.get(i).getPointsGood() 
+                     + inventory.get(i).getPointsBad();
          }
-         
+         //random gives number between 0 and 6 (beneath 7), so +1 to make it
+         //1 and 6 and then add diceAdvantage
          diceResult = new Random().nextInt(7) + 1 + diceAdvantage;
              
        }
        
-       if (3 < diceResult < 7)
-       {
-           return true;
-       } else {
-           return false;
-       }
+        return 3 < diceResult && diceResult < 7; //returns true or false
        
    }
     
+  
+   public static void takeDeal(Deal deal)
+   {
+      
+       rollDice();
+       if(true)
+       {
+           System.out.println("Congratulations, the deal was a succsses!!");  
+           inventoryDealsUpdate(deal); //Kan ikke finde ud af hvad der er galt
+       } else{
+            System.out.println("The deal did not go through, not you lucky day i guess..");
+       }
+          
+   }
+   //Skal lige finde ud af hvad der skal være her
+   public static void startDeal()
+   {
+       
+   }
+   
     public static int getMoney() {
         return money;
     }
