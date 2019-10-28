@@ -229,7 +229,27 @@ public class Game
 
     private void printGlobalMap()
     {
-        System.out.println("");
+        System.out.println();
+        System.out.println("India   Germany   Japan");
+        System.out.println(" \\        |        /");
+        System.out.println("  \\       |       /");
+        System.out.println("   \\      |      /");
+        System.out.println("    \\     |     /");
+        System.out.println("     \\    |    /");
+        System.out.println("      \\   |   /");
+        System.out.println("       \\  |  /");
+        System.out.println("        \\ | /");
+        System.out.println("        / | \\ ");
+        System.out.println("       /  |  \\ ");
+        System.out.println("      /   |   \\ ");
+        System.out.println("     /    |    \\ ");
+        System.out.println("    /     |     \\ ");
+        System.out.println("   /      |      \\ ");
+        System.out.println("  /       |       \\ ");
+        System.out.println(" /        |        \\ ");
+        System.out.println("China   Russia    USA");
+        System.out.println();
+        System.out.println("You are currently in: "+currentCountry);
     }
 
     /**
