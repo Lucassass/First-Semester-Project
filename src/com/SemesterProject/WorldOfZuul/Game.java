@@ -44,10 +44,17 @@ public class Game
 
         china.setFlyExit("USA", usa);
         usa.setFlyExit("China", china);
+        russia.setFlyExit("Japan",japan);
+        india.setFlyExit("Germany", germany);
+        germany.setFlyExit("USA", usa);
         china.setTrainExit("USA", usa);
         china.setTrainExit("Test", usa);
         usa.setTrainExit("China", china);
         usa.setTrainExit("Test", china);
+        usa.setTrainExit("Germany", germany);
+        germany.setTrainExit("Russia", russia);
+        russia.setTrainExit("India", india);
+        india.setTrainExit("Japan", japan);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();
