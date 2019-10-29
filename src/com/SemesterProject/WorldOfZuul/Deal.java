@@ -10,18 +10,21 @@ package com.SemesterProject.WorldOfZuul;
  * @author tes_7
  */
 public class Deal {
-    
-    static String name; // Name of deal
-    static String category; //Catogery of deals
-    static int sustainabilityPoints; // effects on sustainability
-    static int energyPoints; //effect on energy
-    static int environmentPoints; // effect on environment
-    static String information; //Information about deal
+
+    //TODO Hvorfor er de static?  det må de ikke :(
+    //TODO: lavet alle private
+    private static String name; // Name of deal
+    private static String category; //Catogery of deals
+    private static int sustainabilityPoints; // effects on sustainability
+    private static int energyPoints; //effect on energy
+    private static int environmentPoints; // effect on environment
+    private static String information; //Information about deal
     
     
     public Deal()
     {
-        name = null; category = null; sustainabilityPoints = 0; 
+        //Why? - behøves ikke :)
+        name = null; category = null; sustainabilityPoints = 0;
         energyPoints = 0; environmentPoints = 0; information = null;
     }
     //Hoved Deal objektet der gerne skulle bruges

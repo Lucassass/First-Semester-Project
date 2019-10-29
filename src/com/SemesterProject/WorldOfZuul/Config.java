@@ -7,7 +7,7 @@ package com.SemesterProject.WorldOfZuul;
 
 import java.util.Random;
 
-
+//todo igen, hvorfor extends med inventory?
 public class Config extends Inventory
 {
     private static String dansk = "Danmark"; //slettes når opdatere rollDice
@@ -24,7 +24,8 @@ public class Config extends Inventory
      */    
    public static boolean rollDice()
    {
-       
+
+       /*
        int diceResult = 0;
        int diceAdvantage = 0; //In here to have new advantage every time rollDice
        for(int i = 0; i < inventory.size(); i++) //goes through inventory
@@ -35,12 +36,12 @@ public class Config extends Inventory
              diceAdvantage = inventory.get(i).getPointsGood();
          }
          // If bad country get bad points
-         else if(inventory.get(i).getcountryBad().equals(dansk) )
+         else if(inventory.get(i).getCountryBad().equals(dansk) )
          {
              diceAdvantage = inventory.get(i).getPointsBad();
          // If in good and bad country get both points
          }else if(inventory.get(i).getCountryGood().equals(dansk) 
-                 && inventory.get(i).getcountryBad().equals(dansk))
+                 && inventory.get(i).getCountryBad().equals(dansk))
          {
              diceAdvantage = inventory.get(i).getPointsGood() 
                      + inventory.get(i).getPointsBad();
@@ -52,7 +53,8 @@ public class Config extends Inventory
        }
        
         return 3 < diceResult && diceResult < 7; //returns true or false
-       
+       */
+       return false;
    }
     
   
@@ -60,10 +62,10 @@ public class Config extends Inventory
    {
       
        rollDice();
-       if(true)
+       if(true) //todo ?
        {
            System.out.println("Congratulations, the deal was a succsses!!");  
-           inventoryDealsUpdate(deal); //Kan ikke finde ud af hvad der er galt
+           inventoryDealsUpdate(deal); //Kan ikke finde ud af hvad der er galt //TODO {}
        } else{
             System.out.println("The deal did not go through, not you lucky day i guess..");
        }

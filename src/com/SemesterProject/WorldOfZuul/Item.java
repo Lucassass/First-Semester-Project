@@ -8,26 +8,34 @@ package com.SemesterProject.WorldOfZuul;
 /**
  * @author tes_7
  */
-public class Item extends Deal {
-    
-    String name; //Name of item
-    String countryGood; // Name of the country the item has a good effect on
-    int pointsGood; // The + points you get from being in the good country
-    String countryBad; //Name of the bad country the item has a bad effect on
-    int pointsBad; // The - points you get from being in the bad country
-    String textBad; // Text that prints during dice roll
-    String textGood; // Text that prints during dice roll
+//TODO Igen hvorfor inheriate du deal?
+    // TODO edit: fjernet det
+public class Item{
+
+    // TODO edit: made private
+    private String name; //Name of item
+    private String countryGood; // Name of the country the item has a good effect on
+    private int pointsGood; // The + points you get from being in the good country
+    private String countryBad; //Name of the bad country the item has a bad effect on
+    private int pointsBad; // The - points you get from being in the bad country
+    private String textBad; // Text that prints during dice roll
+    private String textGood; // Text that prints during dice roll
     
     
     
     public Item(String name, String countryGood, int pointsGood,
             String countryBad, int pointsBad)
     {
-        name = this.name;
-        countryGood = this.countryGood;
-        pointsGood = this.pointsGood;
-        countryBad = this.countryBad;
-        pointsBad = this.pointsBad; 
+        //TODO expression er sat den forkerte vej
+        //TODO EDIT: fixede det
+        this.name = name;
+        this.countryGood = countryGood;
+        this.pointsGood = pointsGood;
+        this.countryBad = countryBad;
+        this.pointsBad = pointsBad;
+
+
+        //TODO hvad er mening med disse variabler?
         String textBad0 = textBad;        
         String textGood0 = textGood;       
     }
@@ -49,7 +57,7 @@ public class Item extends Deal {
     /**
      * @return contryBad
      */
-    public String getcountryBad(){return countryBad;}
+    public String getCountryBad(){return countryBad;}
     /**
      * @return pointsGood
      */
@@ -58,6 +66,15 @@ public class Item extends Deal {
      * @return pointsBad
      */
     public int getPointsBad(){return pointsBad;}
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTextGood() {
+        return textGood;
+    }
+
 }
 
     
