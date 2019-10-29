@@ -1,5 +1,6 @@
 package com.SemesterProject.WorldOfZuul;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 
@@ -18,6 +19,7 @@ public class Room
     private HashMap<String, Room> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
+    private ArrayList<Item> items;
 
 
     /**
@@ -30,6 +32,7 @@ public class Room
         exits = new HashMap<>();
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
+        items = new ArrayList<>();
     }
 
     /**
@@ -47,6 +50,10 @@ public class Room
 
     public void setTrainExits(String countryName, Country country) {
         trainExits.put(countryName, country);
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 
     boolean gotFlyPoint()
@@ -122,8 +129,12 @@ public class Room
         return exits.get(direction);
     }
 
-    public Country getFlyExits(String country) {
+    public Country getFlyExit(String country) {
         return flyExits.get(country);
+    }
+
+    public ArrayList<Country> getFlyExits(){
+        return new ArrayList<>(flyExits.values());
     }
 
     public Country getTrainExits(String country) {

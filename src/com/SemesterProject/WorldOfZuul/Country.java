@@ -7,10 +7,12 @@ public  class Country {
     private Room startRoom;
     private Room airPortRoom;
     private Room trainStation;
+    private String name;
 
-    public Country(String airportDescription, String trainStationDescription, String outsideDescription,
+    public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
                    String governmentDescription, String cultureDescription, ArrayList<Item> items)
     {
+        this.name = name;
         var airport = new Room(airportDescription);
         var government = new Room(governmentDescription);
         var outside = new Room(outsideDescription);
@@ -25,6 +27,7 @@ public  class Country {
         outside.setExit("down", culture);
         outside.setExit("left", government);
         outside.setExit("right", trainStation);
+        culture.setItems(items);
 
         setStartRoom(outside);
         setAirPortRoom(airport);
@@ -35,13 +38,29 @@ public  class Country {
         return startRoom;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Country getAirPortExit(String country) {
-        return airPortRoom.getFlyExits(country);
+        return airPortRoom.getFlyExit(country);
     }
 
     public Country getTrainStationExit(String country){
 
         return trainStation.getTrainExits(country);
+    }
+
+    public ArrayList<Country> getAirportExits(){
+        return airPortRoom.getFlyExits();
+    }
+
+    public Room getTrainStation() {
+        return trainStation;
+    }
+
+    public Room getAirPortRoom() {
+        return airPortRoom;
     }
 
     private void setStartRoom(Room startRoom) {
@@ -63,11 +82,13 @@ public  class Country {
      */
     public void setFlyExit(String countryName, Country country)
     {
+        countryName = countryName.toLowerCase();
         airPortRoom.setFlight(countryName, country);
     }
 
     public void setTrainExit(String countryName, Country country)
     {
+        countryName = countryName.toLowerCase();
         trainStation.setTrainExits(countryName, country);
     }
 

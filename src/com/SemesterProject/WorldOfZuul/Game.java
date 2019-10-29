@@ -1,11 +1,15 @@
 package com.SemesterProject.WorldOfZuul;
 
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
 public class Game
 {
     private Parser parser;
     private Room currentRoom;
     private Country currentCountry;
-    
+
 // To Start game run main function bellow
  
     /*
@@ -13,8 +17,8 @@ public class Game
     */
     public Game() 
     {
-        createRooms();
         parser = new Parser();
+        createRooms();
     }
 
     /**
@@ -24,19 +28,18 @@ public class Game
      */
     private void createRooms()
     {
-
         Country usa, china, russia, japan, india, germany;
-        china = new Country("Airport", "Train",
+        china = new Country("China","Airport", "Train",
                 "outside", "government", "culture", null);
-        usa = new Country("Airport", "Train",
+        usa = new Country("USA","Airport", "Train",
                 "outside", "government", "culture", null);
-        russia = new Country("Airport", "Train",
+        russia = new Country("Russia", "Airport", "Train",
                 "outside", "government", "culture", null);
-        japan = new Country("Airport", "Train",
+        japan = new Country("Japan","Airport", "Train",
                 "outside", "government", "culture", null);
-        india = new Country("Airport", "Train",
+        india = new Country("India","Airport", "Train",
                 "outside", "government", "culture", null);
-        germany = new Country("Airport", "Train",
+        germany = new Country("Germany", "Airport", "Train",
                 "outside", "government", "culture", null);
 
         china.setFlyExit("USA", usa);
@@ -65,7 +68,7 @@ public class Game
          * Here we repeatedly read commands and execute them until the game is over.        
          */
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -105,9 +108,10 @@ public class Game
         }
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
-        }else if (commandWord == CommandWord.FLY)
+        }
+        else if (commandWord == CommandWord.FLY)
         {
-            goCountry(command);
+            fly();
         }
         else if (commandWord == CommandWord.TRAIN){
             goTrainStation(command);
@@ -173,21 +177,15 @@ public class Game
         }
     }
 
-    private void goCountry(Command command)
+    private void goCountry(String country)
     {
-        if(!command.hasSecondWord()) {
-            System.out.println("Fly where?");
-            return;
-        }
-
-        String country = command.getSecondWord();
-
         Country nextCountry = currentCountry.getAirPortExit(country);
 
         if (nextCountry == null) {
-            System.out.println("There is no plains to " + command.getSecondWord() + "!");
+            System.out.println("There is no direct line to " + country);
         }
         else {
+            System.out.println("Flying to: " + nextCountry.getName());
             currentCountry = nextCountry;
             currentRoom = currentCountry.getStartRoom();
             System.out.println(currentRoom.getLongDescription());
@@ -204,8 +202,8 @@ public class Game
 
         Country nextCountry = currentCountry.getTrainStationExit(country);
 
-        if (nextCountry == null) {
-            System.out.println("There is no station at " + command.getSecondWord() + "!");
+        if (nextCountry == null || currentRoom != currentCountry.getTrainStation()) {
+            System.out.println("There is no station here!");
         }
         else {
             currentCountry = nextCountry;
@@ -213,6 +211,43 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
+
+
+    private void fly(){
+
+        if (currentRoom != currentCountry.getAirPortRoom()){
+            System.out.println("You are not at a airport");
+            return;
+        }
+
+        System.out.println("Private or commercial plane?");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().toLowerCase();
+        if (input.equals("private")){
+            System.out.println("Where?");
+            input = scanner.nextLine().toLowerCase();
+            flyWithPrivatePlane(input);
+        } else if (input.equals("commercial")){
+            flyWithPublicPlane();
+        }
+    }
+
+    private void flyWithPrivatePlane(String country)
+    {
+        goCountry(country);
+    }
+
+    private void flyWithPublicPlane(){
+
+
+        var countries = currentCountry.getAirportExits();
+
+        var random = new Random().nextInt(countries.size());
+
+        goCountry(countries.get(random).getName().toLowerCase());
+    }
+
+
 
     private void printLocalMap()
     {
@@ -224,7 +259,8 @@ public class Game
         System.out.println("                               |");
         System.out.println("                               |");
         System.out.println("                          Cultur room");
-        System.out.println();
+       System.out.println("You are currently in: "+ currentRoom);
+
     }
 
     private void printGlobalMap()
@@ -249,7 +285,7 @@ public class Game
         System.out.println(" /        |        \\ ");
         System.out.println("China   Russia    USA");
         System.out.println();
-        System.out.println("You are currently in: "+currentCountry);
+        System.out.println("You are currently in: "+currentCountry.getName());
     }
 
     /**
