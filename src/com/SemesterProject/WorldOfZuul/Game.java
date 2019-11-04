@@ -1,6 +1,5 @@
 package com.SemesterProject.WorldOfZuul;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -189,7 +188,7 @@ public class Game
         Country nextCountry = currentCountry.getAirPortExit(country);
 
         if (nextCountry == null) {
-            System.out.println("There is no direct line to " + country);
+            System.out.println("Cannot find a line from"+currentCountry.getName()+"to " + country);
         }
         else {
             System.out.println("Flying to: " + nextCountry.getName());
@@ -201,13 +200,18 @@ public class Game
 
     private void goTrainStation(Command command)
     {
-        if (!command.hasSecondWord()  && command.getCommandWord() != CommandWord.TRAIN ){
-            System.out.println("Take the train to where?");
-            return;
-        }
         String country = command.getSecondWord();
 
         Country nextCountry = currentCountry.getTrainStationExit(country);
+
+        if (!Config.gotMoneyForTrain())
+        {
+            System.out.println("Sorry you dont have enough money");
+            return;
+        }
+        else {
+            Config.buyTrainTicket();
+        }
 
         if (nextCountry == null || currentRoom != currentCountry.getTrainStation()) {
             System.out.println("There is no station here!");
@@ -220,8 +224,8 @@ public class Game
     }
 
 
-    private void fly(){
-
+    private void fly()
+    {
         if (currentRoom != currentCountry.getAirPortRoom()){
             System.out.println("You are not at a airport");
             return;
@@ -235,17 +239,34 @@ public class Game
             input = scanner.nextLine().toLowerCase();
             flyWithPrivatePlane(input);
         } else if (input.equals("commercial")){
-            flyWithPublicPlane();
+            flyWithCommercialPlane();
         }
     }
 
     private void flyWithPrivatePlane(String country)
     {
+        if (!Config.gotMoneyForPrivateFlying())
+        {
+            System.out.println("Sorry you dont have enough money");
+            return;
+        }
+        else
+        {
+            Config.buyFlyPrivate();
+        }
         goCountry(country);
     }
 
-    private void flyWithPublicPlane(){
+    private void flyWithCommercialPlane(){
 
+        if (!Config.gotMoneyForCommercialFlying())
+        {
+            System.out.println("Sorry you dont have enough money");
+            return;
+        }
+        else{
+            Config.buyFlyCommercial();
+        }
 
         var countries = currentCountry.getAirportExits();
 

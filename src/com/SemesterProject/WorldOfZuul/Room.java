@@ -43,25 +43,47 @@ public class Room
         exits.put(direction, neighbor);
     }
 
+    /**
+     *
+     * @param countryName The name of the country you wanna set as flight exits
+     * @param country The country it self
+     */
     public void setFlight(String countryName, Country country)
     {
         flyExits.put(countryName, country);
     }
 
+    /**
+     *
+     * @param countryName The name of the country you wanna set as train exits
+     * @param country The country it self
+     */
     public void setTrainExits(String countryName, Country country) {
         trainExits.put(countryName, country);
     }
 
+    /**
+     * Set items for the room
+     * @param items Arraylist of items you wanna add to the room
+     */
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 
-    boolean gotFlyPoint()
+    /**
+     * Check whether or not room got fly points
+     * @return true if the room got fly exits
+     */
+    public boolean gotFlyPoint()
     {
         return flyExits.size() != 0;
     }
 
-    boolean gotTrainPoint(){return trainExits.size() != 0;}
+    /**
+     * Check whether or not room got train points
+     * @return true if the room got train exits
+     */
+    public boolean gotTrainPoint(){return trainExits.size() != 0;}
 
      /**
      * Returns the description of the room (the one that was defined in the constructor).
@@ -82,12 +104,20 @@ public class Room
     }
 
 
+    /**
+     *
+     * @return long description with flight exits
+     */
     String getLongDescriptionWithFlights()
     {
         return "You are " + description + ".\nrooms " + getExitString() + "\nflights " + getFlightString();
     }
 
 
+    /**
+     *
+     * @return long description with train exits
+     */
     String getLongDescriptionWithTrains(){
         return "You are " + description + ".\nrooms " + getExitString() + "\ntrains " + getTrainString();
     }
@@ -101,16 +131,29 @@ public class Room
         return getFormattedString(exits.keySet());
     }
 
+    /**
+     *
+     * @return formatted string with fly exits
+     */
     private String getFlightString()
     {
         return getFormattedString(flyExits.keySet());
     }
 
+    /**
+     *
+     * @return formatted string with train exits
+     */
     private String getTrainString()
     {
         return getFormattedString(trainExits.keySet());
     }
 
+    /**
+     * Added a space between all elements in a set
+     * @param set The set of strings to be formatted
+     * @return return a formatted string
+     */
     private String getFormattedString(Set<String> set){
         String returnString = "Exits:";
         Set<String> keys = set;
@@ -129,14 +172,28 @@ public class Room
         return exits.get(direction);
     }
 
-    public Country getFlyExit(String country) {
-        return flyExits.get(country);
+    /**
+     *
+     * @param countryName Name of the country you wanna get flypoints for
+     * @return return a country or null
+     */
+    public Country getFlyExit(String countryName) {
+        return flyExits.get(countryName);
     }
 
+    /**
+     *
+     * @return all fly points
+     */
     public ArrayList<Country> getFlyExits(){
         return new ArrayList<>(flyExits.values());
     }
 
+    /**
+     *
+     * @param country Name of the country you wanna get train exists for
+     * @return a country or null
+     */
     public Country getTrainExits(String country) {
         return trainExits.get(country);
     }
