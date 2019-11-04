@@ -161,35 +161,62 @@ public class Inventory {
      */
     public void addCategory(Deal deal,ArrayList<Deal> category, int max, ArrayList<Deal> country){
         if (category.size() < max) {
-            addingDeal(deal,category, country);}
+            addingDeal(deal,category, country);
+        }
         // If food is filled, player chooses if and what deal to replace
-        else {int m = 0; while (m == 0) {
-            System.out.println("You can only have " + max + " deal in the category " + deal.getCategory());
-            printInventoryCategory(category);
-            System.out.println("Would you like to replace your current deal??");
-            Scanner sc = new Scanner(System.in); String scan = sc.nextLine(); // Player chooses if replace
-            if(scan.equals("yes")){
-                if(max == 1)
-                {   addingDeal(deal,category, country);m++;}
+        else {
+            //askingUserToReplaceDeal();
+            int m = 0;
+            while (m == 0)
+            {
+
+                System.out.println("You can only have " + max + " deal in the category " + deal.getCategory());
+                printInventoryCategory(category);
+                System.out.println("Would you like to replace your current deal??");
+
+                Scanner sc = new Scanner(System.in);
+                String scan = sc.nextLine(); // Player chooses if replace
+
+                if(scan.equals("yes"))
+                {
+                    if(max == 1)
+                    {
+                        addingDeal(deal,category, country);
+                        m++;
+                    }
                 else
-                {int k = 0; while (k == 0) {
-                    System.out.println("Which deal whould you like to replace");
-                    printInventoryCategory(category);
-                    scan = sc.nextLine();
-                    for (int i = 0; i < category.size(); i++) {
-                        if (category.get(i).getName().equalsIgnoreCase(scan)) {
-                            country.remove(deal);category.set(i, deal);
-                            System.out.println("congratulations, you have now "
-                                    + "entered a new deal");
-                            System.out.println("The deal " + deal.getName() +
-                                    " is now in your inventory");m++;k++;}}
-                }}}
-            else if ( scan.equalsIgnoreCase("No")) {
-                System.out.println("No new deals for you :("); m++;}
-            else{
-                System.out.println("I do not understand the command");}}
+                {
+                    int k = 0;
+                    while (k == 0)
+                    {
+                        System.out.println("Which deal would you like to replace");
+                        printInventoryCategory(category);
+                        scan = sc.nextLine();
+                        for (int i = 0; i < category.size(); i++)
+                        {
+                            if (category.get(i).getName().equalsIgnoreCase(scan))
+                            {
+                                country.remove(deal);category.set(i, deal);
+                                System.out.println("congratulations, you have now entered a new deal");
+                                System.out.println("The deal " + deal.getName() + " is now in your inventory");
+                                m++;
+                                k++;
+                            }
+                        }
+                    }
+                }}
+                else if ( scan.equalsIgnoreCase("No"))
+                {
+                    System.out.println("No new deals for you :(");
+                    m++;
+                }
+                else{
+                    System.out.println("I do not understand the command");
+                }
+            }
         }
     }
+
 
     /** -- used for bigger
      * from taking a deal to adding to inventoryDeals
