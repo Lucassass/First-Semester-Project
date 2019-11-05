@@ -75,7 +75,64 @@ public class Config
         money -= PrivateFlyingCost;
     }
 
+    /**
+     * ----> SHOULD BE USED IN ANOTHER CLASS OR COMMANDWORD <----
+     * Asks which deal player want's to take, shows deal from country, player
+     * chooses deal, shows info about deal, chooses if yes or no, if yes roll and
+     * get deal or nor.
+     * @param dealInCountry --> The list of Deals in the country
+     */
+    public static void startDeal(ArrayList<Deal> dealInCountry, Country country) {
+        if (dealInCountry.isEmpty())
+        {
+            System.out.println("Sorry, no deals on the table");
+            return;
+        }
 
+        Inventory in = Inventory.getInstance();
+        System.out.print("Hello there");
+        boolean run = true;
+        while (run)
+        {
+            System.out.println("\nWhich deal would you like to negotiate?");
+
+            in.printInventoryDeals(dealInCountry);
+            System.out.println();
+            Scanner sc = new Scanner(System.in);
+            String scan = sc.nextLine();
+
+            for (int i = 0; i < dealInCountry.size(); i++) {
+                if(scan.equalsIgnoreCase("quit"))
+                {
+                    return;
+                }
+                if (dealInCountry.get(i).getName().equalsIgnoreCase(scan)) {
+                    System.out.println(dealInCountry.get(i).getInfo());
+                    while (true) {
+                        System.out.println("The deal will cost you " + dealInCountry.get(i).getPrice() + "\nWill you take the deal?");
+
+                        String scann = sc.nextLine();
+
+                        if(scann.equalsIgnoreCase("quit"))
+                        {
+                            return;
+                        }
+                        if (scann.equalsIgnoreCase("yes"))
+                        {
+                            takeDeal(dealInCountry.get(i), dealInCountry,country);
+                            break;
+                        }
+                        else if (scann.equalsIgnoreCase("no"))
+                        {
+                            break;
+                        }
+
+                    }
+                    run = false;
+                }
+            }
+        }
+    }
 
     /** - for bigger
      * @param under - ArrayList of Integer wants too add
@@ -86,7 +143,8 @@ public class Config
         int before = 0;
         int main = 0;
         for (int i = 0; i < under.size(); i++)
-        {   main = before + under.get(i);
+        {
+            main = before + under.get(i);
             before = main;
         }
         return main;
@@ -104,16 +162,20 @@ public class Config
             return 0;
         }
 
-
         ArrayList<Integer>  result = new ArrayList<>();
         System.out.println("Let's impress the diplomat with your fancy items");
         in.printInventoryItem(in.getInventoryItem());
         System.out.println("Which item should you use?");
+
         Scanner sc = new Scanner(System.in);
         String scan = sc.nextLine();
 
         for(int i = 0; i < in.getInventoryItem().size(); i++) //goes through inventory
        {
+           if(scan.equalsIgnoreCase("quit"))
+           {
+               return 0;
+           }
            if(in.getInventoryItem().get(i).getName().equalsIgnoreCase(scan))
            {
 
@@ -145,15 +207,8 @@ public class Config
      *
      * @return
      */
-    public static int random() {
-        /*
-        int roll = 0;
-        while (1 > roll || roll > 6)
-        {
-            roll = (int) (Math.random() * 10);
-        }
-
-         */
+    public static int random()
+    {
         return new Random().nextInt(6) + 1;
     }
 
@@ -163,12 +218,14 @@ public class Config
      * from items depending on the country.Then roll dice, if between 4 and 7 return true else return false     *
      * @return
      */
-    public static boolean rollDice(Country country) {
+    public static boolean rollDice(Country country)
+    {
         int diceResult;
         int roll = random();
         diceResult = roll + advantage(country);
         return diceResult > 3; //returns true or false
     }
+
     /**
      * roll dice to result and what happens
      * @param deal    --> Deal that player takes
@@ -176,9 +233,13 @@ public class Config
      */
     public static void takeDeal(Deal deal, ArrayList<Deal> dealsInCountry, Country country) {
         Inventory in = Inventory.getInstance();
-        System.out.println("The deal will cost you " + deal.getPrice() + "\nWill you take the deal?");
+
         Scanner sc = new Scanner(System.in);
         String scan = sc.nextLine();
+        if(scan.equalsIgnoreCase("quit"))
+        {
+            return;
+        }
         if(scan.equalsIgnoreCase("yes"))
         {
             boolean win = rollDice(country);
@@ -193,54 +254,7 @@ public class Config
         }
     }
 
-    /**
-     * ----> SHOULD BE USED IN ANOTHER CLASS OR COMMANDWORD <----
-     * Asks which deal player want's to take, shows deal from country, player
-     * chooses deal, shows info about deal, chooses if yes or no, if yes roll and
-     * get deal or nor.
-     * @param dealInCountry --> The list of Deals in the country
-     */
-    public static void startDeal(ArrayList<Deal> dealInCountry, Country country) {
-        if (dealInCountry.isEmpty())
-        {
-            System.out.println("Sorry, no deals on the table");
-            return;
-        }
 
-        Inventory in = Inventory.getInstance();
-        System.out.print("Hello there");
-        boolean run = true;
-        while (run) {
-            System.out.println("\nWhich deal would you like to negotiate?");
-
-            in.printInventoryDeals(dealInCountry);
-            System.out.println();
-            Scanner sc = new Scanner(System.in);
-            String scan = sc.nextLine();
-
-            for (int i = 0; i < dealInCountry.size(); i++) {
-                if (dealInCountry.get(i).getName().equalsIgnoreCase(scan)) {
-                    System.out.println(dealInCountry.get(i).getInfo());
-                        while (true) {
-                            System.out.println("Would you like to negotiate the deal "
-                                    + dealInCountry.get(i).getName() + " ?");
-
-                            String scann = sc.nextLine();
-
-                            if (scann.equalsIgnoreCase("yes")) {
-                                takeDeal(dealInCountry.get(i), dealInCountry,country);
-                                break;
-                            }
-                            else if (scann.equalsIgnoreCase("no")) {
-                                break;
-                            }
-
-                        }
-                    run = false;
-                }
-            }
-        }
-    }
     /**
      * @return energyPoints
      */
@@ -307,8 +321,6 @@ public class Config
     {
         money -= TrainCost;
     }
-
-
 
 
 }
