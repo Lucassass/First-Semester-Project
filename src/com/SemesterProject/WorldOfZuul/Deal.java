@@ -22,14 +22,13 @@ public class Deal {
 
     //Hoved Deal objektet der gerne skulle bruges
     public Deal(String name, String category, int sustainabilityPoints,
-                int energyPoints, int environmentPoints, int price)
+                int energyPoints, int environmentPoints, int price, String info)
     {
         this.name = name ;
         this.category = category;
         this.sustainabilityPoints = sustainabilityPoints;
         this.energyPoints = energyPoints;
         this.environmentPoints = environmentPoints;
-        String info = null;
         this.information = info;
         this.price = price;
     }
