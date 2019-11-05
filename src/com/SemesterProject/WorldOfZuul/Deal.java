@@ -33,38 +33,60 @@ public class Deal {
         this.price = price;
     }
 
-    public int getPrice() {
+    public int getPrice()
+    {
         return price;
     }
 
     /**
      * @return information about the deal
      */
-    public String getInfo(){return information;}
+    public String getInfo()
+    {
+        return information;
+    }
     /**
      * sets information about each deal
      * @param info - about deal
      */
-    public void setInfo(String info){information = info;}
+    public void setInfo(String info)
+    {
+        information = info;
+    }
     /**
      * @return Name
      */
-    public String getName(){return name;}
+    public String getName()
+    {
+        return name;
+    }
     /**
      * @return category
      */
-    public String getCategory(){return category;}
+    public String getCategory()
+    {
+        return category;
+    }
     /**
      * @return points - for end points
      */
-    public int getSustainabilityPoints(){return sustainabilityPoints;}
+    public int getSustainabilityPoints()
+    {
+        return sustainabilityPoints;
+    }
     /**
      * @return energyPoints - for end points
      */
-    public int getEnergyPoints(){return energyPoints;}
+    public int getEnergyPoints()
+    {
+        return energyPoints;
+    }
     /**
      * @return environmentPoints - for end points
      */
-    public int getEnvironmentPoints(){return environmentPoints;}
+    public int getEnvironmentPoints()
+    {
+        return environmentPoints;
+    }
 
 }
