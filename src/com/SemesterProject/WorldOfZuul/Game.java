@@ -35,33 +35,110 @@ public class Game
         usaDeals.add(new Deal("Friendship", "Energy",1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", "Energy",1,1,1,290, "Huuuuuuuuuuuuu"));
 
+        var chinaItems = new ArrayList<>();
+        chinaItems.add(new Item("Frankfurter","Germany",2,"Japan",-2));
+        var chinaDeals = new ArrayList<>();
+        chinaDeals.add(new Deal("Coal", "Enviroment",1,1,1,400, "Trololololo"));
+        chinaDeals.add(new Deal("Huawei spyware", "Information",1,1,1,150, "Huhuhuhuhuh"));
+
+        var germanyItems = new ArrayList<>();
+        germanyItems.add(new Item("Sushi","Japan",2,"USA",-2));
+        var germanyDeals = new ArrayList<>();
+        germanyDeals.add(new Deal("waterfacility", "Enviroment",1,1,1,400, "Trololololo"));
+        germanyDeals.add(new Deal("German car manufacturering secrets", "Information",1,1,1,150, "Huhuhuhuhuh"));
+
+        var russiaItems = new ArrayList<>();
+        russiaItems.add(new Item("Curry","India",2,"Russia",-2));
+        var russiaDeals = new ArrayList<>();
+        russiaDeals.add(new Deal("garbage collection system", "Enviroment",1,1,1,400, "Trololololo"));
+        russiaDeals.add(new Deal("FSB", "Information",1,1,1,150, "Huhuhuhuhuh"));
+
+        var indiaItems = new ArrayList<>();
+        indiaItems.add(new Item("Curry","India",2,"Russia",-2));
+        var indiaDeals = new ArrayList<>();
+        indiaDeals.add(new Deal("Organic farming", "Enviroment",1,1,1,400, "Trololololo"));
+        indiaDeals.add(new Deal("Mumbai", "Information",1,1,1,150, "Huhuhuhuhuh"));
+
+        var japanItems = new ArrayList<>();
+        japanItems.add(new Item("Sushi","Japan",2,"USA",-2));
+        var japanDeals = new ArrayList<>();
+        japanDeals.add(new Deal("nucler reactor", "Energy",1,1,1,400, "Trololololo"));
+        japanDeals.add(new Deal("Sushi secret", "Information",1,1,1,150, "Huhuhuhuhuh"));
+
+
         Country usa, china, russia, japan, india, germany;
-        china = new Country("China","Airport", "Train",
-                "outside", "government", "culture", null, null);
-        usa = new Country("USA","Airport", "Train",
-                "outside", "government", "culture", usaItems, usaDeals);
-        russia = new Country("Russia", "Airport", "Train",
-                "outside", "government", "culture", null, null);
-        japan = new Country("Japan","Airport", "Train",
-                "outside", "government", "culture", null, null);
-        india = new Country("India","Airport", "Train",
-                "outside", "government", "culture", null, null);
-        germany = new Country("Germany", "Airport", "Train",
-                "outside", "government", "culture", null, null);
+           china = new Country("China", "Airport", "Train",
+                    "outside", "government", "culture", chinaItems, chinaDeals);
+           usa = new Country("USA", "Airport", "Train",
+                    "outside", "government", "culture", usaItems, usaDeals);
+           russia = new Country("Russia", "Airport", "Train",
+                    "outside", "government", "culture", russiaItems, russiaDeals);
+           japan = new Country("Japan", "Airport", "Train",
+                    "outside", "government", "culture", japanItems, japanDeals);
+           india = new Country("India", "Airport", "Train",
+                    "outside", "government", "culture", indiaItems, indiaDeals);
+           germany = new Country("Germany", "Airport", "Train",
+                    "outside", "government", "culture", germanyItems, germanyDeals);
 
         china.setFlyExit("USA", usa);
+        china.setFlyExit("Russia", russia);
+        china.setFlyExit("Japan", japan);
+        china.setFlyExit("India", india);
+        china.setFlyExit("Germany", germany);
+
         usa.setFlyExit("China", china);
+        usa.setFlyExit("Russia", russia);
+        usa.setFlyExit("Japan", japan);
+        usa.setFlyExit("India", india);
+        usa.setFlyExit("Germany", germany);
+
         russia.setFlyExit("Japan",japan);
+        russia.setFlyExit("Russia", russia);
+        russia.setFlyExit("USA", usa);
+        russia.setFlyExit("India", india);
+        russia.setFlyExit("Germany", germany);
+
         india.setFlyExit("Germany", germany);
+        india.setFlyExit("Russia", russia);
+        india.setFlyExit("Japan", japan);
+        india.setFlyExit("India", india);
+        india.setFlyExit("USA", usa);
+
         germany.setFlyExit("USA", usa);
+        germany.setFlyExit("China", china);
+        germany.setFlyExit("Japan", japan);
+        germany.setFlyExit("Russia", russia);
+        germany.setFlyExit("India", india);
+
         china.setTrainExit("USA", usa);
-        china.setTrainExit("Test", usa);
+        china.setTrainExit("Germany", germany);
+        china.setTrainExit("Japan", japan);
+        china.setTrainExit("Russia", russia);
+        china.setTrainExit("India", india);
+
         usa.setTrainExit("China", china);
-        usa.setTrainExit("Test", china);
+        usa.setTrainExit("Japan", japan);
         usa.setTrainExit("Germany", germany);
-        germany.setTrainExit("Russia", russia);
+        usa.setTrainExit("India", india);
+        usa.setTrainExit("Russia", russia);
+
+        germany.setTrainExit("Russia",russia);
+        germany.setTrainExit("India", india);
+        germany.setTrainExit("China", china);
+        germany.setTrainExit("Japan", japan);
+        germany.setTrainExit("Usa", usa);
+
         russia.setTrainExit("India", india);
+        russia.setTrainExit("Germany", germany);
+        russia.setTrainExit("China", china);
+        russia.setTrainExit("Japan", japan);
+        russia.setTrainExit("Usa", usa);
+
         india.setTrainExit("Japan", japan);
+        india.setTrainExit("Germany", germany);
+        india.setTrainExit("China", china);
+        india.setTrainExit("Japan", japan);
+        india.setTrainExit("Usa", usa);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();
