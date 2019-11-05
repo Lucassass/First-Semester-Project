@@ -1,5 +1,6 @@
 package com.SemesterProject.WorldOfZuul;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,19 +28,26 @@ public class Game
      */
     private void createRooms()
     {
+
+        var usaItems = new ArrayList<Item>();
+        usaItems.add(new Item("Vodka", "Russia", 2,"India", -2));
+        var usaDeals = new ArrayList<Deal>();
+        usaDeals.add(new Deal("Friendship", "Energy",1,1,1,290 ));
+        usaDeals.add(new Deal("Huuu", "Energy",1,1,1,290 ));
+
         Country usa, china, russia, japan, india, germany;
         china = new Country("China","Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", null, null);
         usa = new Country("USA","Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", usaItems, usaDeals);
         russia = new Country("Russia", "Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", null, null);
         japan = new Country("Japan","Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", null, null);
         india = new Country("India","Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", null, null);
         germany = new Country("Germany", "Airport", "Train",
-                "outside", "government", "culture", null);
+                "outside", "government", "culture", null, null);
 
         china.setFlyExit("USA", usa);
         usa.setFlyExit("China", china);
@@ -79,6 +87,9 @@ public class Game
             finished = processCommand(command);
         }
         System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Result:");
+        System.out.println();
+        Config.printPoints();
     }
 
      /** 
@@ -98,39 +109,54 @@ public class Game
      * Given a command, process and executes the command.
      * If this command ends the game, true is returned, otherwise false is returned.
     */
-    private boolean processCommand(Command command) 
-    {
+    private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
 
-        if(commandWord == CommandWord.UNKNOWN) {
+        if (commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");
             return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
+        } if (commandWord == CommandWord.HELP) {
             printHelp();
-        }
-        else if (commandWord == CommandWord.GO) {
+        } else if (commandWord == CommandWord.GO) {
             goRoom(command);
-        }
-        else if (commandWord == CommandWord.FLY)
-        {
+        } else if (commandWord == CommandWord.FLY) {
             fly();
-        }
-        else if (commandWord == CommandWord.TRAIN){
+        } else if (commandWord == CommandWord.TRAIN) {
             goTrainStation(command);
-        } else if (commandWord == CommandWord.GLOBALMAP){
+        } else if (commandWord == CommandWord.GLOBALMAP) {
             printGlobalMap();
-        }
-        else if (commandWord == CommandWord.LOCALMAP){
+        } else if (commandWord == CommandWord.LOCALMAP) {
             printLocalMap();
         }
-        else if (commandWord == CommandWord.QUIT) {
+        else if (commandWord == CommandWord.STARTDEAL) {
+            Config.startDeal(currentRoom.getDeals(), currentCountry);
+        }
+        else if (commandWord == CommandWord.INVENTORY){
+            Inventory in = Inventory.getInstance();
+            in.printInventoryItem(in.getInventoryItem());
+        }
+        else if(commandWord == CommandWord.BUDGET)
+        {
+            printMoney();
+        }
+        else if (commandWord == CommandWord.DEALS){
+            Inventory in = Inventory.getInstance();
+            in.printInventoryDeals();
+        }
+        else if (commandWord == CommandWord.SEARCH) {
+            Inventory in = Inventory.getInstance();
+            in.searchForItems(currentRoom.getItems());
+        } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
         return wantToQuit;
+    }
+
+
+    private void printMoney(){
+        System.out.println("Money: " + Config.getMoney());
     }
 
     /** 

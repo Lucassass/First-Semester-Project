@@ -9,8 +9,13 @@ public enum CommandWord {
     GLOBALMAP("globalmap"),
     QUIT("quit"),
     HELP("help"),
+    SEARCH("search"),
+    STARTDEAL("deal"),
+    INVENTORY("inventory"),
+    DEALS("showdeals"),
+    BUDGET("budget"),
     UNKNOWN("?");
-    
+
     private String commandString;
     
     /** 

@@ -20,7 +20,7 @@ public class Room
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
     private ArrayList<Item> items;
-
+    private ArrayList<Deal> deals;
 
     /**
      * Creates a room described called "description". Initially, it has no exits.
@@ -33,6 +33,15 @@ public class Room
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
         items = new ArrayList<>();
+        deals = new ArrayList<>();
+    }
+
+    public ArrayList<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(ArrayList<Deal> deals) {
+        this.deals = deals;
     }
 
     /**
@@ -68,6 +77,10 @@ public class Room
      */
     public void setItems(ArrayList<Item> items) {
         this.items = items;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     /**

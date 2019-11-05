@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class Inventory {
 
     private static Inventory instance = new Inventory();
-
     private ArrayList<Item> inventoryItem = new ArrayList<Item>(); //ArrayList that contains Items
     private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
     private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
@@ -104,19 +103,26 @@ public class Inventory {
      * @param list --> List of Items in Country
      */
     public void searchForItems(ArrayList<Item> list)
-    {   System.out.println("Your search was fruitfull");
+    {   if(list.isEmpty())
+        {
+            System.out.println("Sorry, no items in this room :(");
+            return;
+        }
+
+        System.out.println("Your search was fruitful");
         for(int s = 0; s < list.size(); s++)
-        {   int f = 0; while (f == 0){
+        {
+            while (true){
             System.out.println("You stumblede upon the item " + list.get(s).getName());
             System.out.println("wanna take it??");
             Scanner sc = new Scanner(System.in);
             String scan = sc.nextLine();
             if(scan.equalsIgnoreCase("yes"))
             {   inventoryUpdateItem(list.get(s),list);
-                System.out.println("Lets move on");f++;
+                System.out.println("Lets move on");break;
             }
             else if(scan.equalsIgnoreCase("no"))
-            {System.out.println("Not your soul item i guess, moving on");f++;}else{}}
+            {System.out.println("Not your soul item i guess, moving on");break;}}
         }
     }
 //Deal part
@@ -224,15 +230,38 @@ public class Inventory {
      * @param country
      */
     public void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country){
-        inventoryDeals.add(food);
-        inventoryDeals.add(energy);
-        inventoryDeals.add(knowledge);
-        if (deal.getCategory().equals("food")) {
-            addCategory(deal,food,maxFood,country);
-        } else if (deal.getCategory().equals("energy")) {
-            addCategory(deal, energy, maxEnergy, country);
-        } else if (deal.getCategory().equals("knowledge"))
-        {addCategory(deal, knowledge, maxKnowledge, country);}
+        if (!Config.gotEnoughMoney(deal.getPrice())){
+            System.out.println("Not enough money");
+            return;
+        }
+
+
+            Config.subtractMoney(deal.getPrice());
+            inventoryDeals.add(food);
+            inventoryDeals.add(energy);
+            inventoryDeals.add(knowledge);
+            if (deal.getCategory().equals("food")) {
+                addCategory(deal,food,maxFood,country);
+            } else if (deal.getCategory().equals("energy")) {
+                addCategory(deal, energy, maxEnergy, country);
+            } else if (deal.getCategory().equals("knowledge"))
+            {
+                addCategory(deal, knowledge, maxKnowledge, country);
+            }
+
+
+
+    }
+
+    public void printInventoryDeals()
+    {
+        System.out.println("The Deals that you currently have, are:");
+        System.out.print("Food: ");
+        printInventoryCategory(food);
+        System.out.print("Energy: ");
+        printInventoryCategory(energy);
+        System.out.print("Knowledge: ");
+        printInventoryCategory(knowledge);
     }
 
 }

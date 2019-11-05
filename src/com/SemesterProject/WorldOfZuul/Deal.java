@@ -16,12 +16,13 @@ public class Deal {
     private int energyPoints; //effect on energy
     private int environmentPoints; // effect on environment
     private String information; //Information about deal
+    private int price;// price on deal
 
     public Deal(){};
 
     //Hoved Deal objektet der gerne skulle bruges
     public Deal(String name, String category, int sustainabilityPoints,
-                int energyPoints, int environmentPoints)
+                int energyPoints, int environmentPoints, int price)
     {
         this.name = name ;
         this.category = category;
@@ -30,7 +31,13 @@ public class Deal {
         this.environmentPoints = environmentPoints;
         String info = null;
         this.information = info;
+        this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
     /**
      * @return information about the deal
      */
