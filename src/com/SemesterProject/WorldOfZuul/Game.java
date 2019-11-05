@@ -35,33 +35,33 @@ public class Game
         usaDeals.add(new Deal("Friendship", "Energy",1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", "Energy",1,1,1,290, "Huuuuuuuuuuuuu"));
 
-        var chinaItems = new ArrayList<>();
+        var chinaItems = new ArrayList<Item>();
         chinaItems.add(new Item("Frankfurter","Germany",2,"Japan",-2));
-        var chinaDeals = new ArrayList<>();
+        var chinaDeals = new ArrayList<Deal>();
         chinaDeals.add(new Deal("Coal", "Enviroment",1,1,1,400, "Trololololo"));
         chinaDeals.add(new Deal("Huawei spyware", "Information",1,1,1,150, "Huhuhuhuhuh"));
 
-        var germanyItems = new ArrayList<>();
+        var germanyItems = new ArrayList<Item>();
         germanyItems.add(new Item("Sushi","Japan",2,"USA",-2));
-        var germanyDeals = new ArrayList<>();
+        var germanyDeals = new ArrayList<Deal>();
         germanyDeals.add(new Deal("waterfacility", "Enviroment",1,1,1,400, "Trololololo"));
         germanyDeals.add(new Deal("German car manufacturering secrets", "Information",1,1,1,150, "Huhuhuhuhuh"));
 
-        var russiaItems = new ArrayList<>();
+        var russiaItems = new ArrayList<Item>();
         russiaItems.add(new Item("Curry","India",2,"Russia",-2));
-        var russiaDeals = new ArrayList<>();
+        var russiaDeals = new ArrayList<Deal>();
         russiaDeals.add(new Deal("garbage collection system", "Enviroment",1,1,1,400, "Trololololo"));
         russiaDeals.add(new Deal("FSB", "Information",1,1,1,150, "Huhuhuhuhuh"));
 
-        var indiaItems = new ArrayList<>();
+        var indiaItems = new ArrayList<Item>();
         indiaItems.add(new Item("Curry","India",2,"Russia",-2));
-        var indiaDeals = new ArrayList<>();
+        var indiaDeals = new ArrayList<Deal>();
         indiaDeals.add(new Deal("Organic farming", "Enviroment",1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", "Information",1,1,1,150, "Huhuhuhuhuh"));
 
-        var japanItems = new ArrayList<>();
+        var japanItems = new ArrayList<Item>();
         japanItems.add(new Item("Sushi","Japan",2,"USA",-2));
-        var japanDeals = new ArrayList<>();
+        var japanDeals = new ArrayList<Deal>();
         japanDeals.add(new Deal("nucler reactor", "Energy",1,1,1,400, "Trololololo"));
         japanDeals.add(new Deal("Sushi secret", "Information",1,1,1,150, "Huhuhuhuhuh"));
 
