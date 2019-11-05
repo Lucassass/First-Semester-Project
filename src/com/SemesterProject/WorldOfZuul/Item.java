@@ -26,45 +26,74 @@ public class Item {
         this.countryBad = countryBad;
         this.pointsBad = pointsBad;
 
-        String textBad0 = null; textBad = textBad0;
-        String textGood0 = null; textGood = textGood0;
+        String textBad0 = "this is the reason why the item gives negative points in a dice roll";
+        textBad = textBad0;
+        String textGood0 = "This is the reason why the item gives positive points in a dice roll";
+        textGood = textGood0;
     }
     /**
      * @return TextBad
      */
-    public String getTextBad(){return textBad;}
+    public String getTextBad()
+    {
+        return textBad;
+    }
     /**
      * @param textBad
      */
-    public void setTextBad(String textBad){this.textBad = textBad;}
+    public void setTextBad(String textBad)
+    {
+        this.textBad = textBad;
+    }
     /**
      * @return TextGood
      */
-    public String getTextGood(){return textGood;}
+    public String getTextGood()
+    {
+        return textGood;
+    }
     /**
      * @param textGood
      */
-    public void setTextGood(String textGood){this.textGood = textGood;}
+    public void setTextGood(String textGood)
+    {
+        this.textGood = textGood;
+    }
     /**
      * @return countryGood
      */
-    public String getCountryGood(){return countryGood;}
+    public String getCountryGood()
+    {
+        return countryGood;
+    }
     /**
      * @return contryBad
      */
-    public String getCountryBad(){return countryBad;}
+    public String getCountryBad()
+    {
+        return countryBad;
+    }
     /**
      * @return pointsGood
      */
-    public int getPointsGood(){return pointsGood;}
+    public int getPointsGood()
+    {
+        return pointsGood;
+    }
     /**
      * @return pointsBad
      */
-    public int getPointsBad(){return pointsBad;}
+    public int getPointsBad()
+    {
+        return pointsBad;
+    }
     /**
      * @return name
      */
-    public String getName() {return name;}
+    public String getName()
+    {
+        return name;
+    }
 }
 
     
