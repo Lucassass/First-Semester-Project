@@ -38,34 +38,34 @@ public class Game
         usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
         var chinaItems = new ArrayList<Item>();
-        chinaItems.add(new Item("Frankfurter","Germany",2,"Japan",-2));
+        chinaItems.add(new Item("Frankfurter",CountryList.Germany,2,CountryList.Japan,-2));
         var chinaDeals = new ArrayList<Deal>();
-        chinaDeals.add(new Deal("Coal", "Enviroment",1,1,1,400, "Trololololo"));
-        chinaDeals.add(new Deal("Huawei spyware", "Information",1,1,1,150, "Huhuhuhuhuh"));
+        chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var germanyItems = new ArrayList<Item>();
-        germanyItems.add(new Item("Sushi","Japan",2,"USA",-2));
+        germanyItems.add(new Item("Sushi",CountryList.Japan,2,CountryList.USA,-2));
         var germanyDeals = new ArrayList<Deal>();
-        germanyDeals.add(new Deal("waterfacility", "Enviroment",1,1,1,400, "Trololololo"));
-        germanyDeals.add(new Deal("German car manufacturering secrets", "Information",1,1,1,150, "Huhuhuhuhuh"));
+        germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var russiaItems = new ArrayList<Item>();
-        russiaItems.add(new Item("Curry","India",2,"Russia",-2));
+        russiaItems.add(new Item("Curry",CountryList.India,2,CountryList.Russia,-2));
         var russiaDeals = new ArrayList<Deal>();
-        russiaDeals.add(new Deal("garbage collection system", "Enviroment",1,1,1,400, "Trololololo"));
-        russiaDeals.add(new Deal("FSB", "Information",1,1,1,150, "Huhuhuhuhuh"));
+        russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var indiaItems = new ArrayList<Item>();
-        indiaItems.add(new Item("Curry","India",2,"Russia",-2));
+        indiaItems.add(new Item("Curry",CountryList.India,2,CountryList.Russia,-2));
         var indiaDeals = new ArrayList<Deal>();
-        indiaDeals.add(new Deal("Organic farming", "Enviroment",1,1,1,400, "Trololololo"));
-        indiaDeals.add(new Deal("Mumbai", "Information",1,1,1,150, "Huhuhuhuhuh"));
+        indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var japanItems = new ArrayList<Item>();
-        japanItems.add(new Item("Sushi","Japan",2,"USA",-2));
+        japanItems.add(new Item("Sushi",CountryList.Japan,2,CountryList.USA,-2));
         var japanDeals = new ArrayList<Deal>();
-        japanDeals.add(new Deal("nucler reactor", "Energy",1,1,1,400, "Trololololo"));
-        japanDeals.add(new Deal("Sushi secret", "Information",1,1,1,150, "Huhuhuhuhuh"));
+        japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
 
         Country usa, china, russia, japan, india, germany;
