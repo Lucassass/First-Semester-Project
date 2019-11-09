@@ -23,7 +23,9 @@ public class Inventory {
 
     private final int maxItem = 3, maxFood = 1, maxEnergy = 2, maxKnowledge = 1;
 
-    private Inventory(){}
+    private Inventory(){
+        food.add(new Deal("something", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+    }
 
     /**
      * ---> TO BE USED EVERY TIME YOU WANT TO CALL A METHOD FROM ITEM <---
@@ -189,7 +191,7 @@ public class Inventory {
      * prints deals in an ArrayList without any extra text
      * @param list
      */
-    public String createInventoryDealsString(ArrayList<Deal> list)
+    public String createDealsStringFor(ArrayList<Deal> list)
     {
         StringBuilder format = new StringBuilder();
         for(int i = 0; i < list.size(); i++)
@@ -213,12 +215,31 @@ public class Inventory {
      * @param category --> inventory Category(food, energy or knowledge)
      * @param country --> list og deals in current country
      */
-    public void addingDeal(Deal deal, ArrayList<Deal> category, ArrayList<Deal> country)
+    private void addingDeal(Deal deal, ArrayList<Deal> category, ArrayList<Deal> country)
     {
         category.add(deal);
         country.remove(deal);
         System.out.println("congratulations, you have now entered a new deal ");
         System.out.println("The deal " +  deal.getName() + " is now in your inventory");
+    }
+
+    private void removeDeal(Deal dealToRemove)
+    {
+        for (var dealCategory : inventoryDeals)
+        {
+            if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealToRemove.getCategory())
+            {
+                for(var deal : dealCategory)
+                {
+                    if (!deal.getName().equals(dealToRemove.getName()))
+                    {
+                        dealCategory.remove(deal);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
     }
 
     /** --used for bigger
@@ -256,29 +277,31 @@ public class Inventory {
                 {
                     if(max == 1)
                     {
+                        //
                         addingDeal(deal,category, country);
+                        removeDeal(deal);
                         m++;
                     }
                     else
                     {
-                    int k = 0;
-                    while (k == 0)
-                    {
-                        System.out.println("Which deal would you like to replace");
-                        printInventoryCategory(category);
-                        scan = sc.nextLine();
-                        for (int i = 0; i < category.size(); i++)
+                        int k = 0;
+                        while (k == 0)
                         {
-                            if (category.get(i).getName().equalsIgnoreCase(scan))
+                            System.out.println("Which deal would you like to replace");
+                            printInventoryCategory(category);
+                            scan = sc.nextLine();
+                            for (int i = 0; i < category.size(); i++)
                             {
-                                country.remove(deal);category.set(i, deal);
-                                System.out.println("congratulations, you have now entered a new deal");
-                                System.out.println("The deal " + deal.getName() + " is now in your inventory");
-                                m++;
-                                k++;
+                                if (category.get(i).getName().equalsIgnoreCase(scan))
+                                {
+                                    country.remove(deal);category.set(i, deal);
+                                    System.out.println("congratulations, you have now entered a new deal");
+                                    System.out.println("The deal " + deal.getName() + " is now in your inventory");
+                                    m++;
+                                    k++;
+                                }
                             }
                         }
-                    }
                     }
                 }
                 else if ( scan.equalsIgnoreCase("No"))
@@ -326,16 +349,15 @@ public class Inventory {
      */
     public void printInventoryCategory(ArrayList<Deal> list)
     {
-        System.out.println("The Deals you are currently carrying are:");
-        createInventoryDealsString(list);
+        System.out.println("The Deals you are currently carrying are: " + createDealsStringFor(list));
     }
 
     public void printInventoryDeals()
     {
         System.out.println("The Deals that you currently have, are:");
-        System.out.println("Food: " + createInventoryDealsString(food));
-        System.out.println("Energy: " + createInventoryDealsString(energy));
-        System.out.println("Knowledge: " + createInventoryDealsString(knowledge));
+        System.out.println("Food: " + createDealsStringFor(food));
+        System.out.println("Energy: " + createDealsStringFor(energy));
+        System.out.println("Knowledge: " + createDealsStringFor(knowledge));
     }
 
 }

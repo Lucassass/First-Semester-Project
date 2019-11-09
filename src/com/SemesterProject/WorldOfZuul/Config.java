@@ -96,9 +96,9 @@ public class Config
         boolean run = true;
         while (run)
         {
-            System.out.println("\nWhich deal would you like to negotiate?");
+            System.out.println("\nWhich deal would you like to negotiate?F");
 
-            System.out.println(inventory.createInventoryDealsString(dealInCountry));
+            System.out.println(inventory.createDealsStringFor(dealInCountry));
             userInput = scanner.nextLine();
 
             for (int i = 0; i < dealInCountry.size(); i++) {
