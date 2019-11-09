@@ -298,24 +298,20 @@ public class Inventory {
      */
     public void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
     {
-        if (!Config.gotEnoughMoney(deal.getPrice()))
-        {
-            System.out.println("Not enough money");
-            return;
-        }
+
             Config.subtractMoney(deal.getPrice());
             inventoryDeals.add(food);
             inventoryDeals.add(energy);
             inventoryDeals.add(knowledge);
-            if (deal.getCategory().equals("food"))
+            if (deal.getCategory() == DealCategory.Food)
             {
                 addCategory(deal,food,maxFood,country);
             }
-            else if (deal.getCategory().equals("energy"))
+            else if (deal.getCategory() == DealCategory.Energy)
             {
                 addCategory(deal, energy, maxEnergy, country);
             }
-            else if (deal.getCategory().equals("knowledge"))
+            else if (deal.getCategory() == DealCategory.Knowledge)
             {
                 addCategory(deal, knowledge, maxKnowledge, country);
             }
@@ -334,11 +330,11 @@ public class Inventory {
     public void printInventoryDeals()
     {
         System.out.println("The Deals that you currently have, are:");
-        System.out.print("Food: ");
+        System.out.println("Food: ");
         printInventoryDeals(food);
-        System.out.print("Energy: ");
+        System.out.println("Energy: ");
         printInventoryDeals(energy);
-        System.out.print("Knowledge: ");
+        System.out.println("Knowledge: ");
         printInventoryDeals(knowledge);
     }
 

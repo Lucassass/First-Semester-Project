@@ -83,6 +83,9 @@ public class Config
      * @param dealInCountry --> The list of Deals in the country
      */
     public static void startDeal(ArrayList<Deal> dealInCountry, Country country) {
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+
         if (dealInCountry.isEmpty())
         {
             System.out.println("Sorry, no deals on the table");
@@ -98,32 +101,33 @@ public class Config
 
             in.printInventoryDeals(dealInCountry);
             System.out.println();
-            Scanner sc = new Scanner(System.in);
-            String scan = sc.nextLine();
+            userInput = scanner.nextLine();
 
             for (int i = 0; i < dealInCountry.size(); i++) {
-                if(scan.equalsIgnoreCase("quit"))
+                if(userInput.equalsIgnoreCase("quit"))
                 {
                     return;
                 }
-                if (dealInCountry.get(i).getName().equalsIgnoreCase(scan)) {
+
+                if (dealInCountry.get(i).getName().equalsIgnoreCase(userInput)) {
                     System.out.println(dealInCountry.get(i).getInfo());
                     while (true) {
                         System.out.println("The deal will cost you " + dealInCountry.get(i).getPrice() + "\nWill you take the deal?");
 
-                        String scann = sc.nextLine();
+                        userInput = scanner.nextLine();
 
-                        if(scann.equalsIgnoreCase("quit"))
+                        if(userInput.equalsIgnoreCase("quit"))
                         {
                             return;
                         }
-                        if (scann.equalsIgnoreCase("yes"))
+                        else if (userInput.equalsIgnoreCase("no"))
                         {
-                            takeDeal(dealInCountry.get(i), dealInCountry,country);
                             break;
                         }
-                        else if (scann.equalsIgnoreCase("no"))
-                        {
+
+                        var tookDeal = takeDeal(dealInCountry.get(i), dealInCountry,country, userInput);
+
+                        if (tookDeal){
                             break;
                         }
 
@@ -132,6 +136,44 @@ public class Config
                 }
             }
         }
+    }
+
+
+    /**
+     * roll dice to result and what happens
+     * @param deal    --> Deal that player takes
+     * @param dealsInCountry --> List of deals in current country
+     */
+    public static boolean takeDeal(Deal deal, ArrayList<Deal> dealsInCountry, Country country, String input) {
+        Inventory inventory = Inventory.getInstance();
+
+        if(input.equalsIgnoreCase("quit"))
+        {
+            return false;
+        }
+
+        if(input.equalsIgnoreCase("yes"))
+        {
+            if (!Config.gotEnoughMoney(deal.getPrice()))
+            {
+                System.out.println("Not enough money");
+                return false;
+            }
+
+            //boolean win = rollDice(country);
+            boolean win = true;
+            if (win)
+            {
+                System.out.println("Congratulations, the deal was a success!!");
+                inventory.inventoryUpdateDeals(deal, dealsInCountry);
+                dealsInCountry.remove(deal);
+            }
+            else {
+                System.out.println("The deal did not go through, not you lucky day i guess..");
+            }
+            return true;
+        }
+        return false;
     }
 
     /** - for bigger
@@ -226,33 +268,7 @@ public class Config
         return diceResult > 3; //returns true or false
     }
 
-    /**
-     * roll dice to result and what happens
-     * @param deal    --> Deal that player takes
-     * @param dealsInCountry --> List of deals in current country
-     */
-    public static void takeDeal(Deal deal, ArrayList<Deal> dealsInCountry, Country country) {
-        Inventory in = Inventory.getInstance();
 
-        Scanner sc = new Scanner(System.in);
-        String scan = sc.nextLine();
-        if(scan.equalsIgnoreCase("quit"))
-        {
-            return;
-        }
-        if(scan.equalsIgnoreCase("yes"))
-        {
-            boolean win = rollDice(country);
-            if (win == true) {
-                System.out.println("Congratulations, the deal was a succsses!!");
-                in.inventoryUpdateDeals(deal, dealsInCountry);
-                dealsInCountry.remove(deal);
-            }
-            else {
-                System.out.println("The deal did not go through, not you lucky day i guess..");
-            }
-        }
-    }
 
 
     /**

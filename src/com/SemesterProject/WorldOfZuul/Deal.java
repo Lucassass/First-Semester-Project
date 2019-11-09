@@ -11,17 +11,15 @@ package com.SemesterProject.WorldOfZuul;
 public class Deal {
 
     private String name; // Name of deal
-    private String category; //Catogery of deals
+    private DealCategory category; //Catogery of deals
     private int sustainabilityPoints; // effects on sustainability
     private int energyPoints; //effect on energy
     private int environmentPoints; // effect on environment
     private String information; //Information about deal
     private int price;// price on deal
 
-    public Deal(){};
-
     //Hoved Deal objektet der gerne skulle bruges
-    public Deal(String name, String category, int sustainabilityPoints,
+    public Deal(String name, DealCategory category, int sustainabilityPoints,
                 int energyPoints, int environmentPoints, int price, String info)
     {
         this.name = name ;
@@ -63,7 +61,7 @@ public class Deal {
     /**
      * @return category
      */
-    public String getCategory()
+    public DealCategory getCategory()
     {
         return category;
     }
