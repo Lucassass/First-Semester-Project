@@ -5,14 +5,13 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Config
 {
-    private static int money = 500;
+    private static int money = 99999999;
     private static int CommercialFlyingCost = 100;
     private static int PrivateFlyingCost = 250;
     private static int TrainCost = 50;
@@ -92,15 +91,14 @@ public class Config
             return;
         }
 
-        Inventory in = Inventory.getInstance();
+        Inventory inventory = Inventory.getInstance();
         System.out.print("Hello there");
         boolean run = true;
         while (run)
         {
             System.out.println("\nWhich deal would you like to negotiate?");
 
-            in.printInventoryDeals(dealInCountry);
-            System.out.println();
+            System.out.println(inventory.createInventoryDealsString(dealInCountry));
             userInput = scanner.nextLine();
 
             for (int i = 0; i < dealInCountry.size(); i++) {

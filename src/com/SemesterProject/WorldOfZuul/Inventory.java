@@ -189,19 +189,22 @@ public class Inventory {
      * prints deals in an ArrayList without any extra text
      * @param list
      */
-    public void printInventoryDeals(ArrayList<Deal> list)
+    public String createInventoryDealsString(ArrayList<Deal> list)
     {
+        StringBuilder format = new StringBuilder();
         for(int i = 0; i < list.size(); i++)
         {
             if (i < list.size() - 1)
             {
-                System.out.print(list.get(i).getName() + ",");
+                format.append(list.get(i).getName()).append(",");
             }
             else
             {
-                System.out.print(list.get(i).getName());
+                format.append(list.get(i).getName());
             }
         }
+
+        return format.toString();
     }
 
     /**
@@ -324,18 +327,15 @@ public class Inventory {
     public void printInventoryCategory(ArrayList<Deal> list)
     {
         System.out.println("The Deals you are currently carrying are:");
-        printInventoryDeals(list);
+        createInventoryDealsString(list);
     }
 
     public void printInventoryDeals()
     {
         System.out.println("The Deals that you currently have, are:");
-        System.out.println("Food: ");
-        printInventoryDeals(food);
-        System.out.println("Energy: ");
-        printInventoryDeals(energy);
-        System.out.println("Knowledge: ");
-        printInventoryDeals(knowledge);
+        System.out.println("Food: " + createInventoryDealsString(food));
+        System.out.println("Energy: " + createInventoryDealsString(energy));
+        System.out.println("Knowledge: " + createInventoryDealsString(knowledge));
     }
 
 }
