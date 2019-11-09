@@ -11,15 +11,14 @@ package com.SemesterProject.WorldOfZuul;
 public class Item {
 
     private String name; //Name of item
-    private String countryGood; // Name of the country the item has a good effect on
+    private CountryList countryGood; // Name of the country the item has a good effect on
     private int pointsGood; // The + points you get from being in the good country
-    private String countryBad; //Name of the bad country the item has a bad effect on
+    private CountryList countryBad; //Name of the bad country the item has a bad effect on
     private int pointsBad; // The - points you get from being in the bad country
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
 
-    public Item(String name, String countryGood, int pointsGood,
-                String countryBad, int pointsBad){
+    Item(String name, CountryList countryGood, int pointsGood, CountryList countryBad, int pointsBad){
         this.name = name;
         this.countryGood = countryGood;
         this.pointsGood = pointsGood;
@@ -62,14 +61,14 @@ public class Item {
     /**
      * @return countryGood
      */
-    public String getCountryGood()
+    public CountryList getCountryGood()
     {
         return countryGood;
     }
     /**
      * @return contryBad
      */
-    public String getCountryBad()
+    public CountryList getCountryBad()
     {
         return countryBad;
     }

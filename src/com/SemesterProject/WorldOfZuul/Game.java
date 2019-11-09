@@ -30,7 +30,7 @@ public class Game
     {
 
         var usaItems = new ArrayList<Item>();
-        usaItems.add(new Item("Vodka", "Russia", 2,"India", -2));
+        usaItems.add(new Item("Vodka", CountryList.Russia, 2,CountryList.India, -2));
         var usaDeals = new ArrayList<Deal>();
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));

@@ -21,10 +21,12 @@ public class Inventory {
     private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
     private ArrayList<Deal> knowledge = new ArrayList<Deal>(); //Deals with category knowledge(will be placed in inventoryDeals
 
-    private final int maxItem = 3, maxFood = 1, maxEnergy = 2, maxKnowledge = 1;
+    private final int maxItem = 3;
+    private final int maxFood = 1;
+    private final int maxEnergy = 2;
+    private final int maxKnowledge = 1;
 
     private Inventory(){
-        food.add(new Deal("something", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
     }
 
     /**
@@ -136,10 +138,12 @@ public class Inventory {
                         if (scanYes.equals(inventoryItem.get(i).getName())) //goes through inventory
                         {
                             //If the written word is in inventory , the item gets //replaced by the new one
+
+                            System.out.println("The item " + inventoryItem.get(i).getName() +
+                                    " has been replaced with the item " + item.getName());
                             inventoryItem.set(i, item);
                             country.remove(item);
-                            System.out.println("The item " + inventoryItem.get(i).getName() +
-                                    " has been replaced with the item " + item.getName()); n++;
+                            n++;
                         }
                         else
                         {
@@ -169,7 +173,7 @@ public class Inventory {
      * prints inventory Items
      * @param list
      */
-    public void printInventoryItem(ArrayList<Item> list)
+    void printInventoryItem(ArrayList<Item> list)
     {
         System.out.println("The items you are currently carrying are:");
         for(int i = 0; i < list.size(); i++)
@@ -191,7 +195,7 @@ public class Inventory {
      * prints deals in an ArrayList without any extra text
      * @param list
      */
-    public String createDealsStringFor(ArrayList<Deal> list)
+    String createDealsStringFor(ArrayList<Deal> list)
     {
         StringBuilder format = new StringBuilder();
         for(int i = 0; i < list.size(); i++)
@@ -249,7 +253,7 @@ public class Inventory {
      * @param max --> max Deals in country
      * @param country --> list og deals in current country
      */
-    public void addCategory(Deal deal,ArrayList<Deal> category, int max, ArrayList<Deal> country){
+    private void addCategory(Deal deal, ArrayList<Deal> category, int max, ArrayList<Deal> country){
         if (category.size() < max)
         {
             addingDeal(deal,category, country);
@@ -322,7 +326,7 @@ public class Inventory {
      * @param deal
      * @param country
      */
-    public void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
+    void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
     {
 
             Config.subtractMoney(deal.getPrice());
@@ -347,12 +351,12 @@ public class Inventory {
      * Prints inventory for chosen category List
      * @param list
      */
-    public void printInventoryCategory(ArrayList<Deal> list)
+    private void printInventoryCategory(ArrayList<Deal> list)
     {
         System.out.println("The Deals you are currently carrying are: " + createDealsStringFor(list));
     }
 
-    public void printInventoryDeals()
+    void printInventoryDeals()
     {
         System.out.println("The Deals that you currently have, are:");
         System.out.println("Food: " + createDealsStringFor(food));

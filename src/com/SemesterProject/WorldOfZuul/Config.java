@@ -158,8 +158,7 @@ public class Config
                 return false;
             }
 
-            //boolean win = rollDice(country);
-            boolean win = true;
+            boolean win = rollDice(country);
             if (win)
             {
                 System.out.println("Congratulations, the deal was a success!!");
@@ -219,17 +218,18 @@ public class Config
            if(in.getInventoryItem().get(i).getName().equalsIgnoreCase(scan))
            {
 
-               if(in.getInventoryItem().get(i).getCountryGood().equalsIgnoreCase(country.getName()) )
+               if(in.getInventoryItem().get(i).getCountryGood().getName().equalsIgnoreCase(country.getName()) )
                {
                    result.add(in.getInventoryItem().get(i).getPointsGood());
                    System.out.println(in.getInventoryItem().get(i).getTextGood());
                }
-               else if(in.getInventoryItem().get(i).getCountryBad().equals(country.getName()))
+               else if(in.getInventoryItem().get(i).getCountryBad().getName().equalsIgnoreCase((country.getName())))
                {
                    result.add(in.getInventoryItem().get(i).getPointsBad());
                    System.out.println(in.getInventoryItem().get(i).getTextBad());
                }
-               else if(in.getInventoryItem().get(i).getCountryGood().equals(scan) && in.getInventoryItem().get(i).getCountryBad().equals(country.getName()))
+               else if(in.getInventoryItem().get(i).getCountryGood().getName().equalsIgnoreCase(scan)
+                       && in.getInventoryItem().get(i).getCountryBad().getName().equalsIgnoreCase(country.getName()))
                {
                    var combinedPoints = in.getInventoryItem().get(i).getPointsGood() + in.getInventoryItem().get(i).getPointsBad();
                    result.add(combinedPoints);
