@@ -15,7 +15,7 @@ public class Game
     /*
     Create the game and initialise its internal map.
     */
-    public Game() 
+    public Game()
     {
         parser = new Parser();
         createRooms();
@@ -30,10 +30,12 @@ public class Game
     {
 
         var usaItems = new ArrayList<Item>();
-        usaItems.add(new Item("Vodka", "Russia", 2,"India", -2));
+        usaItems.add(new Item("Vodka", CountryList.Russia, 2,CountryList.India, -2));
         var usaDeals = new ArrayList<Deal>();
-        usaDeals.add(new Deal("Friendship", "Energy",1,1,1,290 ,"Friendship is magic"));
-        usaDeals.add(new Deal("Huuu", "Energy",1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
+        usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
         var chinaItems = new ArrayList<Item>();
         chinaItems.add(new Item("Frankfurter","Germany",2,"Japan",-2));
