@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Config
 {
-    private static int money = 500;
+    private static int money = 2000;
     private static int CommercialFlyingCost = 100;
     private static int PrivateFlyingCost = 250;
     private static int TrainCost = 50;
