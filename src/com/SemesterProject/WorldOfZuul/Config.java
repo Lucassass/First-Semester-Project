@@ -15,6 +15,7 @@ public class Config
     private static int CommercialFlyingCost = 100;
     private static int PrivateFlyingCost = 250;
     private static int TrainCost = 50;
+    private static int dealMaxTries = 1;
     private int diceAdvantage;
 
     public static boolean gotEnoughMoney(int amount){
@@ -96,7 +97,7 @@ public class Config
         boolean run = true;
         while (run)
         {
-            System.out.println("\nWhich deal would you like to negotiate?F");
+            System.out.println("\nWhich deal would you like to negotiate?");
 
             System.out.println(inventory.createDealsStringFor(dealInCountry));
             userInput = scanner.nextLine();
@@ -137,6 +138,7 @@ public class Config
     }
 
 
+
     /**
      * roll dice to result and what happens
      * @param deal    --> Deal that player takes
@@ -158,7 +160,8 @@ public class Config
                 return false;
             }
 
-            boolean win = rollDice(country);
+            boolean win = rollDice(country);;
+            deal.addOneTry();
             if (win)
             {
                 System.out.println("Congratulations, the deal was a success!!");
@@ -167,11 +170,18 @@ public class Config
             }
             else {
                 System.out.println("The deal did not go through, not you lucky day i guess..");
+                if (deal.getTimesTried() >= dealMaxTries)
+                {
+                    dealsInCountry.remove(deal);
+                }
             }
+
+
             return true;
         }
         return false;
     }
+
 
     /** - for bigger
      * @param under - ArrayList of Integer wants too add

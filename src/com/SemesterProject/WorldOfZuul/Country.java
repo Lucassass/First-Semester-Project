@@ -13,11 +13,11 @@ public class Country {
                    String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> deals)
     {
         this.name = name;
-        var airport = new Room(airportDescription);
-        var government = new Room(governmentDescription);
-        var outside = new Room(outsideDescription);
-        var trainStation = new Room(trainStationDescription);
-        var culture = new Room(cultureDescription);
+        var airport = new Room("Airport",airportDescription);
+        var government = new Room("Government",governmentDescription);
+        var outside = new Room("Outside",outsideDescription);
+        var trainStation = new Room("Train station",trainStationDescription);
+        var culture = new Room("Culture room",cultureDescription);
 
         airport.setExit("down", outside);
         government.setExit("right", outside);

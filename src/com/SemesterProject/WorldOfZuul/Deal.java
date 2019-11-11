@@ -17,6 +17,7 @@ public class Deal {
     private int environmentPoints; // effect on environment
     private String information; //Information about deal
     private int price;// price on deal
+    private int timesTried;
 
     //Hoved Deal objektet der gerne skulle bruges
     public Deal(String name, DealCategory category, int sustainabilityPoints,
@@ -29,6 +30,16 @@ public class Deal {
         this.environmentPoints = environmentPoints;
         this.information = info;
         this.price = price;
+        this.timesTried = 0;
+    }
+
+    public int getTimesTried() {
+        return timesTried;
+    }
+
+    public void addOneTry()
+    {
+        timesTried++;
     }
 
     public int getPrice()

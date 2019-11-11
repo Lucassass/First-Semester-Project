@@ -227,7 +227,7 @@ public class Inventory {
         System.out.println("The deal " +  deal.getName() + " is now in your inventory");
     }
 
-    private void removeDeal(Deal dealToRemove)
+    public void removeDealFromInventory(Deal dealToRemove)
     {
         for (var dealCategory : inventoryDeals)
         {
@@ -283,7 +283,7 @@ public class Inventory {
                     {
                         //
                         addingDeal(deal,category, country);
-                        removeDeal(deal);
+                        removeDealFromInventory(deal);
                         m++;
                     }
                     else

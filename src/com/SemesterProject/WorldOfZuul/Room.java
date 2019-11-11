@@ -21,19 +21,25 @@ public class Room
     private HashMap<String, Country> trainExits;
     private ArrayList<Item> items;
     private ArrayList<Deal> deals;
+    private String name;
 
     /**
      * Creates a room described called "description". Initially, it has no exits.
      * "description" is something like "in a kitchen" or "in an open court yard".
      */
-    public Room(String description) 
+    public Room(String description, String name)
     {
+        this.name = name;
         this.description = description;
         exits = new HashMap<>();
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
         items = new ArrayList<>();
         deals = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Deal> getDeals() {

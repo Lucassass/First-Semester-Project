@@ -56,7 +56,7 @@ public class Game
         russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var indiaItems = new ArrayList<Item>();
-        indiaItems.add(new Item("Curry",CountryList.India,2,CountryList.Russia,-2));
+        indiaItems.add(new Item("Not Curry",CountryList.India,2,CountryList.Russia,-2));
         var indiaDeals = new ArrayList<Deal>();
         indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
@@ -112,6 +112,12 @@ public class Game
         germany.setFlyExit("Russia", russia);
         germany.setFlyExit("India", india);
 
+        japan.setFlyExit("USA", usa);
+        japan.setFlyExit("China", china);
+        japan.setFlyExit("Germany", germany);
+        japan.setFlyExit("Russia", russia);
+        japan.setFlyExit("India", india);
+
         china.setTrainExit("USA", usa);
         china.setTrainExit("Germany", germany);
         china.setTrainExit("Japan", japan);
@@ -129,6 +135,12 @@ public class Game
         germany.setTrainExit("China", china);
         germany.setTrainExit("Japan", japan);
         germany.setTrainExit("Usa", usa);
+
+        japan.setTrainExit("Russia",russia);
+        japan.setTrainExit("India", india);
+        japan.setTrainExit("China", china);
+        japan.setTrainExit("Germany", japan);
+        japan.setTrainExit("Usa", usa);
 
         russia.setTrainExit("India", india);
         russia.setTrainExit("Germany", germany);
@@ -177,8 +189,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the Ice and Fire!");
+        System.out.println("Ice and Fire is a new, incredibly awesome adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -245,7 +257,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around the " + currentRoom.getName() +" in " + currentCountry.getName());
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -322,6 +334,7 @@ public class Game
             System.out.println("There is no station here!");
         }
         else {
+            System.out.println("Taking the train to: " + nextCountry.getName());
             currentCountry = nextCountry;
             currentRoom = currentCountry.getStartRoom();
             System.out.println(currentRoom.getLongDescription());
@@ -392,7 +405,7 @@ public class Game
         System.out.println("                               |");
         System.out.println("                               |");
         System.out.println("                          Cultur room");
-       System.out.println("You are currently in: "+ currentRoom);
+       System.out.println("You are currently in: "+ currentRoom.getName());
 
     }
 
