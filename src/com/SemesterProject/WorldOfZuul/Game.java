@@ -176,6 +176,10 @@ public class Game
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
+            if (Config.ranOutOfMoney())
+            {
+                finished = false;
+            }
         }
         System.out.println("Thank you for playing.  Good bye.");
         System.out.println("Result:");
