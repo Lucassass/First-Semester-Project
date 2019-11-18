@@ -1,8 +1,12 @@
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire.domain;
+
+import com.SemesterProject.iceandfire.domain.Country;
+import com.SemesterProject.iceandfire.DealObsolete;
+import com.SemesterProject.iceandfire.ItemObsolete;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashMap;
+import java.util.Set;
 
 /*
 *                               Map of rooms 
@@ -19,8 +23,8 @@ public class Room
     private HashMap<String, Room> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
-    private ArrayList<Item> items;
-    private ArrayList<Deal> deals;
+    private ArrayList<ItemObsolete> itemObsoletes;
+    private ArrayList<DealObsolete> dealObsoletes;
     private String name;
 
     /**
@@ -34,26 +38,26 @@ public class Room
         exits = new HashMap<>();
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
-        items = new ArrayList<>();
-        deals = new ArrayList<>();
+        itemObsoletes = new ArrayList<>();
+        dealObsoletes = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<Deal> getDeals() {
-        return deals;
+    public ArrayList<DealObsolete> getDealObsoletes() {
+        return dealObsoletes;
     }
 
-    public void setDeals(ArrayList<Deal> deals) {
-        this.deals = deals;
+    public void setDealObsoletes(ArrayList<DealObsolete> dealObsoletes) {
+        this.dealObsoletes = dealObsoletes;
     }
 
     /**
      * Defines an exit from the room.
      */
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -79,14 +83,14 @@ public class Room
 
     /**
      * Set items for the room
-     * @param items Arraylist of items you wanna add to the room
+     * @param itemObsoletes Arraylist of items you wanna add to the room
      */
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public void setItemObsoletes(ArrayList<ItemObsolete> itemObsoletes) {
+        this.itemObsoletes = itemObsoletes;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public ArrayList<ItemObsolete> getItemObsoletes() {
+        return itemObsoletes;
     }
 
     /**
@@ -111,7 +115,7 @@ public class Room
     {
         return description;
     }
-    
+
     /**
      * Returns a long description of the room, in the following form:
      * "You are in the kitchen."

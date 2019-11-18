@@ -1,4 +1,4 @@
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class Country {
     private String name;
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> deals)
+                   String governmentDescription, String cultureDescription, ArrayList<ItemObsolete> itemObsoletes, ArrayList<DealObsolete> dealObsoletes)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);
@@ -27,8 +27,8 @@ public class Country {
         outside.setExit("down", culture);
         outside.setExit("left", government);
         outside.setExit("right", trainStation);
-        culture.setItems(items);
-        government.setDeals(deals);
+        culture.setItemObsoletes(itemObsoletes);
+        government.setDealObsoletes(dealObsoletes);
 
         setStartRoom(outside);
         setAirPortRoom(airport);

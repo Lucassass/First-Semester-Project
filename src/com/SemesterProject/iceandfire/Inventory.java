@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire;
 
 /**
  * @author tes_7
@@ -15,11 +15,11 @@ import java.util.Scanner;
 public class Inventory {
 
     private static Inventory instance = new Inventory();
-    private ArrayList<Item> inventoryItem = new ArrayList<Item>(); //ArrayList that contains Items
-    private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
-    private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
-    private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
-    private ArrayList<Deal> knowledge = new ArrayList<Deal>(); //Deals with category knowledge(will be placed in inventoryDeals
+    private ArrayList<ItemObsolete> inventoryItemObsolete = new ArrayList<ItemObsolete>(); //ArrayList that contains Items
+    private ArrayList<ArrayList<DealObsolete>> inventoryDeals = new ArrayList<ArrayList<DealObsolete>>(); // ArrayList that contains deals
+    private ArrayList<DealObsolete> food = new ArrayList<DealObsolete>(); //Deals with category food (will be placed in inventoryDeals
+    private ArrayList<DealObsolete> energy = new ArrayList<DealObsolete>(); //Deals with category energy (will be placed in inventoryDeals
+    private ArrayList<DealObsolete> knowledge = new ArrayList<DealObsolete>(); //Deals with category knowledge(will be placed in inventoryDeals
 
     private final int maxItem = 3;
     private final int maxFood = 1;
@@ -38,18 +38,18 @@ public class Inventory {
     /**
      * @return Inventory Items
      */
-    public ArrayList<Item> getInventoryItem(){return inventoryItem;}
+    public ArrayList<ItemObsolete> getInventoryItemObsolete(){return inventoryItemObsolete;}
     /**
      * @return inventory Deals
      */
-    public ArrayList<ArrayList<Deal>> getInventoryDeals(){return inventoryDeals;}
+    public ArrayList<ArrayList<DealObsolete>> getInventoryDeals(){return inventoryDeals;}
 
     /**
      *  ------> SHOULD BE USED IN ANOTHER CLASS OR COMMANDWORD <--------
      * goes through Items in cultural room, player chooses if wanna take or not
      * @param list --> List of Items in Country
      */
-    public void searchForItems(ArrayList<Item> list)
+    public void searchForItems(ArrayList<ItemObsolete> list)
     {   if(list.isEmpty())
         {
             System.out.println("Sorry, no items in this room :(");
@@ -89,19 +89,19 @@ public class Inventory {
      * --Intern Use
      * Player can max have 3 items on them, if more player chooses witch one to
      * replace or if not add 'item'  to inventory
-     * @param item that should be added
+     * @param itemObsolete that should be added
      * @param country - item inventory of country currently in
      */
-    public void inventoryUpdateItem(Item item, ArrayList<Item> country)
+    public void inventoryUpdateItem(ItemObsolete itemObsolete, ArrayList<ItemObsolete> country)
     {   // If inventory is not filled, max 3, add to inventory, remove from old and print text
-        if(inventoryItem.size() != maxItem && inventoryItem.size() < maxItem )
+        if(inventoryItemObsolete.size() != maxItem && inventoryItemObsolete.size() < maxItem )
         {
-            inventoryItem.add(item);
-            country.remove(item);
-            System.out.println(item.getName() + " Has been added to your inventory ");
+            inventoryItemObsolete.add(itemObsolete);
+            country.remove(itemObsolete);
+            System.out.println(itemObsolete.getName() + " Has been added to your inventory ");
         }
         //If inventory is filled, player chooses what to do
-        else if (inventoryItem.size() == maxItem)
+        else if (inventoryItemObsolete.size() == maxItem)
         {
             System.out.println("You are already carrying 3 Items and do not have "
                     + "the strength to carry any more, too bad");
@@ -122,12 +122,12 @@ public class Inventory {
                     int n = 0;
                     while (n == 0)
                     {
-                    printInventoryItem(inventoryItem);
+                    printInventoryItem(inventoryItemObsolete);
                     System.out.println("which item would you like to replace");
 
                     String scanYes = scan.nextLine();
                     //Goes though inventory to find and replace the choosen item
-                    for (int i = 0; i < inventoryItem.size(); i++)
+                    for (int i = 0; i < inventoryItemObsolete.size(); i++)
                     {
                         int m = 0; //Used too keep track of count
 
@@ -135,14 +135,14 @@ public class Inventory {
                         {
                             return;
                         }
-                        if (scanYes.equals(inventoryItem.get(i).getName())) //goes through inventory
+                        if (scanYes.equals(inventoryItemObsolete.get(i).getName())) //goes through inventory
                         {
                             //If the written word is in inventory , the item gets //replaced by the new one
 
-                            System.out.println("The item " + inventoryItem.get(i).getName() +
-                                    " has been replaced with the item " + item.getName());
-                            inventoryItem.set(i, item);
-                            country.remove(item);
+                            System.out.println("The item " + inventoryItemObsolete.get(i).getName() +
+                                    " has been replaced with the item " + itemObsolete.getName());
+                            inventoryItemObsolete.set(i, itemObsolete);
+                            country.remove(itemObsolete);
                             n++;
                         }
                         else
@@ -163,7 +163,7 @@ public class Inventory {
                 }
                 if ("see items".equals(scanIn) || "See items".equals(scanIn))
                 {
-                    printInventoryItem(inventoryItem);
+                    printInventoryItem(inventoryItemObsolete);
                 }
             }
         }
@@ -173,17 +173,17 @@ public class Inventory {
      * prints inventory Items
      * @param list
      */
-    void printInventoryItem(ArrayList<Item> list)
+    void printInventoryItem(ArrayList<ItemObsolete> list)
     {
         System.out.println("The items you are currently carrying are:");
         for(int i = 0; i < list.size(); i++)
         {   if(i< list.size()-1)
         {
-            System.out.print(getInventoryItem().get(i).getName() + ", ");
+            System.out.print(getInventoryItemObsolete().get(i).getName() + ", ");
         }
         else
         {
-            System.out.println(getInventoryItem().get(i).getName());
+            System.out.println(getInventoryItemObsolete().get(i).getName());
         }
         }
     }
@@ -195,7 +195,7 @@ public class Inventory {
      * prints deals in an ArrayList without any extra text
      * @param list
      */
-    String createDealsStringFor(ArrayList<Deal> list)
+    String createDealsStringFor(ArrayList<DealObsolete> list)
     {
         StringBuilder format = new StringBuilder();
         for(int i = 0; i < list.size(); i++)
@@ -215,27 +215,27 @@ public class Inventory {
 
     /**
      * -- for bigger
-     * @param deal --> deal that player will add
+     * @param dealObsolete --> deal that player will add
      * @param category --> inventory Category(food, energy or knowledge)
      * @param country --> list og deals in current country
      */
-    private void addingDeal(Deal deal, ArrayList<Deal> category, ArrayList<Deal> country)
+    private void addingDeal(DealObsolete dealObsolete, ArrayList<DealObsolete> category, ArrayList<DealObsolete> country)
     {
-        category.add(deal);
-        country.remove(deal);
+        category.add(dealObsolete);
+        country.remove(dealObsolete);
         System.out.println("congratulations, you have now entered a new deal ");
-        System.out.println("The deal " +  deal.getName() + " is now in your inventory");
+        System.out.println("The deal " +  dealObsolete.getName() + " is now in your inventory");
     }
 
-    public void removeDealFromInventory(Deal dealToRemove)
+    public void removeDealFromInventory(DealObsolete dealObsoleteToRemove)
     {
         for (var dealCategory : inventoryDeals)
         {
-            if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealToRemove.getCategory())
+            if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealObsoleteToRemove.getCategory())
             {
                 for(var deal : dealCategory)
                 {
-                    if (!deal.getName().equals(dealToRemove.getName()))
+                    if (!deal.getName().equals(dealObsoleteToRemove.getName()))
                     {
                         dealCategory.remove(deal);
                         break;
@@ -248,15 +248,15 @@ public class Inventory {
 
     /** --used for bigger
      * Adds deal to ArrayListDeals if category has not reached max items
-     * @param deal --> deal that will be added
+     * @param dealObsolete --> deal that will be added
      * @param category --> the under category in inventoryDeals
      * @param max --> max Deals in country
      * @param country --> list og deals in current country
      */
-    private void addCategory(Deal deal, ArrayList<Deal> category, int max, ArrayList<Deal> country){
+    private void addCategory(DealObsolete dealObsolete, ArrayList<DealObsolete> category, int max, ArrayList<DealObsolete> country){
         if (category.size() < max)
         {
-            addingDeal(deal,category, country);
+            addingDeal(dealObsolete,category, country);
         }
         // If food is filled, player chooses if and what deal to replace
         else
@@ -266,7 +266,7 @@ public class Inventory {
             while (m == 0)
             {
 
-                System.out.println("You can only have " + max + " deal in the category " + deal.getCategory());
+                System.out.println("You can only have " + max + " deal in the category " + dealObsolete.getCategory());
                 printInventoryCategory(category);
                 System.out.println("Would you like to replace your current deal??");
 
@@ -282,8 +282,8 @@ public class Inventory {
                     if(max == 1)
                     {
                         //
-                        addingDeal(deal,category, country);
-                        removeDealFromInventory(deal);
+                        addingDeal(dealObsolete,category, country);
+                        removeDealFromInventory(dealObsolete);
                         m++;
                     }
                     else
@@ -298,9 +298,9 @@ public class Inventory {
                             {
                                 if (category.get(i).getName().equalsIgnoreCase(scan))
                                 {
-                                    country.remove(deal);category.set(i, deal);
+                                    country.remove(dealObsolete);category.set(i, dealObsolete);
                                     System.out.println("congratulations, you have now entered a new deal");
-                                    System.out.println("The deal " + deal.getName() + " is now in your inventory");
+                                    System.out.println("The deal " + dealObsolete.getName() + " is now in your inventory");
                                     m++;
                                     k++;
                                 }
@@ -323,27 +323,27 @@ public class Inventory {
 
     /** -- used for bigger
      * from taking a deal to adding to inventoryDeals
-     * @param deal
+     * @param dealObsolete
      * @param country
      */
-    void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
+    void inventoryUpdateDeals(DealObsolete dealObsolete, ArrayList<DealObsolete> country)
     {
 
-            Config.subtractMoney(deal.getPrice());
+            Config.subtractMoney(dealObsolete.getPrice());
             inventoryDeals.add(food);
             inventoryDeals.add(energy);
             inventoryDeals.add(knowledge);
-            if (deal.getCategory() == DealCategory.Food)
+            if (dealObsolete.getCategory() == DealCategory.Food)
             {
-                addCategory(deal,food,maxFood,country);
+                addCategory(dealObsolete,food,maxFood,country);
             }
-            else if (deal.getCategory() == DealCategory.Energy)
+            else if (dealObsolete.getCategory() == DealCategory.Energy)
             {
-                addCategory(deal, energy, maxEnergy, country);
+                addCategory(dealObsolete, energy, maxEnergy, country);
             }
-            else if (deal.getCategory() == DealCategory.Knowledge)
+            else if (dealObsolete.getCategory() == DealCategory.Knowledge)
             {
-                addCategory(deal, knowledge, maxKnowledge, country);
+                addCategory(dealObsolete, knowledge, maxKnowledge, country);
             }
     }
 
@@ -351,7 +351,7 @@ public class Inventory {
      * Prints inventory for chosen category List
      * @param list
      */
-    private void printInventoryCategory(ArrayList<Deal> list)
+    private void printInventoryCategory(ArrayList<DealObsolete> list)
     {
         System.out.println("The Deals you are currently carrying are: " + createDealsStringFor(list));
     }

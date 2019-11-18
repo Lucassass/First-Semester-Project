@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire;
 
 /**
  * @author tes_7
  */
-public class Deal {
+public class DealObsolete {
 
     private String name; // Name of deal
     private DealCategory category; //Catogery of deals
@@ -20,8 +20,8 @@ public class Deal {
     private int timesTried;
 
     //Hoved Deal objektet der gerne skulle bruges
-    public Deal(String name, DealCategory category, int sustainabilityPoints,
-                int energyPoints, int environmentPoints, int price, String info)
+    public DealObsolete(String name, DealCategory category, int sustainabilityPoints,
+                        int energyPoints, int environmentPoints, int price, String info)
     {
         this.name = name ;
         this.category = category;

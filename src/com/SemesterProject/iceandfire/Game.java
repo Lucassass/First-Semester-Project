@@ -1,4 +1,4 @@
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,43 +29,43 @@ public class Game
     private void createRooms()
     {
 
-        var usaItems = new ArrayList<Item>();
-        usaItems.add(new Item("Vodka", CountryList.Russia, 2,CountryList.India, -2));
-        var usaDeals = new ArrayList<Deal>();
-        usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
-        usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
-        usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
-        usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        var usaItems = new ArrayList<ItemObsolete>();
+        usaItems.add(new ItemObsolete("Vodka", Countries.Russia, 2, Countries.India, -2));
+        var usaDeals = new ArrayList<DealObsolete>();
+        usaDeals.add(new DealObsolete("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
+        usaDeals.add(new DealObsolete("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new DealObsolete("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new DealObsolete("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
-        var chinaItems = new ArrayList<Item>();
-        chinaItems.add(new Item("Frankfurter",CountryList.Germany,2,CountryList.Japan,-2));
-        var chinaDeals = new ArrayList<Deal>();
-        chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        var chinaItems = new ArrayList<ItemObsolete>();
+        chinaItems.add(new ItemObsolete("Frankfurter", Countries.Germany,2, Countries.Japan,-2));
+        var chinaDeals = new ArrayList<DealObsolete>();
+        chinaDeals.add(new DealObsolete("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        chinaDeals.add(new DealObsolete("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var germanyItems = new ArrayList<Item>();
-        germanyItems.add(new Item("Sushi",CountryList.Japan,2,CountryList.USA,-2));
-        var germanyDeals = new ArrayList<Deal>();
-        germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        var germanyItems = new ArrayList<ItemObsolete>();
+        germanyItems.add(new ItemObsolete("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var germanyDeals = new ArrayList<DealObsolete>();
+        germanyDeals.add(new DealObsolete("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        germanyDeals.add(new DealObsolete("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var russiaItems = new ArrayList<Item>();
-        russiaItems.add(new Item("Curry",CountryList.India,2,CountryList.Russia,-2));
-        var russiaDeals = new ArrayList<Deal>();
-        russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        var russiaItems = new ArrayList<ItemObsolete>();
+        russiaItems.add(new ItemObsolete("Curry", Countries.India,2, Countries.Russia,-2));
+        var russiaDeals = new ArrayList<DealObsolete>();
+        russiaDeals.add(new DealObsolete("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        russiaDeals.add(new DealObsolete("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var indiaItems = new ArrayList<Item>();
-        indiaItems.add(new Item("Not Curry",CountryList.India,2,CountryList.Russia,-2));
-        var indiaDeals = new ArrayList<Deal>();
-        indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        var indiaItems = new ArrayList<ItemObsolete>();
+        indiaItems.add(new ItemObsolete("Not Curry", Countries.India,2, Countries.Russia,-2));
+        var indiaDeals = new ArrayList<DealObsolete>();
+        indiaDeals.add(new DealObsolete("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        indiaDeals.add(new DealObsolete("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var japanItems = new ArrayList<Item>();
-        japanItems.add(new Item("Sushi",CountryList.Japan,2,CountryList.USA,-2));
-        var japanDeals = new ArrayList<Deal>();
-        japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        var japanItems = new ArrayList<ItemObsolete>();
+        japanItems.add(new ItemObsolete("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var japanDeals = new ArrayList<DealObsolete>();
+        japanDeals.add(new DealObsolete("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
+        japanDeals.add(new DealObsolete("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
 
         Country usa, china, russia, japan, india, germany;
@@ -226,11 +226,11 @@ public class Game
             printLocalMap();
         }
         else if (commandWord == CommandWord.STARTDEAL) {
-            Config.startDeal(currentRoom.getDeals(), currentCountry);
+            Config.startDeal(currentRoom.getDealObsoletes(), currentCountry);
         }
         else if (commandWord == CommandWord.INVENTORY){
             Inventory in = Inventory.getInstance();
-            in.printInventoryItem(in.getInventoryItem());
+            in.printInventoryItem(in.getInventoryItemObsolete());
         }
         else if(commandWord == CommandWord.BUDGET)
         {
@@ -242,7 +242,7 @@ public class Game
         }
         else if (commandWord == CommandWord.SEARCH) {
             Inventory in = Inventory.getInstance();
-            in.searchForItems(currentRoom.getItems());
+            in.searchForItems(currentRoom.getItemObsoletes());
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }

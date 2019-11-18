@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.iceandfire;
 
 /**
  * @author tes_7
  */
-public class Item {
+public class ItemObsolete {
 
     private String name; //Name of item
-    private CountryList countryGood; // Name of the country the item has a good effect on
+    private Countries countryGood; // Name of the country the item has a good effect on
     private int pointsGood; // The + points you get from being in the good country
-    private CountryList countryBad; //Name of the bad country the item has a bad effect on
+    private Countries countryBad; //Name of the bad country the item has a bad effect on
     private int pointsBad; // The - points you get from being in the bad country
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
 
-    Item(String name, CountryList countryGood, int pointsGood, CountryList countryBad, int pointsBad){
+    ItemObsolete(String name, Countries countryGood, int pointsGood, Countries countryBad, int pointsBad){
         this.name = name;
         this.countryGood = countryGood;
         this.pointsGood = pointsGood;
@@ -61,14 +61,14 @@ public class Item {
     /**
      * @return countryGood
      */
-    public CountryList getCountryGood()
+    public Countries getCountryGood()
     {
         return countryGood;
     }
     /**
      * @return contryBad
      */
-    public CountryList getCountryBad()
+    public Countries getCountryBad()
     {
         return countryBad;
     }
