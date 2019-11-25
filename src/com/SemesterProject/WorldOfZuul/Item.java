@@ -5,6 +5,8 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
+import com.SemesterProject.DomainLogic.CountryList;
+
 /**
  * @author tes_7
  */
@@ -18,7 +20,7 @@ public class Item {
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
 
-    Item(String name, CountryList countryGood, int pointsGood, CountryList countryBad, int pointsBad){
+    public Item(String name, CountryList countryGood, int pointsGood, CountryList countryBad, int pointsBad){
         this.name = name;
         this.countryGood = countryGood;
         this.pointsGood = pointsGood;

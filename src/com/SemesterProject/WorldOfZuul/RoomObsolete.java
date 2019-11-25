@@ -1,5 +1,7 @@
 package com.SemesterProject.WorldOfZuul;
 
+import com.SemesterProject.DomainLogic.Country;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
@@ -13,10 +15,10 @@ import java.util.HashMap;
 *       Campus Pub ------------ Main entrence ------------- Lecture hall \
 */
 
-public class Room 
+public class RoomObsolete
 {
     private String description; /** Stores the description of rooms */
-    private HashMap<String, Room> exits; /** Stores exits of the room. */
+    private HashMap<String, RoomObsolete> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
     private ArrayList<Item> items;
@@ -27,7 +29,7 @@ public class Room
      * Creates a room described called "description". Initially, it has no exits.
      * "description" is something like "in a kitchen" or "in an open court yard".
      */
-    public Room(String description, String name)
+    public RoomObsolete(String description, String name)
     {
         this.name = name;
         this.description = description;
@@ -53,7 +55,7 @@ public class Room
     /**
      * Defines an exit from the room.
      */
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, RoomObsolete neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -186,7 +188,7 @@ public class Room
      * Return the room that is reached, if we go from this room in direction x
      * "direction" will be printed. If there is no room in that direction, it returns null.
      */
-    Room getExit(String direction)
+    RoomObsolete getExit(String direction)
     {
         return exits.get(direction);
     }

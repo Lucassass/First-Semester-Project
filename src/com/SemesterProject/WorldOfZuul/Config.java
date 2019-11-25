@@ -5,6 +5,8 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
+import com.SemesterProject.DomainLogic.Country;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;

@@ -1,5 +1,7 @@
 package com.SemesterProject.WorldOfZuul;
 
+
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,8 +9,7 @@ import java.util.Scanner;
 public class Game
 {
     private Parser parser;
-    private Room currentRoom;
-    private Country currentCountry;
+    private RoomObsolete currentRoomObsolete;
 
 // To Start game run main function bellow
  
@@ -18,7 +19,13 @@ public class Game
     public Game()
     {
         parser = new Parser();
-        createRooms();
+        //createRooms();
+    }
+
+
+
+    public RoomObsolete getCurrentRoomObsolete() {
+        return currentRoomObsolete;
     }
 
     /**
@@ -26,7 +33,8 @@ public class Game
      * Set exits.
      * Makes currentRoom = outside.
      */
-    private void createRooms()
+    /*
+    public void createRooms()
     {
 
         var usaItems = new ArrayList<Item>();
@@ -155,7 +163,7 @@ public class Game
         india.setTrainExit("Usa", usa);
 
         currentCountry = usa;
-        currentRoom = currentCountry.getStartRoom();
+        currentRoomObsolete = currentCountry.getStartRoomObsolete();
     }
 
     /**
@@ -197,7 +205,7 @@ public class Game
         System.out.println("Ice and Fire is a new, incredibly awesome adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoomObsolete.getLongDescription());
     }
 
     /**  
@@ -219,14 +227,14 @@ public class Game
         } else if (commandWord == CommandWord.FLY) {
             fly();
         } else if (commandWord == CommandWord.TRAIN) {
-            goTrainStation(command);
+            //goTrainStation(command);
         } else if (commandWord == CommandWord.GLOBALMAP) {
             printGlobalMap();
         } else if (commandWord == CommandWord.LOCALMAP) {
             printLocalMap();
         }
         else if (commandWord == CommandWord.STARTDEAL) {
-            Config.startDeal(currentRoom.getDeals(), currentCountry);
+            Config.startDeal(currentRoomObsolete.getDeals(), null);
         }
         else if (commandWord == CommandWord.INVENTORY){
             Inventory in = Inventory.getInstance();
@@ -242,7 +250,7 @@ public class Game
         }
         else if (commandWord == CommandWord.SEARCH) {
             Inventory in = Inventory.getInstance();
-            in.searchForItems(currentRoom.getItems());
+            in.searchForItems(currentRoomObsolete.getItems());
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -261,7 +269,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around the " + currentRoom.getName() +" in " + currentCountry.getName());
+        //System.out.println("around the " + currentRoomObsolete.getName() +" in " + currentCountry.getName());
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -284,29 +292,29 @@ public class Game
 
         String direction = command.getSecondWord();
 
-        Room nextRoom = currentRoom.getExit(direction);
+        RoomObsolete nextRoomObsolete = currentRoomObsolete.getExit(direction);
 
-        if (nextRoom == null) {
+        if (nextRoomObsolete == null) {
             System.out.println("There is no door!");
         }
         else {
-            currentRoom = nextRoom;
-            if (currentRoom.gotFlyPoint())
+            currentRoomObsolete = nextRoomObsolete;
+            if (currentRoomObsolete.gotFlyPoint())
             {
-                System.out.println(currentRoom.getLongDescriptionWithFlights());
-            } else if(currentRoom.gotTrainPoint())
+                System.out.println(currentRoomObsolete.getLongDescriptionWithFlights());
+            } else if(currentRoomObsolete.gotTrainPoint())
             {
-                System.out.println(currentRoom.getLongDescriptionWithTrains());
+                System.out.println(currentRoomObsolete.getLongDescriptionWithTrains());
             }
             else {
-                System.out.println(currentRoom.getLongDescription());
+                System.out.println(currentRoomObsolete.getLongDescription());
             }
         }
     }
 
     private void goCountry(String country)
-    {
-        Country nextCountry = currentCountry.getAirPortExit(country);
+    {/*
+        //Country nextCountry = currentCountry.getAirPortExit(country);
 
         if (nextCountry == null) {
             System.out.println("Cannot find a line from"+currentCountry.getName()+"to " + country);
@@ -314,8 +322,8 @@ public class Game
         else {
             System.out.println("Flying to: " + nextCountry.getName());
             currentCountry = nextCountry;
-            currentRoom = currentCountry.getStartRoom();
-            System.out.println(currentRoom.getLongDescription());
+            //currentRoomObsolete = currentCountry.getStartRoomObsolete();
+            System.out.println(currentRoomObsolete.getLongDescription());
         }
     }
 
@@ -323,7 +331,7 @@ public class Game
     {
         String country = command.getSecondWord();
 
-        Country nextCountry = currentCountry.getTrainStationExit(country);
+        //Country nextCountry = currentCountry.getTrainStationExit(country);
 
         if (!Config.gotMoneyForTrain())
         {
@@ -333,25 +341,30 @@ public class Game
         else {
             Config.buyTrainTicket();
         }
-
-        if (nextCountry == null || currentRoom != currentCountry.getTrainStation()) {
+/*
+        if (nextCountry == null || currentRoomObsolete != currentCountry.getTrainStation()) {
             System.out.println("There is no station here!");
         }
         else {
             System.out.println("Taking the train to: " + nextCountry.getName());
             currentCountry = nextCountry;
-            currentRoom = currentCountry.getStartRoom();
-            System.out.println(currentRoom.getLongDescription());
+            currentRoomObsolete = currentCountry.getStartRoomObsolete();
+            System.out.println(currentRoomObsolete.getLongDescription());
         }
+
+ */
     }
 
 
     private void fly()
     {
-        if (currentRoom != currentCountry.getAirPortRoom()){
+        /*
+        if (currentRoomObsolete != currentCountry.getAirPortRoomObsolete()){
             System.out.println("You are not at a airport");
             return;
         }
+
+         */
 
         System.out.println("Private or commercial plane?");
         Scanner scanner = new Scanner(System.in);
@@ -390,11 +403,11 @@ public class Game
             Config.buyFlyCommercial();
         }
 
-        var countries = currentCountry.getAirportExits();
+       // var countries = currentCountry.getAirportExits();
 
-        var random = new Random().nextInt(countries.size());
+        //var random = new Random().nextInt(countries.size());
 
-        goCountry(countries.get(random).getName().toLowerCase());
+        //goCountry(countries.get(random).getName().toLowerCase());
     }
 
 
@@ -409,7 +422,7 @@ public class Game
         System.out.println("                               |");
         System.out.println("                               |");
         System.out.println("                          Cultur room");
-       System.out.println("You are currently in: "+ currentRoom.getName());
+       System.out.println("You are currently in: "+ currentRoomObsolete.getName());
 
     }
 
@@ -435,7 +448,7 @@ public class Game
         System.out.println(" /        |        \\ ");
         System.out.println("China   Russia    USA");
         System.out.println();
-        System.out.println("You are currently in: "+currentCountry.getName());
+        //System.out.println("You are currently in: "+currentCountry.getName());
     }
 
     /**
@@ -454,3 +467,4 @@ public class Game
         }
     }
 }
+

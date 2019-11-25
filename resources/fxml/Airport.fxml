@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.AirportController">
+   <children>
+      <AnchorPane>
+         <children>
+            <ImageView  fitHeight="907.0" fitWidth="1056.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../Desktop/Unavngivet.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <bottom>
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+         </bottom>
+         <center>
+            <AnchorPane>
+               <children>
+                  <Label  fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Airport" textFill="#c60f0f" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="62.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="366.0" layoutY="527.0" mnemonicParsing="false" text="click me" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
