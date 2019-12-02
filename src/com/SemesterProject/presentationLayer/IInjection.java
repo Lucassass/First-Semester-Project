@@ -2,9 +2,9 @@ package com.SemesterProject.presentationLayer;
 
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 
-public interface IInjection{
+public interface IInjection<T>{
 
-     void injectMainController(MainController mainController);
-     MainController getMainController();
+     void injectController(T controller);
+     T getController();
 
 }

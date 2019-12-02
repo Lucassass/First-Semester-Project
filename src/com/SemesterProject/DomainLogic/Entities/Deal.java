@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.DomainLogic.Entities;
+
+import com.SemesterProject.DomainLogic.Enum.DealCategory;
 
 /**
  * @author tes_7
@@ -50,7 +52,7 @@ public class Deal {
     /**
      * @return information about the deal
      */
-    public String getInfo()
+    public String getDescription()
     {
         return information;
     }

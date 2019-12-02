@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(14,12,12,0.52);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.CardRowController">
+   <children>
+      <GridPane fx:id="gridPanel" alignment="CENTER" prefHeight="667.0" prefWidth="1000.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <opaqueInsets>
+               <Insets top="50.0" />
+            </opaqueInsets>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+
+      <!--      <children>
+               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <children>
+                      <fx:include source="DealCard.fxml" />
+                  </children>
+                  <GridPane.margin>
+                     <Insets top="175.0" />
+                  </GridPane.margin>
+               </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+                   <children>
+                      <fx:include source="DealCard.fxml" />
+                   </children>
+                  <GridPane.margin>
+                     <Insets top="175.0" />
+                  </GridPane.margin>
+               </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5">
+                   <children>
+                      <fx:include source="DealCard.fxml" />
+                   </children>
+                  <GridPane.margin>
+                     <Insets top="175.0" />
+                  </GridPane.margin>
+                  <padding>
+                     <Insets right="-5.0" />
+                  </padding>
+               </AnchorPane>
+            </children>
+            -->
+      </GridPane>
+   </children>
+</AnchorPane>

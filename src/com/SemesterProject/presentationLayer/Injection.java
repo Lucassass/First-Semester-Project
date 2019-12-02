@@ -1,19 +1,21 @@
 package com.SemesterProject.presentationLayer;
 
-import com.SemesterProject.DomainLogic.Room;
-import com.SemesterProject.presentationLayer.Controllers.MainController;
-
-public abstract class Injection implements IInjection
+public abstract class Injection<T> implements IInjection<T>
 {
-    private MainController mainController;
+    private T controller;
 
-    public void  injectMainController(MainController mainController)
+    public void injectController(T controller)
     {
-        this.mainController = mainController;
+        this.controller = controller;
+        afterInjected();
     }
 
-    public MainController getMainController() {
-        return mainController;
+    public T getController() {
+        return controller;
+    }
+
+    public void afterInjected(){
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.SemesterProject.DomainLogic;
+package com.SemesterProject.DomainLogic.Enum;
 
 public enum CountryList
 {

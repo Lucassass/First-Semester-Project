@@ -2,8 +2,6 @@ package com.SemesterProject.WorldOfZuul;
 
 
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game
@@ -234,7 +232,7 @@ public class Game
             printLocalMap();
         }
         else if (commandWord == CommandWord.STARTDEAL) {
-            Config.startDeal(currentRoomObsolete.getDeals(), null);
+            //Config.startDeal(currentRoomObsolete.getDeals(), null);
         }
         else if (commandWord == CommandWord.INVENTORY){
             Inventory in = Inventory.getInstance();

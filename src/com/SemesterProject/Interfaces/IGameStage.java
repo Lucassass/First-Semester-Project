@@ -1,7 +1,8 @@
 package com.SemesterProject.Interfaces;
 
-import com.SemesterProject.DomainLogic.Country;
-import com.SemesterProject.DomainLogic.Room;
+import com.SemesterProject.DomainLogic.Entities.Deal;
+
+import java.util.List;
 
 public interface IGameStage
 {
@@ -10,6 +11,7 @@ public interface IGameStage
     String getCountryName();
     String getRoomDescription();
     boolean goRoom(String direction);
+    List<Deal> getDealsForRoom();
 
 
 }

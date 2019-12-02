@@ -3,23 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.DomainLogic;
 
 /**
  * @author tes_7
  */
 
+import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.WorldOfZuul.Config;
+import com.SemesterProject.WorldOfZuul.Item;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Inventory {
+public class Inventory {
 
     private static Inventory instance = new Inventory();
     private ArrayList<Item> inventoryItem = new ArrayList<Item>(); //ArrayList that contains Items
-    private ArrayList<ArrayList<DealObsolete>> inventoryDeals = new ArrayList<ArrayList<DealObsolete>>(); // ArrayList that contains deals
-    private ArrayList<DealObsolete> food = new ArrayList<DealObsolete>(); //Deals with category food (will be placed in inventoryDeals
-    private ArrayList<DealObsolete> energy = new ArrayList<DealObsolete>(); //Deals with category energy (will be placed in inventoryDeals
-    private ArrayList<DealObsolete> knowledge = new ArrayList<DealObsolete>(); //Deals with category knowledge(will be placed in inventoryDeals
+    private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
+    private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
+    private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
+    private ArrayList<Deal> knowledge = new ArrayList<Deal>(); //Deals with category knowledge(will be placed in inventoryDeals
 
     private final int maxItem = 3;
     private final int maxFood = 1;
@@ -42,7 +47,7 @@ class Inventory {
     /**
      * @return inventory Deals
      */
-    public ArrayList<ArrayList<DealObsolete>> getInventoryDeals(){return inventoryDeals;}
+    public ArrayList<ArrayList<Deal>> getInventoryDeals(){return inventoryDeals;}
 
     /**
      *  ------> SHOULD BE USED IN ANOTHER CLASS OR COMMANDWORD <--------
@@ -195,7 +200,7 @@ class Inventory {
      * prints deals in an ArrayList without any extra text
      * @param list
      */
-    String createDealsStringFor(ArrayList<DealObsolete> list)
+    String createDealsStringFor(ArrayList<Deal> list)
     {
         StringBuilder format = new StringBuilder();
         for(int i = 0; i < list.size(); i++)
@@ -215,27 +220,27 @@ class Inventory {
 
     /**
      * -- for bigger
-     * @param dealObsolete --> deal that player will add
+     * @param deal --> deal that player will add
      * @param category --> inventory Category(food, energy or knowledge)
      * @param country --> list og deals in current country
      */
-    private void addingDeal(DealObsolete dealObsolete, ArrayList<DealObsolete> category, ArrayList<DealObsolete> country)
+    private void addingDeal(Deal deal, ArrayList<Deal> category, ArrayList<Deal> country)
     {
-        category.add(dealObsolete);
-        country.remove(dealObsolete);
+        category.add(deal);
+        country.remove(deal);
         System.out.println("congratulations, you have now entered a new deal ");
-        System.out.println("The deal " +  dealObsolete.getName() + " is now in your inventory");
+        System.out.println("The deal " +  deal.getName() + " is now in your inventory");
     }
 
-    public void removeDealFromInventory(DealObsolete dealObsoleteToRemove)
+    public void removeDealFromInventory(Deal dealToRemove)
     {
         for (var dealCategory : inventoryDeals)
         {
-            if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealObsoleteToRemove.getCategory())
+            if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealToRemove.getCategory())
             {
                 for(var deal : dealCategory)
                 {
-                    if (!deal.getName().equals(dealObsoleteToRemove.getName()))
+                    if (!deal.getName().equals(dealToRemove.getName()))
                     {
                         dealCategory.remove(deal);
                         break;
@@ -248,15 +253,15 @@ class Inventory {
 
     /** --used for bigger
      * Adds deal to ArrayListDeals if category has not reached max items
-     * @param dealObsolete --> deal that will be added
+     * @param deal --> deal that will be added
      * @param category --> the under category in inventoryDeals
      * @param max --> max Deals in country
      * @param country --> list og deals in current country
      */
-    private void addCategory(DealObsolete dealObsolete, ArrayList<DealObsolete> category, int max, ArrayList<DealObsolete> country){
+    private void addCategory(Deal deal, ArrayList<Deal> category, int max, ArrayList<Deal> country){
         if (category.size() < max)
         {
-            addingDeal(dealObsolete,category, country);
+            addingDeal(deal,category, country);
         }
         // If food is filled, player chooses if and what deal to replace
         else
@@ -266,7 +271,7 @@ class Inventory {
             while (m == 0)
             {
 
-                System.out.println("You can only have " + max + " deal in the category " + dealObsolete.getCategory());
+                System.out.println("You can only have " + max + " deal in the category " + deal.getCategory());
                 printInventoryCategory(category);
                 System.out.println("Would you like to replace your current deal??");
 
@@ -282,8 +287,8 @@ class Inventory {
                     if(max == 1)
                     {
                         //
-                        addingDeal(dealObsolete,category, country);
-                        removeDealFromInventory(dealObsolete);
+                        addingDeal(deal,category, country);
+                        removeDealFromInventory(deal);
                         m++;
                     }
                     else
@@ -298,9 +303,9 @@ class Inventory {
                             {
                                 if (category.get(i).getName().equalsIgnoreCase(scan))
                                 {
-                                    country.remove(dealObsolete);category.set(i, dealObsolete);
+                                    country.remove(deal);category.set(i, deal);
                                     System.out.println("congratulations, you have now entered a new deal");
-                                    System.out.println("The deal " + dealObsolete.getName() + " is now in your inventory");
+                                    System.out.println("The deal " + deal.getName() + " is now in your inventory");
                                     m++;
                                     k++;
                                 }
@@ -323,27 +328,27 @@ class Inventory {
 
     /** -- used for bigger
      * from taking a deal to adding to inventoryDeals
-     * @param dealObsolete
+     * @param deal
      * @param country
      */
-    void inventoryUpdateDeals(DealObsolete dealObsolete, ArrayList<DealObsolete> country)
+    void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
     {
 
-            Config.subtractMoney(dealObsolete.getPrice());
+            Config.subtractMoney(deal.getPrice());
             inventoryDeals.add(food);
             inventoryDeals.add(energy);
             inventoryDeals.add(knowledge);
-            if (dealObsolete.getCategory() == DealCategoryObsolete.Food)
+            if (deal.getCategory() == DealCategory.Food)
             {
-                addCategory(dealObsolete,food,maxFood,country);
+                addCategory(deal,food,maxFood,country);
             }
-            else if (dealObsolete.getCategory() == DealCategoryObsolete.Energy)
+            else if (deal.getCategory() == DealCategory.Energy)
             {
-                addCategory(dealObsolete, energy, maxEnergy, country);
+                addCategory(deal, energy, maxEnergy, country);
             }
-            else if (dealObsolete.getCategory() == DealCategoryObsolete.Knowledge)
+            else if (deal.getCategory() == DealCategory.Knowledge)
             {
-                addCategory(dealObsolete, knowledge, maxKnowledge, country);
+                addCategory(deal, knowledge, maxKnowledge, country);
             }
     }
 
@@ -351,7 +356,7 @@ class Inventory {
      * Prints inventory for chosen category List
      * @param list
      */
-    private void printInventoryCategory(ArrayList<DealObsolete> list)
+    private void printInventoryCategory(ArrayList<Deal> list)
     {
         System.out.println("The Deals you are currently carrying are: " + createDealsStringFor(list));
     }

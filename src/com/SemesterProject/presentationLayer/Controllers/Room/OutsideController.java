@@ -1,14 +1,12 @@
-package com.SemesterProject.presentationLayer.Controllers;
+package com.SemesterProject.presentationLayer.Controllers.Room;
 
+import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
-public class OutsideController extends Injection
+public class OutsideController extends Injection<MainController>
 {
 
 
@@ -22,28 +20,28 @@ public class OutsideController extends Injection
     public void onMouseEntered(MouseEvent mouseEvent)
     {
 
-        getMainController().onMouseEnter();
+        getController().onMouseEnter();
     }
 
     public void onMouseExited(MouseEvent mouseEvent)
     {
-        getMainController().onMouseExit();
+        getController().onMouseExit();
     }
 
     public void onClickAirport(MouseEvent mouseEvent) {
 
-        getMainController().goToAirport();
+        getController().goToAirport();
     }
 
     public void onClickCulture(MouseEvent mouseEvent) {
-        getMainController().goToCulture();
+        getController().goToCulture();
     }
 
     public void onClickGovernment(MouseEvent mouseEvent) {
-        getMainController().goToGovernment();
+        getController().goToGovernment();
     }
 
     public void onClickTrainStation(MouseEvent mouseEvent) {
-        getMainController().goToTrainStation();
+        getController().goToTrainStation();
     }
 }

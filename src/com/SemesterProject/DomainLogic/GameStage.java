@@ -1,11 +1,15 @@
 package com.SemesterProject.DomainLogic;
 
+import com.SemesterProject.DomainLogic.Entities.Country;
+import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Entities.Room;
+import com.SemesterProject.DomainLogic.Enum.CountryList;
+import com.SemesterProject.DomainLogic.Enum.DealCategory;
 import com.SemesterProject.Interfaces.IGameStage;
-import com.SemesterProject.WorldOfZuul.Deal;
-import com.SemesterProject.WorldOfZuul.DealCategory;
 import com.SemesterProject.WorldOfZuul.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameStage implements IGameStage
 {
@@ -43,6 +47,11 @@ public class GameStage implements IGameStage
         }
 
         return false;
+    }
+
+    @Override
+    public List<Deal> getDealsForRoom() {
+        return currentRoom.getDeals();
     }
 
 
