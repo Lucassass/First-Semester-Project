@@ -1,6 +1,5 @@
 package com.SemesterProject.presentationLayer;
 
-import com.SemesterProject.DomainLogic.Room;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 
 public abstract class Injection implements IInjection
