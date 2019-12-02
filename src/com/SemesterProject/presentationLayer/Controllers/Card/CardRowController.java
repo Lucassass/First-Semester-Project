@@ -3,14 +3,17 @@ package com.SemesterProject.presentationLayer.Controllers.Card;
 import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.SplitPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -23,20 +26,23 @@ public class CardRowController extends Injection<MainController>
 {
     @FXML
     public GridPane gridPanel;
+    public AnchorPane anchorForClose;
+    public SplitPane splitPane;
+    public AnchorPane anchorPane;
 
     public void loadDeals() {
 
         addDeals(getController().getGameStage().getDealsForRoom());
 
-        gridPanel.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (KeyCode.ESCAPE == keyEvent.getCode())
-                {
-                    gridPanel.setVisible(false);
-                }
-            }
-        });
+
+        splitPane.lookupAll(".split-pane-divider")
+                .forEach(div ->  div.setMouseTransparent(true) );
+    }
+
+
+    public void onClose(ActionEvent actionEvent)
+    {
+        anchorPane.setVisible(false);
     }
 
     private void addDeals(List<Deal> deals)
@@ -91,7 +97,7 @@ public class CardRowController extends Injection<MainController>
             var controller = (CardController)fxmlLoader.getController();
             controller.populateCard(deal);
 
-            GridPane.setMargin(anchorPane, new Insets(175,0,0,0));
+            GridPane.setMargin(anchorPane, new Insets(150,0,0,0));
 
             gridPanel.addColumn(index + 1, anchorPane);
 
