@@ -95,12 +95,12 @@ public class MainController extends Application implements Initializable {
         setupOutsideRoom();
     }
 
-    void onMouseEnter()
+    public void onMouseEnter()
     {
         mainWindow.setCursor(Cursor.HAND);
     }
 
-    void onMouseExit()
+    public void onMouseExit()
     {
         mainWindow.setCursor(Cursor.DEFAULT);
     }

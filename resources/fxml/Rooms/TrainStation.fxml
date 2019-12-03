@@ -9,13 +9,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.TrainController">
+<StackPane prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.TrainController">
    <children>
       <AnchorPane>
          <children>
-            <ImageView  fitHeight="907.0" fitWidth="1056.0" pickOnBounds="true">
+            <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
                <image>
-                  <Image url="/images/train 1.png" />
+                  <Image url="@../../images/train1.png" />
                </image>
             </ImageView>
          </children>
@@ -42,6 +42,16 @@
                </BorderPane.margin>
             </ImageView>
          </left>
+         <top>
+            <Pane onMouseClicked="#onTrainManClick" onMouseEntered="#onTrainManEnter" onMouseExited="#onTrainManExit" prefHeight="200.0" prefWidth="10.0" style="-fx-background-color: Transperent;" BorderPane.alignment="TOP_LEFT">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets right="925.0" />
+               </BorderPane.margin>
+            </Pane>
+         </top>
       </BorderPane>
    </children>
 </StackPane>

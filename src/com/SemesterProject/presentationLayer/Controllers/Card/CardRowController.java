@@ -60,7 +60,8 @@ public class CardRowController extends Injection<MainController>
         double cardPercent = getCardPercent(deals.size(), percentPerEmptyRow);
         addEmptyColumn(percentPerEmptyRow);
 
-        for (int i = 0; i < deals.size() + (deals.size() - 1); i++) {
+        for (int i = 0; i < deals.size() + (deals.size() - 1); i++)
+        {
 
             if (numberIsEven(i))
             {
@@ -97,7 +98,7 @@ public class CardRowController extends Injection<MainController>
             var controller = (CardController)fxmlLoader.getController();
             controller.populateCard(deal);
 
-            GridPane.setMargin(anchorPane, new Insets(150,0,0,0));
+            GridPane.setMargin(anchorPane, new Insets(50,0,0,0));
 
             gridPanel.addColumn(index + 1, anchorPane);
 
@@ -114,14 +115,14 @@ public class CardRowController extends Injection<MainController>
         column.setPercentWidth(widthPercent);
         column.setHgrow(Priority.SOMETIMES);
         column.setMinWidth(0);
-        column.setPrefWidth(0);
+        //column.setPrefWidth(0);
         gridPanel.getColumnConstraints().add(column);
     }
 
     private double getCardPercent(int size, double percentPerEmptyRow)
     {
         var emptyRows = 2 + size - 1;
-        return 100 - (emptyRows*percentPerEmptyRow) / size;
+        return (100 - (emptyRows*percentPerEmptyRow)) / size;
     }
 
 

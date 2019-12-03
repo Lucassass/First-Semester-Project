@@ -9,11 +9,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.GovernmentController">
+<StackPane prefHeight="700.0" prefWidth="840" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.GovernmentController">
    <children>
       <AnchorPane>
          <children>
-            <ImageView fitHeight="907.0" fitWidth="1056.0" pickOnBounds="true">
+            <ImageView fitHeight="700.0" fitWidth="846.0" pickOnBounds="true">
                <image>
                   <Image url="/images/goverment + man.png" />
                </image>

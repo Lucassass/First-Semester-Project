@@ -14,7 +14,7 @@
 
 <GridPane fx:id="mainWindow" maxHeight="-Infinity"
           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          prefHeight="900.0" prefWidth="1500.0" stylesheets="@../Style.css"
+          prefHeight="700.0" prefWidth="1200.0" stylesheets="@../Style.css"
           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.MainController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1920.0" minWidth="621.0" percentWidth="70" prefWidth="621.0" />
@@ -38,6 +38,8 @@
                   <Font size="36.0" />
                </font>
             </Label>
+
+             <Button text="test"></Button>
          </children>
       </AnchorPane>
 

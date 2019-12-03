@@ -27,4 +27,15 @@ public class TrainController  extends Injection<MainController> {
     public void onMouseExited(MouseEvent mouseEvent) {
         getController().onMouseExit();
     }
+
+    public void onTrainManClick(MouseEvent mouseEvent) {
+    }
+
+    public void onTrainManEnter(MouseEvent mouseEvent) {
+        getController().onMouseEnter();
+    }
+
+    public void onTrainManExit(MouseEvent mouseEvent) {
+        getController().onMouseExit();
+    }
 }

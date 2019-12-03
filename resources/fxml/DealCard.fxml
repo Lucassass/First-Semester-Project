@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="card" prefHeight="556.0" prefWidth="341.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.CardController">
+<AnchorPane fx:id="card" prefHeight="556.0" prefWidth="200.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.CardController">
    <children>
       <Label fx:id="cardName" alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="17.0" prefWidth="148.0" text="Card name:" textAlignment="CENTER" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
          <font>
@@ -18,7 +18,7 @@
       </Label>
       <ImageView fx:id="cardImage" fitHeight="186.0" fitWidth="275.0" layoutX="33.0" layoutY="77.0" pickOnBounds="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <image>
-            <Image url="/images/" />
+            <Image url="/images" />
          </image>
       </ImageView>
       <TextArea fx:id="cardDescription" disable="true" layoutX="33.0" layoutY="316.0" prefHeight="176.0" prefWidth="275.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="316.0" />
