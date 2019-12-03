@@ -1,6 +1,6 @@
 package com.SemesterProject.presentationLayer.Exceptions;
 
-public class MainControllerNotInjected extends Exception
+public class ControllerNotInjected extends Exception
 {
     @Override
     public String getMessage() {
