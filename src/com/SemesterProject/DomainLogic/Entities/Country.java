@@ -1,8 +1,6 @@
-package com.SemesterProject.DomainLogic;
+package com.SemesterProject.DomainLogic.Entities;
 
-import com.SemesterProject.WorldOfZuul.Deal;
 import com.SemesterProject.WorldOfZuul.Item;
-import com.SemesterProject.WorldOfZuul.RoomObsolete;
 
 import java.util.ArrayList;
 
@@ -14,7 +12,7 @@ public class Country {
     private String name;
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> deals)
+                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> dealObsoletes)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);
@@ -32,7 +30,7 @@ public class Country {
         outside.setExit("left", government);
         outside.setExit("right", trainStation);
         culture.setItems(items);
-        government.setDeals(deals);
+        government.setDeals(dealObsoletes);
 
         setStartRoomObsolete(outside);
         setAirPortRoomObsolete(airport);

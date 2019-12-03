@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="card" prefHeight="556.0" prefWidth="341.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.CardController">
+   <children>
+      <Label fx:id="cardName" alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="17.0" prefWidth="148.0" text="Card name:" textAlignment="CENTER" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="cardImage" fitHeight="186.0" fitWidth="275.0" layoutX="33.0" layoutY="77.0" pickOnBounds="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+         <image>
+            <Image url="/images/" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="cardDescription" disable="true" layoutX="33.0" layoutY="316.0" prefHeight="176.0" prefWidth="275.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="316.0" />
+      <Label alignment="CENTER" layoutX="51.0" layoutY="270.0" prefHeight="39.0" prefWidth="212.0" text="Description:" textAlignment="CENTER" AnchorPane.bottomAnchor="247.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="280.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="145.0" layoutY="507.0" mnemonicParsing="false" onAction="#onCardClicked" text="Choose" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" />
+      <Label fx:id="cardPrice" alignment="CENTER" layoutX="65.0" layoutY="446.0" prefHeight="39.0" prefWidth="212.0" text="Price: 50" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.21111111111111114" centerY="0.5428571428571428" radius="0.5">
+               <stops>
+                  <Stop color="#18da32" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>

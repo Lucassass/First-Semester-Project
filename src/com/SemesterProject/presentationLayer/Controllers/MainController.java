@@ -2,8 +2,11 @@ package com.SemesterProject.presentationLayer.Controllers;
 
 import com.SemesterProject.DomainLogic.GameStage;
 import com.SemesterProject.Interfaces.IGameStage;
+import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
+import com.SemesterProject.presentationLayer.Controllers.Room.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -20,6 +25,10 @@ import java.util.ResourceBundle;
 
 
 public class MainController extends Application implements Initializable {
+
+    public AnchorPane cardRow;
+    @FXML
+    private CardRowController cardRowController;
 
     @FXML private ImageView gameWindowImage;
 
@@ -62,6 +71,7 @@ public class MainController extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws Exception
     {
+
         MainController.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/presentation.fxml"));
         Scene scene = new Scene(root);
@@ -73,11 +83,15 @@ public class MainController extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        outsideController.injectMainController(this);
-        airportController.injectMainController(this);
-        cultureController.injectMainController(this);
-        governmentController.injectMainController(this);
-        trainController.injectMainController(this);
+        outsideController.injectController(this);
+        airportController.injectController(this);
+        cultureController.injectController(this);
+        governmentController.injectController(this);
+        trainController.injectController(this);
+        cardRowController.injectController(this);
+        //cardRowController = new CardRowController(gameStage.getDealsForRoom());
+        //addWindowSizeListener();
+
         setupOutsideRoom();
     }
 
@@ -91,7 +105,31 @@ public class MainController extends Application implements Initializable {
         mainWindow.setCursor(Cursor.DEFAULT);
     }
 
-    void goToAirport()
+
+    public void addWindowSizeListener()
+    {
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            var height = mainWindow.getCellBounds(0,0).getHeight();
+            var width = mainWindow.getCellBounds(0,0).getWidth();
+
+            if (height != 0)
+            {
+                gameWindowImage.setFitHeight(height);
+            }
+            if (width != 0 )
+            {
+                gameWindowImage.setFitWidth(width);
+            }
+
+
+
+        };
+        mainWindow.widthProperty().addListener(stageSizeListener);
+        mainWindow.heightProperty().addListener(stageSizeListener);
+    }
+
+
+    public void goToAirport()
     {
         if (gameStage.goRoom("up"))
         {
@@ -103,7 +141,7 @@ public class MainController extends Application implements Initializable {
 
     }
 
-    void goToOutsideFrom(String direction)
+    public void goToOutsideFrom(String direction)
     {
         if (gameStage.goRoom(direction))
         {
@@ -112,10 +150,11 @@ public class MainController extends Application implements Initializable {
 
     }
 
-    void goToGovernment()
+    public void goToGovernment()
     {
         if (gameStage.goRoom("left"))
         {
+            cardRowController.loadDeals();
             outside.setVisible(false);
             government.setVisible(true);
             setStageName();
@@ -124,7 +163,7 @@ public class MainController extends Application implements Initializable {
 
     }
 
-    void goToTrainStation()
+    public void goToTrainStation()
     {
         if (gameStage.goRoom("right"))
         {
@@ -137,7 +176,7 @@ public class MainController extends Application implements Initializable {
 
     }
 
-    void  goToCulture()
+    public void  goToCulture()
     {
         if (gameStage.goRoom("down"))
         {

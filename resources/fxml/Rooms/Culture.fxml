@@ -9,13 +9,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.GovernmentController">
+<StackPane prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.CultureController">
    <children>
       <AnchorPane>
          <children>
             <ImageView fitHeight="907.0" fitWidth="1056.0" pickOnBounds="true">
                <image>
-                  <Image url="/images/goverment + man.png" />
+                  <Image url="@../../../../../../Desktop/Unavngivet.png" />
                </image>
             </ImageView>
          </children>
@@ -24,24 +24,22 @@
          <center>
             <AnchorPane>
                <children>
-                  <Label fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Government" textFill="#c60f0f" BorderPane.alignment="CENTER">
+                  <Label fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Culture" textFill="#c60f0f" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="62.0" />
                      </font>
                   </Label>
+                  <Button layoutX="366.0" layoutY="527.0" mnemonicParsing="false" text="click me" />
                </children>
             </AnchorPane>
          </center>
-         <right>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="-90.0" BorderPane.alignment="CENTER">
+         <top>
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../images/Arrow.png" />
+                  <Image url="@../../images/Arrow.png" />
                </image>
-               <BorderPane.margin>
-                  <Insets right="-50.0" />
-               </BorderPane.margin>
             </ImageView>
-         </right>
+         </top>
       </BorderPane>
    </children>
 </StackPane>

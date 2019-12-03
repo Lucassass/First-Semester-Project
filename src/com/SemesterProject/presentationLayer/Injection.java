@@ -1,30 +1,38 @@
 package com.SemesterProject.presentationLayer;
 
-import com.SemesterProject.DomainLogic.Room;
-import com.SemesterProject.presentationLayer.Controllers.MainController;
-import com.SemesterProject.presentationLayer.Exceptions.MainControllerNotInjected;
+import com.SemesterProject.presentationLayer.Exceptions.ControllerNotInjected;
 
-public abstract class Injection implements IInjection
+
+public abstract class Injection<T> implements IInjection<T>
 {
-    private MainController mainController;
+    private T controller;
 
-    public void  injectMainController(MainController mainController)
+    public void injectController(T controller)
     {
 
-        this.mainController = mainController;
+        this.controller = controller;
+        afterInjected();
     }
 
-    public MainController getMainController()
+
+    public T getController()
     {
-        if (mainController == null)
-        {
-            try {
-                throw new MainControllerNotInjected();
-            } catch (MainControllerNotInjected mainControllerNotInjected) {
-                mainControllerNotInjected.printStackTrace();
+        if (controller == null) {
+            try
+            {
+                throw new ControllerNotInjected();
+            }
+            catch (ControllerNotInjected controllerNotInjected)
+            {
+                controllerNotInjected.printStackTrace();
             }
         }
-        return mainController;
+        return controller;
+    }
+
+    public void afterInjected(){
+
+
     }
 
 }

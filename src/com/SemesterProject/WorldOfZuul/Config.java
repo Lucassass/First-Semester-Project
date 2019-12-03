@@ -5,7 +5,7 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
-import com.SemesterProject.DomainLogic.Country;
+import com.SemesterProject.DomainLogic.Entities.Country;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -82,13 +82,13 @@ public class Config
      * Asks which deal player want's to take, shows deal from country, player
      * chooses deal, shows info about deal, chooses if yes or no, if yes roll and
      * get deal or nor.
-     * @param dealInCountry --> The list of Deals in the country
+     * @param dealObsoleteInCountry --> The list of Deals in the country
      */
-    public static void startDeal(ArrayList<Deal> dealInCountry, Country country) {
+    public static void startDeal(ArrayList<DealObsolete> dealObsoleteInCountry, Country country) {
         Scanner scanner = new Scanner(System.in);
         String userInput;
 
-        if (dealInCountry.isEmpty())
+        if (dealObsoleteInCountry.isEmpty())
         {
             System.out.println("Sorry, no deals on the table");
             return;
@@ -101,19 +101,19 @@ public class Config
         {
             System.out.println("\nWhich deal would you like to negotiate?");
 
-            System.out.println(inventory.createDealsStringFor(dealInCountry));
+            System.out.println(inventory.createDealsStringFor(dealObsoleteInCountry));
             userInput = scanner.nextLine();
 
-            for (int i = 0; i < dealInCountry.size(); i++) {
+            for (int i = 0; i < dealObsoleteInCountry.size(); i++) {
                 if(userInput.equalsIgnoreCase("quit"))
                 {
                     return;
                 }
 
-                if (dealInCountry.get(i).getName().equalsIgnoreCase(userInput)) {
-                    System.out.println(dealInCountry.get(i).getInfo());
+                if (dealObsoleteInCountry.get(i).getName().equalsIgnoreCase(userInput)) {
+                    System.out.println(dealObsoleteInCountry.get(i).getInfo());
                     while (true) {
-                        System.out.println("The deal will cost you " + dealInCountry.get(i).getPrice() + "\nWill you take the deal?");
+                        System.out.println("The deal will cost you " + dealObsoleteInCountry.get(i).getPrice() + "\nWill you take the deal?");
 
                         userInput = scanner.nextLine();
 
@@ -126,7 +126,7 @@ public class Config
                             break;
                         }
 
-                        var tookDeal = takeDeal(dealInCountry.get(i), dealInCountry,country, userInput);
+                        var tookDeal = takeDeal(dealObsoleteInCountry.get(i), dealObsoleteInCountry,country, userInput);
 
                         if (tookDeal){
                             break;
@@ -143,10 +143,10 @@ public class Config
 
     /**
      * roll dice to result and what happens
-     * @param deal    --> Deal that player takes
+     * @param dealObsolete    --> Deal that player takes
      * @param dealsInCountry --> List of deals in current country
      */
-    public static boolean takeDeal(Deal deal, ArrayList<Deal> dealsInCountry, Country country, String input) {
+    public static boolean takeDeal(DealObsolete dealObsolete, ArrayList<DealObsolete> dealsInCountry, Country country, String input) {
         Inventory inventory = Inventory.getInstance();
 
         if(input.equalsIgnoreCase("quit"))
@@ -156,25 +156,25 @@ public class Config
 
         if(input.equalsIgnoreCase("yes"))
         {
-            if (!Config.gotEnoughMoney(deal.getPrice()))
+            if (!Config.gotEnoughMoney(dealObsolete.getPrice()))
             {
                 System.out.println("Not enough money");
                 return false;
             }
 
             boolean win = rollDice(country);;
-            deal.addOneTry();
+            dealObsolete.addOneTry();
             if (win)
             {
                 System.out.println("Congratulations, the deal was a success!!");
-                inventory.inventoryUpdateDeals(deal, dealsInCountry);
-                dealsInCountry.remove(deal);
+                inventory.inventoryUpdateDeals(dealObsolete, dealsInCountry);
+                dealsInCountry.remove(dealObsolete);
             }
             else {
                 System.out.println("The deal did not go through, not you lucky day i guess..");
-                if (deal.getTimesTried() >= dealMaxTries)
+                if (dealObsolete.getTimesTried() >= dealMaxTries)
                 {
-                    dealsInCountry.remove(deal);
+                    dealsInCountry.remove(dealObsolete);
                 }
             }
 

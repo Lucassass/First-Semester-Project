@@ -5,7 +5,7 @@
  */
 package com.SemesterProject.WorldOfZuul;
 
-import com.SemesterProject.DomainLogic.CountryList;
+import com.SemesterProject.DomainLogic.Enum.CountryList;
 
 /**
  * @author tes_7

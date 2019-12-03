@@ -1,10 +1,11 @@
-package com.SemesterProject.presentationLayer.Controllers;
+package com.SemesterProject.presentationLayer.Controllers.Room;
 
+import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-public class CultureController extends Injection
+public class CultureController extends Injection<MainController>
 {
 
 
@@ -12,16 +13,16 @@ public class CultureController extends Injection
 
     public void onClickOutside(MouseEvent mouseEvent)
     {
-        getMainController().goToOutsideFrom("up");
+        getController().goToOutsideFrom("up");
     }
 
     public void onMouseEntered(MouseEvent mouseEvent)
     {
-        getMainController().onMouseEnter();
+        getController().onMouseEnter();
     }
 
     public void onMouseExited(MouseEvent mouseEvent) {
-        getMainController().onMouseExit();
+        getController().onMouseExit();
     }
 
     public void setRoomDescription(String description)

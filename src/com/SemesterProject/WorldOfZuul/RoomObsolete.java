@@ -1,6 +1,6 @@
 package com.SemesterProject.WorldOfZuul;
 
-import com.SemesterProject.DomainLogic.Country;
+import com.SemesterProject.DomainLogic.Entities.Country;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class RoomObsolete
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
     private ArrayList<Item> items;
-    private ArrayList<Deal> deals;
+    private ArrayList<DealObsolete> Deals;
     private String name;
 
     /**
@@ -37,19 +37,19 @@ public class RoomObsolete
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
         items = new ArrayList<>();
-        deals = new ArrayList<>();
+        Deals = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<Deal> getDeals() {
-        return deals;
+    public ArrayList<DealObsolete> getDeals() {
+        return Deals;
     }
 
-    public void setDeals(ArrayList<Deal> deals) {
-        this.deals = deals;
+    public void setDeals(ArrayList<DealObsolete> Deals) {
+        this.Deals = Deals;
     }
 
     /**
