@@ -33,6 +33,16 @@
                   <Font size="36.0" />
                </font>
             </Label>
+             <ImageView fx:id="Local" fitHeight="225" fitWidth="400" layoutX="25" layoutY="200" >
+                 <image>
+                     <Image fx:id="Outside" url ="/images/Outside.png"></Image>
+                 </image>
+             </ImageView>
+             <ImageView fx:id="Global" fitHeight="225" fitWidth="400" layoutX="25" layoutY="425">
+                 <image>
+                     <Image fx:id="USA" url ="/images/USA.png"></Image>
+                 </image>
+             </ImageView>
          </children>
       </AnchorPane>
    </children>

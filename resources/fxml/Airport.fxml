@@ -28,11 +28,6 @@
          <center>
             <AnchorPane>
                <children>
-                  <ImageView>
-                     <image>
-                        <Image url="airport.png"/>
-                     </image>
-                  </ImageView>
                   <Label  fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Airport" textFill="#c60f0f" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="62.0" />

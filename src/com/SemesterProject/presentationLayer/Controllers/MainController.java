@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class MainController extends Application implements Initializable {
 
     @FXML private ImageView gameWindowImage;
+    @FXML private ImageView Local, Global;
 
     @FXML private GridPane mainWindow;
     @FXML private Label labelTest;
@@ -121,6 +122,7 @@ public class MainController extends Application implements Initializable {
             airport.setVisible(true);
             stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
             airportController.setRoomDescription(getGameStage().getRoomDescription());
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Airport.png")));
         }
 
     }
@@ -130,6 +132,7 @@ public class MainController extends Application implements Initializable {
         if (gameStage.goRoom(direction))
         {
             setupOutsideRoom();
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Outside.png")));
         }
 
     }
@@ -142,6 +145,7 @@ public class MainController extends Application implements Initializable {
             government.setVisible(true);
             stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
             governmentController.setRoomDescription(gameStage.getRoomDescription());
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Goverment.png")));
         }
 
     }
@@ -154,7 +158,7 @@ public class MainController extends Application implements Initializable {
             train.setVisible(true);
             stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
             trainController.setRoomDescription(gameStage.getRoomDescription());
-
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Trainstation.png")));
         }
 
     }
@@ -167,6 +171,7 @@ public class MainController extends Application implements Initializable {
             culture.setVisible(true);
             stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
             cultureController.setRoomDescription(gameStage.getRoomDescription());
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Culture.png")));
         }
     }
 
