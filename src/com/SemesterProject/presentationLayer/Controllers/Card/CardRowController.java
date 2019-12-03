@@ -60,6 +60,13 @@ public class CardRowController extends Injection<MainController>
         double cardPercent = getCardPercent(deals.size(), percentPerEmptyRow);
         addEmptyColumn(percentPerEmptyRow);
 
+        //check for setting the newly created card at index 0 instead of 1, where it is suppose to go
+        //This might affect more than the first card created
+        //idea:
+        //Start at the index 1 and instead of checking if a number is even
+        //check if the number is odd instead so you can 1, 3, 5, 7 and so on
+        
+
         for (int i = 0; i < deals.size() + (deals.size() - 1); i++)
         {
 
@@ -113,7 +120,7 @@ public class CardRowController extends Injection<MainController>
     {
         ColumnConstraints column = new ColumnConstraints();
         column.setPercentWidth(widthPercent);
-        column.setHgrow(Priority.SOMETIMES);
+        //column.setHgrow(Priority.SOMETIMES);
         column.setMinWidth(0);
         //column.setPrefWidth(0);
         gridPanel.getColumnConstraints().add(column);
