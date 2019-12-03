@@ -49,6 +49,10 @@ public class MainController extends Application implements Initializable {
         return gameStage;
     }
 
+    private void setStageName(){
+        stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+    }
+
     public static void main(String[] args)
     {
         gameStage = new GameStage();
@@ -61,7 +65,7 @@ public class MainController extends Application implements Initializable {
         MainController.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/presentation.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+        setStageName();
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -74,43 +78,18 @@ public class MainController extends Application implements Initializable {
         cultureController.injectMainController(this);
         governmentController.injectMainController(this);
         trainController.injectMainController(this);
-        //addWindowSizeListener();
         setupOutsideRoom();
     }
 
-    public void onMouseEnter()
+    void onMouseEnter()
     {
         mainWindow.setCursor(Cursor.HAND);
     }
 
-    public void onMouseExit()
+    void onMouseExit()
     {
         mainWindow.setCursor(Cursor.DEFAULT);
     }
-
-
-    public void addWindowSizeListener()
-    {
-        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            var height = mainWindow.getCellBounds(0,0).getHeight();
-            var width = mainWindow.getCellBounds(0,0).getWidth();
-
-            if (height != 0)
-            {
-                gameWindowImage.setFitHeight(height);
-            }
-            if (width != 0 )
-            {
-                gameWindowImage.setFitWidth(width);
-            }
-
-
-
-        };
-        mainWindow.widthProperty().addListener(stageSizeListener);
-        mainWindow.heightProperty().addListener(stageSizeListener);
-    }
-
 
     void goToAirport()
     {
@@ -118,7 +97,7 @@ public class MainController extends Application implements Initializable {
         {
             outside.setVisible(false);
             airport.setVisible(true);
-            stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+            setStageName();
             airportController.setRoomDescription(getGameStage().getRoomDescription());
         }
 
@@ -139,7 +118,7 @@ public class MainController extends Application implements Initializable {
         {
             outside.setVisible(false);
             government.setVisible(true);
-            stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+            setStageName();
             governmentController.setRoomDescription(gameStage.getRoomDescription());
         }
 
@@ -151,7 +130,7 @@ public class MainController extends Application implements Initializable {
         {
             outside.setVisible(false);
             train.setVisible(true);
-            stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+            setStageName();
             trainController.setRoomDescription(gameStage.getRoomDescription());
 
         }
@@ -164,7 +143,7 @@ public class MainController extends Application implements Initializable {
         {
             outside.setVisible(false);
             culture.setVisible(true);
-            stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+            setStageName();
             cultureController.setRoomDescription(gameStage.getRoomDescription());
         }
     }
@@ -176,7 +155,6 @@ public class MainController extends Application implements Initializable {
         government.setVisible(false);
         train.setVisible(false);
         outside.setVisible(true);
-        stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
         outsideController.setRoomDescription(getGameStage().getRoomDescription());
     }
 

@@ -2,6 +2,7 @@ package com.SemesterProject.presentationLayer;
 
 import com.SemesterProject.DomainLogic.Room;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
+import com.SemesterProject.presentationLayer.Exceptions.MainControllerNotInjected;
 
 public abstract class Injection implements IInjection
 {
@@ -9,10 +10,20 @@ public abstract class Injection implements IInjection
 
     public void  injectMainController(MainController mainController)
     {
+
         this.mainController = mainController;
     }
 
-    public MainController getMainController() {
+    public MainController getMainController()
+    {
+        if (mainController == null)
+        {
+            try {
+                throw new MainControllerNotInjected();
+            } catch (MainControllerNotInjected mainControllerNotInjected) {
+                mainControllerNotInjected.printStackTrace();
+            }
+        }
         return mainController;
     }
 
