@@ -175,7 +175,7 @@ public class Room
      * @return return a country or null
      */
     public Country getFlyExit(String countryName) {
-        return flyExits.get(countryName);
+        return flyExits.get(countryName.toLowerCase());
     }
 
     /**
@@ -191,8 +191,10 @@ public class Room
      * @param country Name of the country you wanna get train exists for
      * @return a country or null
      */
-    public Country getTrainExits(String country) {
+    public Country getTrainExit(String country) {
         return trainExits.get(country);
     }
+
+    public ArrayList<Country> getTrainExits(){ return new ArrayList<>(trainExits.values());}
 }
 

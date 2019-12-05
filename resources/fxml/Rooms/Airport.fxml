@@ -13,10 +13,10 @@
    <children>
       <AnchorPane>
          <children>
-            <ImageView  fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
+            <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
                <image>
 
-                  <Image url="/images/airport + person.png" />
+                  <Image url="@../../images/airportWithPerson.png" />
                </image>
             </ImageView>
          </children>
@@ -32,12 +32,13 @@
          <center>
             <AnchorPane>
                <children>
-                  <Label  fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Airport" textFill="#c60f0f" BorderPane.alignment="CENTER">
+                  <Label fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Airport" textFill="#c60f0f" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="62.0" />
                      </font>
                   </Label>
                   <Button layoutX="366.0" layoutY="527.0" mnemonicParsing="false" text="click me" />
+                  <Pane layoutX="509.0" layoutY="191.0" onMouseClicked="#onMouseClickGirl" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="446.0" prefWidth="130.0" style="-fx-background-color: Transperent;" />
                </children>
             </AnchorPane>
          </center>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="card" prefHeight="154.0" prefWidth="191.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.AirportCardController">
+   <children>
+      <Label fx:id="cardName" alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="46.0" prefWidth="133.0" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="chooseButton" layoutX="145.0" layoutY="507.0" mnemonicParsing="false" text="Choose" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="cardPrice" alignment="CENTER" layoutX="65.0" layoutY="446.0" prefHeight="39.0" prefWidth="212.0" text="Price: 50" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.21111111111111114" centerY="0.5428571428571428" radius="0.5">
+               <stops>
+                  <Stop color="#18da32" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>

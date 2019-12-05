@@ -12,6 +12,9 @@ public interface IGameStage
     String getRoomDescription();
     boolean goRoom(String direction);
     List<Deal> getDealsForRoom();
-
+    boolean goCountry(String country);
+    boolean goRandomCountry();
+    List<String> getFlyExist();
+    List<String> getTrainExist();
 
 }

@@ -30,7 +30,6 @@ public class MainController extends Application implements Initializable {
     @FXML
     private CardRowController cardRowController;
 
-    @FXML private ImageView gameWindowImage;
 
     @FXML private GridPane mainWindow;
     @FXML private Label labelTest;
@@ -54,12 +53,16 @@ public class MainController extends Application implements Initializable {
 
     private static Stage stage;
 
-    public IGameStage getGameStage() {
+    public static IGameStage getGameStage() {
         return gameStage;
     }
 
     private void setStageName(){
         stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+    }
+
+    public CardRowController getCardRowController() {
+        return cardRowController;
     }
 
     public static void main(String[] args)
@@ -89,8 +92,6 @@ public class MainController extends Application implements Initializable {
         governmentController.injectController(this);
         trainController.injectController(this);
         cardRowController.injectController(this);
-        //cardRowController = new CardRowController(gameStage.getDealsForRoom());
-        //addWindowSizeListener();
 
         setupOutsideRoom();
     }
@@ -105,34 +106,22 @@ public class MainController extends Application implements Initializable {
         mainWindow.setCursor(Cursor.DEFAULT);
     }
 
-
-    public void addWindowSizeListener()
+    public void goToNewCountry()
     {
-        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            var height = mainWindow.getCellBounds(0,0).getHeight();
-            var width = mainWindow.getCellBounds(0,0).getWidth();
-
-            if (height != 0)
-            {
-                gameWindowImage.setFitHeight(height);
-            }
-            if (width != 0 )
-            {
-                gameWindowImage.setFitWidth(width);
-            }
-
-
-
-        };
-        mainWindow.widthProperty().addListener(stageSizeListener);
-        mainWindow.heightProperty().addListener(stageSizeListener);
+        outside.setVisible(true);
+        airport.setVisible(false);
+        government.setVisible(false);
+        culture.setVisible(false);
+        train.setVisible(false);
+        setStageName();
+        cardRowController.anchorPane.setVisible(false);
     }
-
 
     public void goToAirport()
     {
         if (gameStage.goRoom("up"))
         {
+            cardRowController.loadAirportChoice();
             outside.setVisible(false);
             airport.setVisible(true);
             setStageName();

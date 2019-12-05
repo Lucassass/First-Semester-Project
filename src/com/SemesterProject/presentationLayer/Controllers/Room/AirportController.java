@@ -33,4 +33,10 @@ public class AirportController extends Injection<MainController>
     }
 
 
+
+    public void onMouseClickGirl(MouseEvent mouseEvent)
+    {
+        getController().cardRow.setVisible(true);
+
+    }
 }

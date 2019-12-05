@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Country {
 
-    private Room startRoomObsolete;
-    private Room airPortRoomObsolete;
+    private Room startRoom;
+    private Room airPortRoom;
     private Room trainStation;
     private String name;
 
@@ -32,8 +32,8 @@ public class Country {
         culture.setItems(items);
         government.setDeals(dealObsoletes);
 
-        setStartRoomObsolete(outside);
-        setAirPortRoomObsolete(airport);
+        setStartRoom(outside);
+        setAirPortRoom(airport);
         setTrainStation(trainStation);
     }
 
@@ -41,8 +41,8 @@ public class Country {
      *
      * @return start room
      */
-    public Room getStartRoomObsolete() {
-        return startRoomObsolete;
+    public Room getStartRoom() {
+        return startRoom;
     }
 
     /**
@@ -59,7 +59,7 @@ public class Country {
      * @return a country or null
      */
     public Country getAirPortExit(String countryName) {
-        return airPortRoomObsolete.getFlyExit(countryName);
+        return airPortRoom.getFlyExit(countryName);
     }
 
     /**
@@ -69,7 +69,7 @@ public class Country {
      */
     public Country getTrainStationExit(String country){
 
-        return trainStation.getTrainExits(country);
+        return trainStation.getTrainExit(country);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Country {
      * @return return all countries you can get to from the airport
      */
     public ArrayList<Country> getAirportExits(){
-        return airPortRoomObsolete.getFlyExits();
+        return airPortRoom.getFlyExits();
     }
 
     /**
@@ -92,24 +92,24 @@ public class Country {
      *
      * @return returns airport room
      */
-    public Room getAirPortRoomObsolete() {
-        return airPortRoomObsolete;
+    public Room getAirPortRoom() {
+        return airPortRoom;
     }
 
     /**
      *
-     * @param startRoomObsolete The room you want to be the start room
+     * @param startRoom The room you want to be the start room
      */
-    private void setStartRoomObsolete(Room startRoomObsolete) {
-        this.startRoomObsolete = startRoomObsolete;
+    private void setStartRoom(Room startRoom) {
+        this.startRoom = startRoom;
     }
 
     /**
      *
-     * @param airPortRoomObsolete The room you want to be the airport room
+     * @param airPortRoom The room you want to be the airport room
      */
-    private void setAirPortRoomObsolete(Room airPortRoomObsolete) {
-        this.airPortRoomObsolete = airPortRoomObsolete;
+    private void setAirPortRoom(Room airPortRoom) {
+        this.airPortRoom = airPortRoom;
     }
 
     /***
@@ -128,7 +128,7 @@ public class Country {
     public void setFlyExit(String countryName, Country country)
     {
         countryName = countryName.toLowerCase();
-        airPortRoomObsolete.setFlight(countryName, country);
+        airPortRoom.setFlight(countryName, country);
     }
 
     /**

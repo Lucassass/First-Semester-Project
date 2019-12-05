@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CardController
+public class DealCardController
 {
     @FXML
     public TextArea cardDescription;
@@ -28,7 +28,7 @@ public class CardController
             cardName.setText("I clicked");
     }
 
-    void populateCard(Deal deal)
+    public void populateCard(Deal deal)
     {
         this.deal = deal;
         cardDescription.setText(deal.getDescription());

@@ -10,6 +10,7 @@ import com.SemesterProject.WorldOfZuul.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameStage implements IGameStage
 {
@@ -54,6 +55,51 @@ public class GameStage implements IGameStage
         return currentRoom.getDeals();
     }
 
+    @Override
+    public boolean goCountry(String country)
+    {
+        var nextCountry = currentRoom.getFlyExit(country);
+        if (nextCountry != null)
+        {
+            currentCountry = nextCountry;
+            currentRoom = currentCountry.getStartRoom();
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean goRandomCountry() {
+        if (currentRoom.getFlyExits().isEmpty()) return false;
+
+        var random = new Random().nextInt(currentRoom.getFlyExits().size());
+        return goCountry(currentRoom.getFlyExits().get(random).getName());
+
+    }
+
+    @Override
+    public List<String> getFlyExist() {
+        ArrayList<String> list = new ArrayList<>();
+        for (var country : currentRoom.getFlyExits())
+        {
+            list.add(country.getName());
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<String> getTrainExist() {
+        ArrayList<String> list = new ArrayList<>();
+        for (var country : currentRoom.getTrainExits())
+        {
+            list.add(country.getName());
+        }
+
+        return list;
+    }
+
 
     private void createRooms()
     {
@@ -64,7 +110,7 @@ public class GameStage implements IGameStage
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
-        //usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
         var chinaItems = new ArrayList<Item>();
         chinaItems.add(new Item("Frankfurter",CountryList.Germany,2,CountryList.Japan,-2));
@@ -184,6 +230,6 @@ public class GameStage implements IGameStage
         india.setTrainExit("Usa", usa);
 
         currentCountry = usa;
-        currentRoom = currentCountry.getStartRoomObsolete();
+        currentRoom = currentCountry.getStartRoom();
     }
 }
