@@ -182,7 +182,7 @@ public class Game
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
-            if (Config.ranOutOfMoney())
+            if (ConfigObsolete.ranOutOfMoney())
             {
                 finished = false;
             }
@@ -190,7 +190,7 @@ public class Game
         System.out.println("Thank you for playing.  Good bye.");
         System.out.println("Result:");
         System.out.println();
-        Config.printPoints();
+        ConfigObsolete.printPoints();
     }
 
      /** 
@@ -257,7 +257,7 @@ public class Game
 
 
     private void printMoney(){
-        System.out.println("Money: " + Config.getMoney());
+        System.out.println("Money: " + ConfigObsolete.getMoney());
     }
 
     /** 
@@ -378,27 +378,27 @@ public class Game
 
     private void flyWithPrivatePlane(String country)
     {
-        if (!Config.gotMoneyForPrivateFlying())
+        if (!ConfigObsolete.gotMoneyForPrivateFlying())
         {
             System.out.println("Sorry you dont have enough money");
             return;
         }
         else
         {
-            Config.buyFlyPrivate();
+            ConfigObsolete.buyFlyPrivate();
         }
         goCountry(country);
     }
 
     private void flyWithCommercialPlane(){
 
-        if (!Config.gotMoneyForCommercialFlying())
+        if (!ConfigObsolete.gotMoneyForCommercialFlying())
         {
             System.out.println("Sorry you dont have enough money");
             return;
         }
         else{
-            Config.buyFlyCommercial();
+            ConfigObsolete.buyFlyCommercial();
         }
 
        // var countries = currentCountry.getAirportExits();

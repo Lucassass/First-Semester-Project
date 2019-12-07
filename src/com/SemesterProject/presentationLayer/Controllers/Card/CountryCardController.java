@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class AirportCardController extends Injection<MainController>
+public class CountryCardController extends Injection<MainController>
 {
     public Label cardName;
     public AnchorPane card;
@@ -17,7 +17,7 @@ public class AirportCardController extends Injection<MainController>
 
     public void onCommercialClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goRandomCountry())
+        if (MainController.getGameStage().goRandomCountry(getPrice()))
         {
             getController().goToNewCountry();
         }
@@ -30,49 +30,42 @@ public class AirportCardController extends Injection<MainController>
 
     public void onChinaClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("china"))
-        {
-            getController().goToNewCountry();
-        }
+        goToCountry("china");
     }
 
     public void onUSAClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("usa"))
-        {
-            getController().goToNewCountry();
-        }
+        goToCountry("usa");
     }
 
     public void onIndiaClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("india"))
-        {
-            getController().goToNewCountry();
-        }
+        goToCountry("india");
     }
 
     public void onRussiaClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("russia"))
-        {
-            getController().goToNewCountry();
-        }
+        goToCountry("russia");
     }
 
     public void onJapanClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("japan"))
-        {
-            getController().goToNewCountry();
-        }
+       goToCountry("japan");
     }
 
     public void onGermanyClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goCountry("germany"))
+       goToCountry("germany");
+    }
+
+    private void goToCountry(String country)
+    {
+        if (MainController.getGameStage().goCountry(country,getPrice()))
         {
             getController().goToNewCountry();
+        }
+        else {
+            getController().appendDialog("Not enough money");
         }
     }
 
@@ -80,6 +73,12 @@ public class AirportCardController extends Injection<MainController>
     {
         cardName.setText(name);
         cardPrice.setText("Price: " + price);
+    }
+
+    public int getPrice()
+    {
+        return Integer.parseInt(cardPrice.getText().split(" ")[1]);
+
     }
 
 

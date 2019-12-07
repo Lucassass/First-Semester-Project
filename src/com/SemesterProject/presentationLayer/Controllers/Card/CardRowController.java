@@ -3,7 +3,6 @@ package com.SemesterProject.presentationLayer.Controllers.Card;
 import com.SemesterProject.presentationLayer.CardRowCreator;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
-import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
@@ -44,7 +43,7 @@ public class CardRowController extends Injection<MainController>
     {
         CardRowCreator cardRowCreator = new CardRowCreator(gridPanel, 6);
 
-        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist());
+        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getTrainExist(),200);
 
         injectController(cardRowCreator);
     }
@@ -53,7 +52,7 @@ public class CardRowController extends Injection<MainController>
     {
         CardRowCreator cardRowCreator = new CardRowCreator(gridPanel, 6);
 
-        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist());
+        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist(),500);
 
         injectController(cardRowCreator);
     }
@@ -67,7 +66,7 @@ public class CardRowController extends Injection<MainController>
 
     private void injectController(CardRowCreator cardRowCreator)
     {
-        for (var controller: cardRowCreator.getAirportCardControllers()) {
+        for (var controller: cardRowCreator.getCountryCardControllers()) {
             controller.injectController(getController());
         }
     }

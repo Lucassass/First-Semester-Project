@@ -11,7 +11,7 @@ package com.SemesterProject.DomainLogic;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
-import com.SemesterProject.WorldOfZuul.Config;
+import com.SemesterProject.WorldOfZuul.ConfigObsolete;
 import com.SemesterProject.WorldOfZuul.Item;
 
 import java.util.ArrayList;
@@ -334,7 +334,7 @@ public class Inventory {
     void inventoryUpdateDeals(Deal deal, ArrayList<Deal> country)
     {
 
-            Config.subtractMoney(deal.getPrice());
+            ConfigObsolete.subtractMoney(deal.getPrice());
             inventoryDeals.add(food);
             inventoryDeals.add(energy);
             inventoryDeals.add(knowledge);

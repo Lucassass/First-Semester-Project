@@ -329,7 +329,7 @@ class Inventory {
     void inventoryUpdateDeals(DealObsolete dealObsolete, ArrayList<DealObsolete> country)
     {
 
-            Config.subtractMoney(dealObsolete.getPrice());
+            ConfigObsolete.subtractMoney(dealObsolete.getPrice());
             inventoryDeals.add(food);
             inventoryDeals.add(energy);
             inventoryDeals.add(knowledge);

@@ -24,11 +24,12 @@ public class TrainController  extends Injection<MainController> {
         getController().onMouseEnter();
     }
 
-    public void onMouseExited(MouseEvent mouseEvent) {
-        getController().onMouseExit();
+    public void onMouseExited(MouseEvent mouseEvent) { getController().onMouseExit();
     }
 
-    public void onTrainManClick(MouseEvent mouseEvent) {
+    public void onTrainManClick(MouseEvent mouseEvent)
+    {
+        getController().cardRow.setVisible(true);
     }
 
     public void onTrainManEnter(MouseEvent mouseEvent) {

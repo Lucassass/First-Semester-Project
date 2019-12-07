@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Config
+public class ConfigObsolete
 {
     private static int money = 2000;
     private static int CommercialFlyingCost = 100;
@@ -156,7 +156,7 @@ public class Config
 
         if(input.equalsIgnoreCase("yes"))
         {
-            if (!Config.gotEnoughMoney(dealObsolete.getPrice()))
+            if (!ConfigObsolete.gotEnoughMoney(dealObsolete.getPrice()))
             {
                 System.out.println("Not enough money");
                 return false;

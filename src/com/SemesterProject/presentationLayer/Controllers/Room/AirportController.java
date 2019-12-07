@@ -11,7 +11,6 @@ public class AirportController extends Injection<MainController>
 {
 
 
-    @FXML private Label roomText;
 
     public void onClickOutside(MouseEvent mouseEvent)
     {
@@ -29,7 +28,6 @@ public class AirportController extends Injection<MainController>
 
     public void setRoomDescription(String roomDescription)
     {
-        roomText.setText(roomDescription);
     }
 
 

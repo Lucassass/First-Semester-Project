@@ -6,6 +6,7 @@ import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
 import com.SemesterProject.presentationLayer.Controllers.Room.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -27,6 +30,11 @@ import java.util.ResourceBundle;
 public class MainController extends Application implements Initializable {
 
     public AnchorPane cardRow;
+
+    public Label money;
+
+    public TextArea dialog;
+
     @FXML
     private CardRowController cardRowController;
 
@@ -92,9 +100,19 @@ public class MainController extends Application implements Initializable {
         governmentController.injectController(this);
         trainController.injectController(this);
         cardRowController.injectController(this);
-
+        updateMoney();
         setupOutsideRoom();
     }
+
+    public void onQuitButton(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void updateMoney()
+    {
+        money.setText("Money: " + gameStage.getConfig().getMoney());
+    }
+
 
     public void onMouseEnter()
     {
@@ -108,6 +126,7 @@ public class MainController extends Application implements Initializable {
 
     public void goToNewCountry()
     {
+        updateMoney();
         outside.setVisible(true);
         airport.setVisible(false);
         government.setVisible(false);
@@ -115,6 +134,7 @@ public class MainController extends Application implements Initializable {
         train.setVisible(false);
         setStageName();
         cardRowController.anchorPane.setVisible(false);
+        appendDialog("Moving to: " + getGameStage().getCountryName());
     }
 
     public void goToAirport()
@@ -125,7 +145,8 @@ public class MainController extends Application implements Initializable {
             outside.setVisible(false);
             airport.setVisible(true);
             setStageName();
-            airportController.setRoomDescription(getGameStage().getRoomDescription());
+            appendDialog(getGameStage().getRoomDescription());
+
         }
 
     }
@@ -147,7 +168,8 @@ public class MainController extends Application implements Initializable {
             outside.setVisible(false);
             government.setVisible(true);
             setStageName();
-            governmentController.setRoomDescription(gameStage.getRoomDescription());
+            appendDialog(getGameStage().getRoomDescription());
+
         }
 
     }
@@ -156,11 +178,11 @@ public class MainController extends Application implements Initializable {
     {
         if (gameStage.goRoom("right"))
         {
+            cardRowController.loadTrainCountries();
             outside.setVisible(false);
             train.setVisible(true);
             setStageName();
-            trainController.setRoomDescription(gameStage.getRoomDescription());
-
+            appendDialog(getGameStage().getRoomDescription());
         }
 
     }
@@ -172,7 +194,8 @@ public class MainController extends Application implements Initializable {
             outside.setVisible(false);
             culture.setVisible(true);
             setStageName();
-            cultureController.setRoomDescription(gameStage.getRoomDescription());
+            appendDialog(getGameStage().getRoomDescription());
+
         }
     }
 
@@ -183,10 +206,13 @@ public class MainController extends Application implements Initializable {
         government.setVisible(false);
         train.setVisible(false);
         outside.setVisible(true);
-        outsideController.setRoomDescription(getGameStage().getRoomDescription());
+        appendDialog(getGameStage().getRoomDescription());
     }
 
-
+    public void appendDialog(String text)
+    {
+        dialog.appendText(text + "\n");
+    }
 
 
 

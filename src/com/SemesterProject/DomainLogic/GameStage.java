@@ -5,6 +5,7 @@ import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.DomainLogic.Entities.Room;
 import com.SemesterProject.DomainLogic.Enum.CountryList;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.Interfaces.IConfig;
 import com.SemesterProject.Interfaces.IGameStage;
 import com.SemesterProject.WorldOfZuul.Item;
 
@@ -17,10 +18,13 @@ public class GameStage implements IGameStage
 
     private Country currentCountry;
     private Room currentRoom;
+    private IConfig config;
 
     public GameStage()
     {
+        config = new Config();
         createRooms();
+
     }
 
 
@@ -56,9 +60,18 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public boolean goCountry(String country)
+    public boolean goCountry(String country, int price)
     {
+        if (!config.gotEnoughMoney(price)) return false;
+
+        config.subtractMoney(price);
+
+
         var nextCountry = currentRoom.getFlyExit(country);
+        if (nextCountry == null) {
+            nextCountry = currentRoom.getTrainExit(country);
+        }
+
         if (nextCountry != null)
         {
             currentCountry = nextCountry;
@@ -66,15 +79,16 @@ public class GameStage implements IGameStage
             return true;
         }
 
+
         return false;
     }
 
     @Override
-    public boolean goRandomCountry() {
+    public boolean goRandomCountry(int price) {
         if (currentRoom.getFlyExits().isEmpty()) return false;
 
         var random = new Random().nextInt(currentRoom.getFlyExits().size());
-        return goCountry(currentRoom.getFlyExits().get(random).getName());
+        return goCountry(currentRoom.getFlyExits().get(random).getName(), price);
 
     }
 
@@ -98,6 +112,11 @@ public class GameStage implements IGameStage
         }
 
         return list;
+    }
+
+    @Override
+    public IConfig getConfig() {
+        return config;
     }
 
 
@@ -200,9 +219,6 @@ public class GameStage implements IGameStage
         china.setTrainExit("India", india);
 
         usa.setTrainExit("China", china);
-        usa.setTrainExit("Japan", japan);
-        usa.setTrainExit("Germany", germany);
-        usa.setTrainExit("India", india);
         usa.setTrainExit("Russia", russia);
 
         germany.setTrainExit("Russia",russia);

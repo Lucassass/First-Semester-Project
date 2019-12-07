@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="card" prefHeight="154.0" prefWidth="191.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.AirportCardController">
+<AnchorPane fx:id="card" prefHeight="154.0" prefWidth="191.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.CountryCardController">
    <children>
       <Label fx:id="cardName" alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="46.0" prefWidth="133.0" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="20.0">
          <font>

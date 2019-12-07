@@ -38,17 +38,17 @@
                   <Image url="@../../images/Arrow.png" />
                </image>
                <BorderPane.margin>
-                  <Insets left="-40.0" />
+                  <Insets bottom="150.0" left="-40.0" />
                </BorderPane.margin>
             </ImageView>
          </left>
          <top>
-            <Pane onMouseClicked="#onTrainManClick" onMouseEntered="#onTrainManEnter" onMouseExited="#onTrainManExit" prefHeight="200.0" prefWidth="10.0" style="-fx-background-color: Transperent;" BorderPane.alignment="TOP_LEFT">
+            <Pane onMouseClicked="#onTrainManClick" onMouseEntered="#onTrainManEnter" onMouseExited="#onTrainManExit" prefHeight="146.0" prefWidth="267.0" style="-fx-background-color: Transperent;" BorderPane.alignment="TOP_LEFT">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <BorderPane.margin>
-                  <Insets right="925.0" />
+                  <Insets right="740.0" />
                </BorderPane.margin>
             </Pane>
          </top>

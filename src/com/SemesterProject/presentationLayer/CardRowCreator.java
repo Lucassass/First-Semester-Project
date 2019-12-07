@@ -1,7 +1,7 @@
 package com.SemesterProject.presentationLayer;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
-import com.SemesterProject.presentationLayer.Controllers.Card.AirportCardController;
+import com.SemesterProject.presentationLayer.Controllers.Card.CountryCardController;
 import com.SemesterProject.presentationLayer.Controllers.Card.DealCardController;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -18,17 +18,17 @@ public class CardRowCreator
 {
     private  GridPane gridPane;
     private int maxRow;
-    private ArrayList<AirportCardController> airportCardControllers;
+    private ArrayList<CountryCardController> countryCardControllers;
 
     public CardRowCreator( GridPane gridPane, int maxRow)
     {
         this.gridPane = gridPane;
         this.maxRow = maxRow;
-        airportCardControllers = new ArrayList<>();
+        countryCardControllers = new ArrayList<>();
     }
 
-    public ArrayList<AirportCardController> getAirportCardControllers() {
-        return airportCardControllers;
+    public ArrayList<CountryCardController> getCountryCardControllers() {
+        return countryCardControllers;
     }
 
     public GridPane generateAirportChoice()
@@ -43,9 +43,9 @@ public class CardRowCreator
         return gridPane;
     }
 
-    public GridPane generateCountries(List<String> countries)
+    public GridPane generateCountries(List<String> countries, int price)
     {
-        addCountries(countries);
+        addCountries(countries, price);
         return gridPane;
     }
 
@@ -53,14 +53,14 @@ public class CardRowCreator
     {
         clearGridPane();
 
-        CreateGridPane(2);
+        CreateGridPane(3);
 
 
-        addAirportChoiceCard(1, "Private", 500);
+        addAirportChoiceCard(3, "Private", 500);
         addAirportChoiceCard(3, "Commercial", 200);
     }
 
-    private void addCountries(List<String> countries)
+    private void addCountries(List<String> countries, int price)
     {
         clearGridPane();
 
@@ -75,7 +75,7 @@ public class CardRowCreator
                 i = 3;
             }
 
-            addAirportChoiceCard(i, country, 500);
+            addAirportChoiceCard(i, country, price);
 
             iteration++;
         }
@@ -91,8 +91,8 @@ public class CardRowCreator
 
             AnchorPane anchorPane = new AnchorPane();
             anchorPane.getChildren().add(root);
-            AirportCardController controller = fxmlLoader.getController();
-            airportCardControllers.add(controller);
+            CountryCardController controller = fxmlLoader.getController();
+            countryCardControllers.add(controller);
             setAirportButtonAction(controller, name);
             controller.populateCard(name, price);
 
@@ -105,7 +105,7 @@ public class CardRowCreator
         }
     }
 
-    private void setAirportButtonAction(AirportCardController cardController, String name)
+    private void setAirportButtonAction(CountryCardController cardController, String name)
     {
         if (CardAirportType.PRIVATE.getName().equalsIgnoreCase(name))
         {
