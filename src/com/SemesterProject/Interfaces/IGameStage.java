@@ -25,4 +25,5 @@ public interface IGameStage
     Item getItemFromRoom();
     void removeItemFromRoom(UUID uuid);
     void addItemToRoom(Item item);
+    String quoteFromItemUsed(Item item);
 }

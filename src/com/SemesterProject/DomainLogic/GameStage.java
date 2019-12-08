@@ -93,6 +93,20 @@ public class GameStage implements IGameStage
         return lowestCost;
     }
 
+    @Override
+    public String quoteFromItemUsed(Item item)
+    {
+        if (currentCountry.getName().equalsIgnoreCase(item.getCountryGood().getName()))
+        {
+            return item.getTextGood() + "\n it gave " + item.getPointsGood();
+        }
+        else if (currentCountry.getName().equalsIgnoreCase(item.getCountryBad().getName()))
+        {
+            return item.getTextBad() + "\n it gave " + item.getPointsBad();
+        }
+        return "It did nothing";
+    }
+
     private boolean successfullyNegotiateDeal(Deal deal, Item itemUsed) {
         int diceResult;
         int roll = random.nextInt(6) + 1;
@@ -201,6 +215,8 @@ public class GameStage implements IGameStage
             currentRoom.setItem(item);
         }
     }
+
+
 
 
     @Override

@@ -163,7 +163,7 @@ public class MainController extends Application implements Initializable {
             if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
             {
                 getGameStage().getConfig().subtractMoney(deal.getPrice());
-                if (gameStage.takeDeal(deal, null))
+                if (gameStage.takeDeal(deal, governmentController.getItemUsed()))
                 {
                     inventory.addDeal(deal);
                     appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
@@ -258,7 +258,11 @@ public class MainController extends Application implements Initializable {
         if (gameStage.getRoomName().equalsIgnoreCase("government"))
         {
             appendDialog("You have used " + (item).getName());
+            appendDialog(getGameStage().quoteFromItemUsed(item));
             removeItem(item);
+            governmentController.setItemUsed(item);
+
+
         }
         else {
             appendDialog("You can't use items outside of the government room");
@@ -327,6 +331,7 @@ public class MainController extends Application implements Initializable {
             cardRowController.loadDeals();
             outside.setVisible(false);
             government.setVisible(true);
+            governmentController.setItemUsed(null);
 
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
