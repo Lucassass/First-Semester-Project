@@ -19,6 +19,7 @@ import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Inventory implements IInventory {
 
@@ -36,6 +37,9 @@ public class Inventory implements IInventory {
 
     private Inventory()
     {
+        inventoryDeals.add(food);
+        inventoryDeals.add(energy);
+        inventoryDeals.add(knowledge);
     }
 
     public boolean isFull(Deal deal)
@@ -88,6 +92,25 @@ public class Inventory implements IInventory {
     public void addItem(Item item) {
 
     }
+
+    @Override
+    public void removeDeal(Deal deal)
+    {
+        outside:
+        for (var categories : inventoryDeals)
+        {
+            for (var temp : categories)
+            {
+                if (temp.getUuid() == deal.getUuid())
+                {
+                    categories.remove(temp);
+                    break outside;
+                }
+            }
+        }
+
+    }
+
 
     /**
      * ---> TO BE USED EVERY TIME YOU WANT TO CALL A METHOD FROM ITEM <---

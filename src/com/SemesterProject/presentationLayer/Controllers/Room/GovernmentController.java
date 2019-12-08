@@ -27,6 +27,7 @@ public class GovernmentController extends Injection<MainController> {
     public void openWindowTest(ActionEvent actionEvent)
     {
         getController().cardRow.setVisible(true);
+        getController().getCardRowController().loadDeals();
     }
 
 

@@ -26,15 +26,11 @@ public class AirportController extends Injection<MainController>
         getController().onMouseExit();
     }
 
-    public void setRoomDescription(String roomDescription)
-    {
-    }
-
-
 
     public void onMouseClickGirl(MouseEvent mouseEvent)
     {
         getController().cardRow.setVisible(true);
+        getController().getCardRowController().loadAirportChoice();
 
     }
 }

@@ -17,6 +17,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -109,6 +110,36 @@ public class MainController extends Application implements Initializable {
         cardRowController.injectController(this);
         updateMoney();
         setupOutsideRoom();
+
+
+        inventoryListView.setCellFactory(param -> new ListCell<>()
+        {
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {setText(null);}
+
+                if (item instanceof Deal)
+                {
+                    if (empty || ((Deal) item).getName() == null) {
+                        setText(null);
+                    } else {
+                        setText(((Deal) item).getName() + " | " + ((Deal) item).getCategory());
+                    }
+                }
+
+                if (item instanceof Item)
+                {
+                    if (empty || ((Item) item).getName() == null) {
+                        setText(null);
+                    } else {
+                        setText(((Item) item).getName());
+                    }
+                }
+
+
+            }
+        });
     }
 
     public void onQuitButton(ActionEvent actionEvent) {
@@ -129,7 +160,7 @@ public class MainController extends Application implements Initializable {
             {
                 inventory.addDeal(deal);
                 appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
-                inventoryListView.getItems().add(deal.getName() + " | " + deal.getCategory());
+                inventoryListView.getItems().add(deal);
             }
             gameStage.removeDealFromRoom(deal.getUuid());
 
@@ -147,6 +178,23 @@ public class MainController extends Application implements Initializable {
         inventory.addItem(item);
         appendDialog("Added item: " + item.getName());
         inventoryListView.getItems().add(item.getName());
+    }
+
+    public void onItemRemove(ActionEvent actionEvent)
+    {
+        var item = inventoryListView.getSelectionModel().getSelectedItem();
+        if (item instanceof Deal)
+        {
+            inventory.removeDeal((Deal) item);
+            inventoryListView.getItems().remove(item);
+            appendDialog("Removed: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
+        }
+
+    }
+
+    public void onItemUse(ActionEvent actionEvent)
+    {
+
     }
 
     public void onMouseEnter()

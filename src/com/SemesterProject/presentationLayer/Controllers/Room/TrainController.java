@@ -29,7 +29,9 @@ public class TrainController  extends Injection<MainController> {
 
     public void onTrainManClick(MouseEvent mouseEvent)
     {
+
         getController().cardRow.setVisible(true);
+        getController().getCardRowController().loadTrainCountries();
     }
 
     public void onTrainManEnter(MouseEvent mouseEvent) {

@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<GridPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.MainController">
+<GridPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.MainController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1920.0" minWidth="621.0" percentWidth="70" prefWidth="621.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="252.0" percentWidth="30" prefWidth="252.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1920.0" minWidth="621.0" percentWidth="64" prefWidth="621.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="252.0" percentWidth="36" prefWidth="252.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,7 +40,7 @@
                   <Font size="15.0" />
                </font></Button>
             <TextArea fx:id="dialog" editable="false" layoutX="30.0" layoutY="427.0" prefHeight="173.0" prefWidth="300.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
-            <ListView fx:id="inventoryListView" layoutX="30.0" layoutY="218.0" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="inventoryListView" layoutX="30.0" layoutY="321.0" prefHeight="97.0" prefWidth="408.0">
                <contextMenu>
                   <ContextMenu>
                     <items>
@@ -49,14 +49,14 @@
                     </items>
                   </ContextMenu>
                </contextMenu></ListView>
-             <ImageView fx:id="Local" fitHeight="225" fitWidth="400" layoutX="25" layoutY="200" >
+             <ImageView fx:id="Local" fitHeight="304.0" fitWidth="233.0" layoutY="7.0">
                  <image>
-                     <Image fx:id="Outside" url ="/images/Outside.png"></Image>
+                     <Image fx:id="Outside" url="/images/Outside.png" />
                  </image>
              </ImageView>
-             <ImageView fx:id="Global" fitHeight="225" fitWidth="400" layoutX="25" layoutY="425">
+             <ImageView fx:id="Global" fitHeight="294.0" fitWidth="233.0" layoutX="234.0" layoutY="7.0">
                  <image>
-                     <Image fx:id="USA" url ="/images/USA.png"></Image>
+                     <Image fx:id="USA" url="/images/USA.png" />
                  </image>
              </ImageView>
          </children>
