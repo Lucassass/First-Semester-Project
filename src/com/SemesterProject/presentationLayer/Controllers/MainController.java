@@ -155,14 +155,26 @@ public class MainController extends Application implements Initializable {
     {
         if (!getInventory().isFull(deal))
         {
-            //gameStage.takeDeal(deal, null)
-            if (true)
+            if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
             {
-                inventory.addDeal(deal);
-                appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
-                inventoryListView.getItems().add(deal);
+                getGameStage().getConfig().subtractMoney(deal.getPrice());
+                if (gameStage.takeDeal(deal, null))
+                {
+                    inventory.addDeal(deal);
+                    appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
+                    inventoryListView.getItems().add(deal);
+                }
+                else
+                {
+                    appendDialog("You didn't get the deal :(");
+                }
+                gameStage.removeDealFromRoom(deal.getUuid());
             }
-            gameStage.removeDealFromRoom(deal.getUuid());
+            else
+            {
+                appendDialog("You dont have enough money for this deal :(");
+            }
+
 
         }
         else {
@@ -170,7 +182,7 @@ public class MainController extends Application implements Initializable {
                     "same category and try again.");
         }
 
-
+        updateMoney();
     }
 
     public void addItem(Item item)
