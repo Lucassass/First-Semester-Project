@@ -46,16 +46,18 @@ public class CardRowController extends Injection<MainController>
     {
         CardRowCreator cardRowCreator = new CardRowCreator(gridPanel, 6);
 
-        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getTrainExist(),200);
+        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getTrainExist(),
+                MainController.getGameStage().getConfig().getTrainCost());
 
         injectCountryController(cardRowCreator.getCountryCardControllers());
     }
 
-    public void loadAirportCountries()
+    public void loadAirportPrivateCountries()
     {
         CardRowCreator cardRowCreator = new CardRowCreator(gridPanel, 6);
 
-        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist(),500);
+        gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist(),
+                MainController.getGameStage().getConfig().getPrivateFlyingCost());
 
         injectCountryController(cardRowCreator.getCountryCardControllers());
     }

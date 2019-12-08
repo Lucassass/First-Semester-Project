@@ -5,19 +5,14 @@
  */
 package com.SemesterProject.DomainLogic;
 
-import com.SemesterProject.DomainLogic.Entities.Country;
 import com.SemesterProject.Interfaces.IConfig;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Config implements IConfig
 {
     private int money = 2000;
-    private int CommercialFlyingCost = 100;
-    private int PrivateFlyingCost = 250;
-    private int TrainCost = 50;
+    private int commercialFlyingCost = 100;
+    private int privateFlyingCost = 250;
+    private int trainCost = 50;
     private int dealMaxTries = 1;
     private int diceAdvantage;
 
@@ -33,8 +28,30 @@ public class Config implements IConfig
         return money;
     }
 
+    public int getCommercialFlyingCost() {
+        return commercialFlyingCost;
+    }
+
+    public int getPrivateFlyingCost() {
+        return privateFlyingCost;
+    }
+
+    public int getTrainCost() {
+        return trainCost;
+    }
+
+    @Override
+    public int getLowestCost()
+    {
+        if (commercialFlyingCost < privateFlyingCost && commercialFlyingCost < trainCost) return commercialFlyingCost;
+        if (privateFlyingCost < commercialFlyingCost && privateFlyingCost < trainCost) return privateFlyingCost;
+        if (trainCost < commercialFlyingCost && trainCost < privateFlyingCost) return trainCost;
+
+        return 0;
+    }
+
     public boolean ranOutOfMoney(){
-        return money < CommercialFlyingCost || money < PrivateFlyingCost || money < TrainCost;
+        return money < commercialFlyingCost || money < privateFlyingCost || money < trainCost;
     }
     /**
      *
@@ -42,7 +59,7 @@ public class Config implements IConfig
      */
     public boolean gotMoneyForTrain()
     {
-        return money >= TrainCost;
+        return money >= trainCost;
     }
 
     /**
@@ -51,7 +68,7 @@ public class Config implements IConfig
      */
     public boolean gotMoneyForCommercialFlying()
     {
-        return money >= CommercialFlyingCost;
+        return money >= commercialFlyingCost;
     }
 
     /**
@@ -60,7 +77,7 @@ public class Config implements IConfig
      */
     public boolean gotMoneyForPrivateFlying()
     {
-        return money >= PrivateFlyingCost;
+        return money >= privateFlyingCost;
     }
 
     /**
@@ -68,14 +85,14 @@ public class Config implements IConfig
      */
     public void buyFlyCommercial()
     {
-        money -= CommercialFlyingCost;
+        money -= commercialFlyingCost;
     }
 
     /**
      * subtract private flying cost from your money
      */
     public void buyFlyPrivate() {
-        money -= PrivateFlyingCost;
+        money -= privateFlyingCost;
     }
 
     /**
@@ -83,7 +100,7 @@ public class Config implements IConfig
      */
     public void buyTrainTicket()
     {
-        money -= TrainCost;
+        money -= trainCost;
     }
 
 

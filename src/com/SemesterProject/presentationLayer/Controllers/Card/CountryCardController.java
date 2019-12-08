@@ -25,7 +25,7 @@ public class CountryCardController extends Injection<MainController>
 
     public void onPrivateClick(ActionEvent actionEvent)
     {
-        getController().getCardRowController().loadAirportCountries();
+        getController().getCardRowController().loadAirportPrivateCountries();
     }
 
     public void onChinaClick(ActionEvent actionEvent)

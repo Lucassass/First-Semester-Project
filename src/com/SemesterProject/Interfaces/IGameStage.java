@@ -20,6 +20,7 @@ public interface IGameStage
     List<String> getTrainExist();
     void removeDealFromRoom(UUID id);
     boolean takeDeal(Deal deal, Item itemUsed);
+    boolean gotEnoughMoneyToKeepPlaying();
     IConfig getConfig();
 
 }

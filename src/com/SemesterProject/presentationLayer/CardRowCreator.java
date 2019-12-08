@@ -3,6 +3,8 @@ package com.SemesterProject.presentationLayer;
 import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.presentationLayer.Controllers.Card.CountryCardController;
 import com.SemesterProject.presentationLayer.Controllers.Card.DealCardController;
+import com.SemesterProject.presentationLayer.Controllers.MainController;
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -62,8 +64,8 @@ public class CardRowCreator
         CreateGridPane(3);
 
 
-        addAirportChoiceCard(3, "Private", 500);
-        addAirportChoiceCard(3, "Commercial", 200);
+        addAirportChoiceCard(3, "Private", MainController.getGameStage().getConfig().getPrivateFlyingCost());
+        addAirportChoiceCard(3, "Commercial", MainController.getGameStage().getConfig().getCommercialFlyingCost());
     }
 
     private void addCountries(List<String> countries, int price)

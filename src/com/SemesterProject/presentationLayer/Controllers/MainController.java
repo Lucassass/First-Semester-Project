@@ -149,6 +149,11 @@ public class MainController extends Application implements Initializable {
     public void updateMoney()
     {
         money.setText("Money: " + gameStage.getConfig().getMoney());
+        if (!getGameStage().gotEnoughMoneyToKeepPlaying())
+        {
+            //GAME SHOULD END HERE
+            appendDialog("You dont have enough money to do anything");
+        }
     }
 
     public void addDeal(Deal deal)

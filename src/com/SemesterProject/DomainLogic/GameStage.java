@@ -8,7 +8,6 @@ import com.SemesterProject.DomainLogic.Enum.Countries;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
 import com.SemesterProject.Interfaces.IConfig;
 import com.SemesterProject.Interfaces.IGameStage;
-import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +67,29 @@ public class GameStage implements IGameStage
     public boolean takeDeal(Deal deal, Item itemUsed) {
         return successfullyNegotiateDeal(deal, itemUsed);
 
+    }
+
+    @Override
+    public boolean gotEnoughMoneyToKeepPlaying()
+    {
+        var cheapestDealInCountry = getCheapestDealInCountry();
+
+        return config.getMoney() > cheapestDealInCountry || config.getMoney() > config.getLowestCost();
+    }
+
+    private int getCheapestDealInCountry()
+    {
+        int lowestCost = 0;
+
+        for (var deal : currentCountry.getGovernmentRoom().getDeals())
+        {
+            if (deal.getPrice() > lowestCost)
+            {
+                lowestCost = deal.getPrice();
+            }
+        }
+
+        return lowestCost;
     }
 
     private boolean successfullyNegotiateDeal(Deal deal, Item itemUsed) {
@@ -172,40 +194,40 @@ public class GameStage implements IGameStage
     private void createRooms()
     {
 
-        var usaItems = new ArrayList<ItemDONTUSE>();
-        usaItems.add(new ItemDONTUSE("Vodka", Countries.Russia, 2, Countries.India, -2));
+        var usaItems = new ArrayList<Item>();
+        usaItems.add(new Item("Vodka", Countries.Russia, 2, Countries.India, -2));
         var usaDeals = new ArrayList<Deal>();
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
-        var chinaItems = new ArrayList<ItemDONTUSE>();
-        chinaItems.add(new ItemDONTUSE("Frankfurter", Countries.Germany,2, Countries.Japan,-2));
+        var chinaItems = new ArrayList<Item>();
+        chinaItems.add(new Item("Frankfurter", Countries.Germany,2, Countries.Japan,-2));
         var chinaDeals = new ArrayList<Deal>();
         chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
         chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var germanyItems = new ArrayList<ItemDONTUSE>();
-        germanyItems.add(new ItemDONTUSE("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var germanyItems = new ArrayList<Item>();
+        germanyItems.add(new Item("Sushi", Countries.Japan,2, Countries.USA,-2));
         var germanyDeals = new ArrayList<Deal>();
         germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
         germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var russiaItems = new ArrayList<ItemDONTUSE>();
-        russiaItems.add(new ItemDONTUSE("Curry", Countries.India,2, Countries.Russia,-2));
+        var russiaItems = new ArrayList<Item>();
+        russiaItems.add(new Item("Curry", Countries.India,2, Countries.Russia,-2));
         var russiaDeals = new ArrayList<Deal>();
         russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
         russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var indiaItems = new ArrayList<ItemDONTUSE>();
-        indiaItems.add(new ItemDONTUSE("Not Curry", Countries.India,2, Countries.Russia,-2));
+        var indiaItems = new ArrayList<Item>();
+        indiaItems.add(new Item("Not Curry", Countries.India,2, Countries.Russia,-2));
         var indiaDeals = new ArrayList<Deal>();
         indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var japanItems = new ArrayList<ItemDONTUSE>();
-        japanItems.add(new ItemDONTUSE("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var japanItems = new ArrayList<Item>();
+        japanItems.add(new Item("Sushi", Countries.Japan,2, Countries.USA,-2));
         var japanDeals = new ArrayList<Deal>();
         japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
         japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));

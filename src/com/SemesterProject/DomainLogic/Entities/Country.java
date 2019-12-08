@@ -9,10 +9,12 @@ public class Country {
     private Room startRoom;
     private Room airPortRoom;
     private Room trainStation;
+    private Room governmentRoom;
     private String name;
 
+
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<ItemDONTUSE> items, ArrayList<Deal> dealObsoletes)
+                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> dealObsoletes)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);
@@ -20,6 +22,7 @@ public class Country {
         var outside = new Room("Outside",outsideDescription);
         var trainStation = new Room("Train station",trainStationDescription);
         var culture = new Room("Culture room",cultureDescription);
+
 
         airport.setExit("down", outside);
         government.setExit("right", outside);
@@ -32,9 +35,14 @@ public class Country {
         culture.setItems(items);
         government.setDeals(dealObsoletes);
 
+        governmentRoom = government;
         setStartRoom(outside);
         setAirPortRoom(airport);
         setTrainStation(trainStation);
+    }
+
+    public Room getGovernmentRoom() {
+        return governmentRoom;
     }
 
     /**
