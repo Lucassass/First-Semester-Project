@@ -12,15 +12,22 @@ import java.util.ArrayList;
 public class CultureController extends Injection<MainController>
 {
 
-
     public Label roomText;
     public Label itemText;
 
-    private Item[] items;
+    private Item item;
 
-    private void setItems(Item... items)
+    public void setItem(Item item)
     {
-        this.items = items;
+        if (item == null)
+        {
+            itemText.setText("");
+        }
+        else
+        {
+            itemText.setText(item.getName());
+        }
+        this.item = item;
     }
 
     public void onClickOutside(MouseEvent mouseEvent)
@@ -40,14 +47,12 @@ public class CultureController extends Injection<MainController>
 
     public void onItemClick(ActionEvent actionEvent)
     {
-        getController().addItem(getItem());
+        if (item != null)
+        {
+            getController().addItem(item);
+        }
+        setItem(getController().getGameStage().getItemFromRoom());
     }
 
-    private Item getItem()
-    {
-        for (var item: items) {
-            item.getName();
-        }
-        return null;
-    }
+
 }

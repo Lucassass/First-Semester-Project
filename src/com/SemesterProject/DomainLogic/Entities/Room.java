@@ -1,7 +1,5 @@
 package com.SemesterProject.DomainLogic.Entities;
 
-import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -21,7 +19,7 @@ public class Room
     private HashMap<String, Room> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
-    private ArrayList<Item> items;
+    private Item item;
     private ArrayList<Deal> Deals;
     private String name;
 
@@ -36,7 +34,6 @@ public class Room
         exits = new HashMap<>();
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
-        items = new ArrayList<>();
         Deals = new ArrayList<>();
     }
 
@@ -81,14 +78,14 @@ public class Room
 
     /**
      * Set items for the room
-     * @param items Arraylist of items you wanna add to the room
+     * @param item Arraylist of items you wanna add to the room
      */
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
     /**

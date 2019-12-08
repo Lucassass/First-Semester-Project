@@ -13,6 +13,9 @@ public interface IInventory
     List<Deal> getDeals();
     List<Item> getItems();
     void addItem(Item item);
+    void removeItem(Item item);
     void removeDeal(Deal deal);
-    boolean isFull(Deal deal);
+    boolean isFullOfDeals(Deal deal);
+    boolean isFullOfItems();
+
 }

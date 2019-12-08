@@ -128,6 +128,7 @@ public class MainController extends Application implements Initializable {
                     }
                 }
 
+
                 if (item instanceof Item)
                 {
                     if (empty || ((Item) item).getName() == null) {
@@ -158,7 +159,7 @@ public class MainController extends Application implements Initializable {
 
     public void addDeal(Deal deal)
     {
-        if (!getInventory().isFull(deal))
+        if (!getInventory().isFullOfDeals(deal))
         {
             if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
             {
@@ -192,9 +193,19 @@ public class MainController extends Application implements Initializable {
 
     public void addItem(Item item)
     {
-        inventory.addItem(item);
-        appendDialog("Added item: " + item.getName());
-        inventoryListView.getItems().add(item.getName());
+        if (!inventory.isFullOfItems())
+        {
+            inventory.addItem(item);
+            appendDialog("Added item: " + item.getName());
+            inventoryListView.getItems().add(item);
+            gameStage.removeItemFromRoom(item.getUuid());
+        }
+        else
+        {
+            appendDialog("Inventory is full. Please remove an item from your inventory\n" +
+                    "if you want to pick this one up");
+        }
+
     }
 
     public void onItemRemove(ActionEvent actionEvent)
@@ -204,14 +215,41 @@ public class MainController extends Application implements Initializable {
         {
             inventory.removeDeal((Deal) item);
             inventoryListView.getItems().remove(item);
-            appendDialog("Removed: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
+            appendDialog("Removed deal: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
+        }
+        else if (item instanceof Item)
+        {
+            removeItem((Item) item);
         }
 
     }
 
     public void onItemUse(ActionEvent actionEvent)
     {
+        var item = inventoryListView.getSelectionModel().getSelectedItem();
+        if (item instanceof  Deal)
+        {
+            appendDialog("Can't use a deal");
+        }
 
+        if (item instanceof Item)
+        {
+            if (gameStage.getRoomName().equalsIgnoreCase("government"))
+            {
+                appendDialog("You have used " + ((Item) item).getName());
+                removeItem((Item) item);
+            }
+            else {
+                appendDialog("You can't use items outside of the government room");
+            }
+        }
+    }
+
+    private void removeItem(Item item)
+    {
+        inventory.removeItem((Item) item);
+        inventoryListView.getItems().remove(item);
+        appendDialog("Removed item: " + ((Item) item).getName());
     }
 
     public void onMouseEnter()
@@ -296,6 +334,7 @@ public class MainController extends Application implements Initializable {
     {
         if (gameStage.goRoom("down"))
         {
+            cultureController.setItem(getGameStage().getItemFromRoom());
             outside.setVisible(false);
             culture.setVisible(true);
             setStageName();

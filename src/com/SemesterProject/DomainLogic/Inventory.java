@@ -14,17 +14,15 @@ import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
 import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.WorldOfZuul.ConfigObsolete;
-import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Inventory implements IInventory {
 
     private static Inventory instance = new Inventory();
-    private ArrayList<Item> inventoryItem = new ArrayList<>(); //ArrayList that contains Items
+    private ArrayList<Item> items = new ArrayList<>(); //ArrayList that contains Items
     private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
     private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
     private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
@@ -42,7 +40,7 @@ public class Inventory implements IInventory {
         inventoryDeals.add(knowledge);
     }
 
-    public boolean isFull(Deal deal)
+    public boolean isFullOfDeals(Deal deal)
     {
         if (deal.getCategory() == DealCategory.Energy && energy.size() <= maxEnergy)
         {
@@ -58,6 +56,11 @@ public class Inventory implements IInventory {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean isFullOfItems() {
+        return items.size() >= maxItem;
     }
 
 
@@ -81,6 +84,7 @@ public class Inventory implements IInventory {
     @Override
     public List<Deal> getDeals() {
         return null;
+
     }
 
     @Override
@@ -89,8 +93,22 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void addItem(Item item) {
+    public void addItem(Item item)
+    {
+        items.add(item);
+    }
 
+
+    public void removeItem(Item item)
+    {
+        for (var tempItems : items)
+        {
+            if (tempItems.getUuid() == item.getUuid())
+            {
+                items.remove(tempItems);
+                break;
+            }
+        }
     }
 
     @Override
@@ -118,10 +136,7 @@ public class Inventory implements IInventory {
      */
     public static Inventory getInstance(){return instance;}
 
-    /**
-     * @return Inventory Items
-     */
-    public ArrayList<Item> getInventoryItem(){return inventoryItem;}
+
     /**
      * @return inventory Deals
      */
@@ -177,14 +192,14 @@ public class Inventory implements IInventory {
      */
     public void inventoryUpdateItem(Item item, ArrayList<Item> country)
     {   // If inventory is not filled, max 3, add to inventory, remove from old and print text
-        if(inventoryItem.size() != maxItem && inventoryItem.size() < maxItem )
+        if(items.size() != maxItem && items.size() < maxItem )
         {
-            inventoryItem.add(item);
+            items.add(item);
             country.remove(item);
             System.out.println(item.getName() + " Has been added to your inventory ");
         }
         //If inventory is filled, player chooses what to do
-        else if (inventoryItem.size() == maxItem)
+        else if (items.size() == maxItem)
         {
             System.out.println("You are already carrying 3 Items and do not have "
                     + "the strength to carry any more, too bad");
@@ -205,12 +220,12 @@ public class Inventory implements IInventory {
                     int n = 0;
                     while (n == 0)
                     {
-                    printInventoryItem(inventoryItem);
+                    printInventoryItem(items);
                     System.out.println("which item would you like to replace");
 
                     String scanYes = scan.nextLine();
                     //Goes though inventory to find and replace the choosen item
-                    for (int i = 0; i < inventoryItem.size(); i++)
+                    for (int i = 0; i < items.size(); i++)
                     {
                         int m = 0; //Used too keep track of count
 
@@ -218,13 +233,13 @@ public class Inventory implements IInventory {
                         {
                             return;
                         }
-                        if (scanYes.equals(inventoryItem.get(i).getName())) //goes through inventory
+                        if (scanYes.equals(items.get(i).getName())) //goes through inventory
                         {
                             //If the written word is in inventory , the item gets //replaced by the new one
 
-                            System.out.println("The item " + inventoryItem.get(i).getName() +
+                            System.out.println("The item " + items.get(i).getName() +
                                     " has been replaced with the item " + item.getName());
-                            inventoryItem.set(i, item);
+                            items.set(i, item);
                             country.remove(item);
                             n++;
                         }
@@ -246,7 +261,7 @@ public class Inventory implements IInventory {
                 }
                 if ("see items".equals(scanIn) || "See items".equals(scanIn))
                 {
-                    printInventoryItem(inventoryItem);
+                    printInventoryItem(items);
                 }
             }
         }
@@ -262,11 +277,11 @@ public class Inventory implements IInventory {
         for(int i = 0; i < list.size(); i++)
         {   if(i< list.size()-1)
         {
-            System.out.print(getInventoryItem().get(i).getName() + ", ");
+            System.out.print(getItems().get(i).getName() + ", ");
         }
         else
         {
-            System.out.println(getInventoryItem().get(i).getName());
+            System.out.println(getItems().get(i).getName());
         }
         }
     }

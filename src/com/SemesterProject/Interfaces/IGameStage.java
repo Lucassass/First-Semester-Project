@@ -13,7 +13,7 @@ public interface IGameStage
     String getCountryName();
     String getRoomDescription();
     boolean goRoom(String direction);
-    List<Deal> getDealsForRoom();
+    List<Deal> getDealsFromRoom();
     boolean goCountry(String country, int price);
     boolean goRandomCountry(int price);
     List<String> getFlyExist();
@@ -22,5 +22,6 @@ public interface IGameStage
     boolean takeDeal(Deal deal, Item itemUsed);
     boolean gotEnoughMoneyToKeepPlaying();
     IConfig getConfig();
-
+    Item getItemFromRoom();
+    void removeItemFromRoom(UUID uuid);
 }

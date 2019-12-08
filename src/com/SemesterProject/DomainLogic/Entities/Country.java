@@ -1,7 +1,5 @@
 package com.SemesterProject.DomainLogic.Entities;
 
-import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
-
 import java.util.ArrayList;
 
 public class Country {
@@ -14,7 +12,7 @@ public class Country {
 
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> dealObsoletes)
+                   String governmentDescription, String cultureDescription, Item item, ArrayList<Deal> dealObsoletes)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);
@@ -32,7 +30,7 @@ public class Country {
         outside.setExit("down", culture);
         outside.setExit("left", government);
         outside.setExit("right", trainStation);
-        culture.setItems(items);
+        culture.setItem(item);
         government.setDeals(dealObsoletes);
 
         governmentRoom = government;

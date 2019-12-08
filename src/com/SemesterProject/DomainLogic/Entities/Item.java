@@ -7,6 +7,8 @@ package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.Countries;
 
+import java.util.UUID;
+
 /**
  * @author tes_7
  */
@@ -17,6 +19,7 @@ public class Item {
     private int pointsGood; // The + points you get from being in the good country
     private Countries countryBad; //Name of the bad country the item has a bad effect on
     private int pointsBad; // The - points you get from being in the bad country
+    private UUID uuid;
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
 
@@ -26,12 +29,18 @@ public class Item {
         this.pointsGood = pointsGood;
         this.countryBad = countryBad;
         this.pointsBad = pointsBad;
+        this.uuid = UUID.randomUUID();
 
         String textBad0 = "this is the reason why the item gives negative points in a dice roll";
         textBad = textBad0;
         String textGood0 = "This is the reason why the item gives positive points in a dice roll";
         textGood = textGood0;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
     /**
      * @return TextBad
      */

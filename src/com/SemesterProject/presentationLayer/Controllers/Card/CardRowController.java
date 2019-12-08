@@ -25,7 +25,7 @@ public class CardRowController extends Injection<MainController>
         CardRowCreator cardRowCreator = new CardRowCreator(gridPanel, 4);
 
 
-        gridPanel = cardRowCreator.generateDeals(getController().getGameStage().getDealsForRoom());
+        gridPanel = cardRowCreator.generateDeals(getController().getGameStage().getDealsFromRoom());
 
         injectDealController(cardRowCreator.getDealCardControllers());
 

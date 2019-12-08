@@ -59,9 +59,10 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public List<Deal> getDealsForRoom() {
+    public List<Deal> getDealsFromRoom() {
         return currentRoom.getDeals();
     }
+
 
     @Override
     public boolean takeDeal(Deal deal, Item itemUsed) {
@@ -184,50 +185,60 @@ public class GameStage implements IGameStage
         }
     }
 
+    @Override
+    public void removeItemFromRoom(UUID uuid)
+    {
+        if (currentRoom.getItem().getUuid() == uuid)
+        {
+            currentRoom.setItem(null);
+        }
+    }
+
 
     @Override
     public IConfig getConfig() {
         return config;
     }
 
+    @Override
+    public Item getItemFromRoom() {
+        return currentRoom.getItem();
+    }
+
+
+
 
     private void createRooms()
     {
 
-        var usaItems = new ArrayList<Item>();
-        usaItems.add(new Item("Vodka", Countries.Russia, 2, Countries.India, -2));
+        var usaItem = new Item("Vodka", Countries.Russia, 2, Countries.India, -2);
         var usaDeals = new ArrayList<Deal>();
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
-        var chinaItems = new ArrayList<Item>();
-        chinaItems.add(new Item("Frankfurter", Countries.Germany,2, Countries.Japan,-2));
+        var chinaItem = new Item("Frankfurter", Countries.Germany,2, Countries.Japan,-2);
         var chinaDeals = new ArrayList<Deal>();
         chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
         chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var germanyItems = new ArrayList<Item>();
-        germanyItems.add(new Item("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var germanyItem = new Item("Sushi", Countries.Japan,2, Countries.USA,-2);
         var germanyDeals = new ArrayList<Deal>();
         germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
         germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var russiaItems = new ArrayList<Item>();
-        russiaItems.add(new Item("Curry", Countries.India,2, Countries.Russia,-2));
+        var russiaItem = new Item("Curry", Countries.India,2, Countries.Russia,-2);
         var russiaDeals = new ArrayList<Deal>();
         russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
         russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var indiaItems = new ArrayList<Item>();
-        indiaItems.add(new Item("Not Curry", Countries.India,2, Countries.Russia,-2));
+        var indiaItem = new Item("Not Curry", Countries.India,2, Countries.Russia,-2);
         var indiaDeals = new ArrayList<Deal>();
         indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var japanItems = new ArrayList<Item>();
-        japanItems.add(new Item("Sushi", Countries.Japan,2, Countries.USA,-2));
+        var japanItem = new Item("Sushi", Countries.Japan,2, Countries.USA,-2);
         var japanDeals = new ArrayList<Deal>();
         japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
         japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
@@ -235,17 +246,17 @@ public class GameStage implements IGameStage
 
         Country usa, china, russia, japan, india, germany;
         china = new Country("China", "Airport", "Train",
-                "outside", "government", "culture", chinaItems, chinaDeals);
+                "outside", "government", "culture", chinaItem, chinaDeals);
         usa = new Country("USA", "Airport Description", "Train ff",
-                "outside gg", "government Jo", "culture qq", usaItems, usaDeals);
+                "outside gg", "government Jo", "culture qq", usaItem, usaDeals);
         russia = new Country("Russia", "Airport", "Train",
-                "outside", "government", "culture", russiaItems, russiaDeals);
+                "outside", "government", "culture", russiaItem, russiaDeals);
         japan = new Country("Japan", "Airport", "Train",
-                "outside", "government", "culture", japanItems, japanDeals);
+                "outside", "government", "culture", japanItem, japanDeals);
         india = new Country("India", "Airport", "Train",
-                "outside", "government", "culture", indiaItems, indiaDeals);
+                "outside", "government", "culture", indiaItem, indiaDeals);
         germany = new Country("Germany", "Airport", "Train",
-                "outside", "government", "culture", germanyItems, germanyDeals);
+                "outside", "government", "culture", germanyItem, germanyDeals);
 
         china.setFlyExit("USA", usa);
         china.setFlyExit("Russia", russia);
