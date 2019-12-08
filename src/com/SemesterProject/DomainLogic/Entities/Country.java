@@ -1,6 +1,6 @@
 package com.SemesterProject.DomainLogic.Entities;
 
-import com.SemesterProject.WorldOfZuul.Item;
+import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class Country {
     private String name;
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<Item> items, ArrayList<Deal> dealObsoletes)
+                   String governmentDescription, String cultureDescription, ArrayList<ItemDONTUSE> items, ArrayList<Deal> dealObsoletes)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);

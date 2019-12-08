@@ -21,7 +21,7 @@ public class RoomObsolete
     private HashMap<String, RoomObsolete> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
-    private ArrayList<Item> items;
+    private ArrayList<ItemDONTUSE> items;
     private ArrayList<DealObsolete> Deals;
     private String name;
 
@@ -83,11 +83,11 @@ public class RoomObsolete
      * Set items for the room
      * @param items Arraylist of items you wanna add to the room
      */
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(ArrayList<ItemDONTUSE> items) {
         this.items = items;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<ItemDONTUSE> getItems() {
         return items;
     }
 

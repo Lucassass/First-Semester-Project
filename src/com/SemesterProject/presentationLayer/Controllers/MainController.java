@@ -1,7 +1,11 @@
 package com.SemesterProject.presentationLayer.Controllers;
 
+import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.DomainLogic.GameStage;
+import com.SemesterProject.DomainLogic.Inventory;
 import com.SemesterProject.Interfaces.IGameStage;
+import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
 import com.SemesterProject.presentationLayer.Controllers.Room.*;
 import javafx.application.Application;
@@ -15,6 +19,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,6 +39,7 @@ public class MainController extends Application implements Initializable {
     public Label money;
 
     public TextArea dialog;
+    public ListView inventoryListView;
 
     @FXML
     private CardRowController cardRowController;
@@ -58,12 +64,15 @@ public class MainController extends Application implements Initializable {
     @FXML private TrainController trainController;
 
     private static IGameStage gameStage;
+    private static IInventory inventory;
 
     private static Stage stage;
 
     public static IGameStage getGameStage() {
         return gameStage;
     }
+    public static IInventory getInventory() { return inventory; }
+
 
     private void setStageName(){
         stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
@@ -76,6 +85,7 @@ public class MainController extends Application implements Initializable {
     public static void main(String[] args)
     {
         gameStage = new GameStage();
+        inventory = Inventory.getInstance();
         Application.launch(MainController.class, args);
     }
 
@@ -113,6 +123,20 @@ public class MainController extends Application implements Initializable {
         money.setText("Money: " + gameStage.getConfig().getMoney());
     }
 
+    public void addDeal(Deal deal)
+    {
+        inventory.addDeal(deal);
+        appendDialog("Added deal: " + deal.getName());
+        inventoryListView.getItems().add(deal.getName());
+
+    }
+
+    public void addItem(Item item)
+    {
+        inventory.addItem(item);
+        appendDialog("Added item: " + item.getName());
+        inventoryListView.getItems().add(item.getName());
+    }
 
     public void onMouseEnter()
     {

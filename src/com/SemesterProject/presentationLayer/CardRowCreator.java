@@ -19,16 +19,22 @@ public class CardRowCreator
     private  GridPane gridPane;
     private int maxRow;
     private ArrayList<CountryCardController> countryCardControllers;
+    private ArrayList<DealCardController> dealCardControllers;
 
     public CardRowCreator( GridPane gridPane, int maxRow)
     {
         this.gridPane = gridPane;
         this.maxRow = maxRow;
         countryCardControllers = new ArrayList<>();
+        dealCardControllers = new ArrayList<>();
     }
 
     public ArrayList<CountryCardController> getCountryCardControllers() {
         return countryCardControllers;
+    }
+
+    public ArrayList<DealCardController> getDealCardControllers() {
+        return dealCardControllers;
     }
 
     public GridPane generateAirportChoice()
@@ -221,7 +227,7 @@ public class CardRowCreator
 
             var controller = (DealCardController)fxmlLoader.getController();
             controller.populateCard(deal);
-
+            dealCardControllers.add(controller);
             GridPane.setMargin(anchorPane, new Insets(50,0,0,0));
 
             gridPane.addColumn(index + 1, anchorPane);

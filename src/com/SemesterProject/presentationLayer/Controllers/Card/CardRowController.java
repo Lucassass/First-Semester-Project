@@ -9,6 +9,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+import java.util.List;
+
 
 public class CardRowController extends Injection<MainController>
 {
@@ -25,6 +27,7 @@ public class CardRowController extends Injection<MainController>
 
         gridPanel = cardRowCreator.generateDeals(getController().getGameStage().getDealsForRoom());
 
+        injectDealController(cardRowCreator.getDealCardControllers());
 
         splitPane.lookupAll(".split-pane-divider")
                 .forEach(div ->  div.setMouseTransparent(true) );
@@ -36,7 +39,7 @@ public class CardRowController extends Injection<MainController>
 
         gridPanel = cardRowCreator.generateAirportChoice();
 
-        injectController(cardRowCreator);
+        injectCountryController(cardRowCreator.getCountryCardControllers());
     }
 
     public void loadTrainCountries()
@@ -45,7 +48,7 @@ public class CardRowController extends Injection<MainController>
 
         gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getTrainExist(),200);
 
-        injectController(cardRowCreator);
+        injectCountryController(cardRowCreator.getCountryCardControllers());
     }
 
     public void loadAirportCountries()
@@ -54,7 +57,7 @@ public class CardRowController extends Injection<MainController>
 
         gridPanel = cardRowCreator.generateCountries(MainController.getGameStage().getFlyExist(),500);
 
-        injectController(cardRowCreator);
+        injectCountryController(cardRowCreator.getCountryCardControllers());
     }
 
 
@@ -64,9 +67,15 @@ public class CardRowController extends Injection<MainController>
     }
 
 
-    private void injectController(CardRowCreator cardRowCreator)
+    private void injectCountryController(List<CountryCardController> controllers)
     {
-        for (var controller: cardRowCreator.getCountryCardControllers()) {
+        for (var controller: controllers) {
+            controller.injectController(getController());
+        }
+    }
+    private void injectDealController(List<DealCardController> controllers)
+    {
+        for (var controller: controllers) {
             controller.injectController(getController());
         }
     }

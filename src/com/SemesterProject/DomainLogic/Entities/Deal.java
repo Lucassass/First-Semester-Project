@@ -7,6 +7,8 @@ package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
 
+import java.util.UUID;
+
 /**
  * @author tes_7
  */
@@ -17,9 +19,10 @@ public class Deal {
     private int sustainabilityPoints; // effects on sustainability
     private int energyPoints; //effect on energy
     private int environmentPoints; // effect on environment
-    private String information; //Information about deal
+    private String description; //Information about deal
     private int price;// price on deal
     private int timesTried;
+    private UUID uuid;
 
     //Hoved Deal objektet der gerne skulle bruges
     public Deal(String name, DealCategory category, int sustainabilityPoints,
@@ -30,9 +33,10 @@ public class Deal {
         this.sustainabilityPoints = sustainabilityPoints;
         this.energyPoints = energyPoints;
         this.environmentPoints = environmentPoints;
-        this.information = info;
+        this.description = info;
         this.price = price;
         this.timesTried = 0;
+        uuid = UUID.randomUUID();
     }
 
     public int getTimesTried() {
@@ -49,12 +53,16 @@ public class Deal {
         return price;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
     /**
      * @return information about the deal
      */
     public String getDescription()
     {
-        return information;
+        return description;
     }
     /**
      * sets information about each deal
@@ -62,7 +70,7 @@ public class Deal {
      */
     public void setInfo(String info)
     {
-        information = info;
+        description = info;
     }
     /**
      * @return Name

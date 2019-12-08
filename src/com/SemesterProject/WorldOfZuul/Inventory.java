@@ -15,7 +15,7 @@ import java.util.Scanner;
 class Inventory {
 
     private static Inventory instance = new Inventory();
-    private ArrayList<Item> inventoryItem = new ArrayList<Item>(); //ArrayList that contains Items
+    private ArrayList<ItemDONTUSE> inventoryItem = new ArrayList<ItemDONTUSE>(); //ArrayList that contains Items
     private ArrayList<ArrayList<DealObsolete>> inventoryDeals = new ArrayList<ArrayList<DealObsolete>>(); // ArrayList that contains deals
     private ArrayList<DealObsolete> food = new ArrayList<DealObsolete>(); //Deals with category food (will be placed in inventoryDeals
     private ArrayList<DealObsolete> energy = new ArrayList<DealObsolete>(); //Deals with category energy (will be placed in inventoryDeals
@@ -38,7 +38,7 @@ class Inventory {
     /**
      * @return Inventory Items
      */
-    public ArrayList<Item> getInventoryItem(){return inventoryItem;}
+    public ArrayList<ItemDONTUSE> getInventoryItem(){return inventoryItem;}
     /**
      * @return inventory Deals
      */
@@ -49,7 +49,7 @@ class Inventory {
      * goes through Items in cultural room, player chooses if wanna take or not
      * @param list --> List of Items in Country
      */
-    public void searchForItems(ArrayList<Item> list)
+    public void searchForItems(ArrayList<ItemDONTUSE> list)
     {   if(list.isEmpty())
         {
             System.out.println("Sorry, no items in this room :(");
@@ -92,7 +92,7 @@ class Inventory {
      * @param item that should be added
      * @param country - item inventory of country currently in
      */
-    public void inventoryUpdateItem(Item item, ArrayList<Item> country)
+    public void inventoryUpdateItem(ItemDONTUSE item, ArrayList<ItemDONTUSE> country)
     {   // If inventory is not filled, max 3, add to inventory, remove from old and print text
         if(inventoryItem.size() != maxItem && inventoryItem.size() < maxItem )
         {
@@ -173,7 +173,7 @@ class Inventory {
      * prints inventory Items
      * @param list
      */
-    void printInventoryItem(ArrayList<Item> list)
+    void printInventoryItem(ArrayList<ItemDONTUSE> list)
     {
         System.out.println("The items you are currently carrying are:");
         for(int i = 0; i < list.size(); i++)

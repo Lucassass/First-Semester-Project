@@ -10,17 +10,20 @@ package com.SemesterProject.DomainLogic;
  */
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.WorldOfZuul.ConfigObsolete;
-import com.SemesterProject.WorldOfZuul.Item;
+import com.SemesterProject.WorldOfZuul.ItemDONTUSE;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Inventory {
+public class Inventory implements IInventory {
 
     private static Inventory instance = new Inventory();
-    private ArrayList<Item> inventoryItem = new ArrayList<Item>(); //ArrayList that contains Items
+    private ArrayList<Item> inventoryItem = new ArrayList<>(); //ArrayList that contains Items
     private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
     private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
     private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
@@ -31,7 +34,40 @@ public class Inventory {
     private final int maxEnergy = 2;
     private final int maxKnowledge = 1;
 
-    private Inventory(){
+    private Inventory()
+    {
+    }
+
+    @Override
+    public void addDeal(Deal deal)
+    {
+        if (deal.getCategory() == DealCategory.Energy)
+        {
+            energy.add(deal);
+        }
+        else if (deal.getCategory() == DealCategory.Food)
+        {
+            food.add(deal);
+        }
+        else if (deal.getCategory() == DealCategory.Knowledge)
+        {
+            knowledge.add(deal);
+        }
+    }
+
+    @Override
+    public List<Deal> getDeals() {
+        return null;
+    }
+
+    @Override
+    public List<Item> getItems() {
+        return null;
+    }
+
+    @Override
+    public void addItem(Item item) {
+
     }
 
     /**
@@ -368,5 +404,6 @@ public class Inventory {
         System.out.println("Energy: " + createDealsStringFor(energy));
         System.out.println("Knowledge: " + createDealsStringFor(knowledge));
     }
+
 
 }

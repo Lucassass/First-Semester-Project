@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.SemesterProject.WorldOfZuul;
+package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.CountryList;
 
