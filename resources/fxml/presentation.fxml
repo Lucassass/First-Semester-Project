@@ -35,7 +35,6 @@
                   <Font size="21.0" />
                </font>
             </Label>
-
              <Button fx:id="quitButton" layoutX="267.0" layoutY="655.0" onAction="#onQuitButton" prefHeight="31.0" prefWidth="79.0" text="Quit">
                <font>
                   <Font size="15.0" />
@@ -50,6 +49,16 @@
                     </items>
                   </ContextMenu>
                </contextMenu></ListView>
+             <ImageView fx:id="Local" fitHeight="225" fitWidth="400" layoutX="25" layoutY="200" >
+                 <image>
+                     <Image fx:id="Outside" url ="/images/Outside.png"></Image>
+                 </image>
+             </ImageView>
+             <ImageView fx:id="Global" fitHeight="225" fitWidth="400" layoutX="25" layoutY="425">
+                 <image>
+                     <Image fx:id="USA" url ="/images/USA.png"></Image>
+                 </image>
+             </ImageView>
          </children>
       </AnchorPane>
 

@@ -9,9 +9,7 @@ import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
 import com.SemesterProject.presentationLayer.Controllers.Room.*;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,10 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -44,6 +40,7 @@ public class MainController extends Application implements Initializable {
     @FXML
     private CardRowController cardRowController;
 
+    @FXML private ImageView Local, Global;
 
     @FXML private GridPane mainWindow;
     @FXML private Label labelTest;
@@ -182,9 +179,10 @@ public class MainController extends Application implements Initializable {
             cardRowController.loadAirportChoice();
             outside.setVisible(false);
             airport.setVisible(true);
+
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Airport.png")));
         }
 
     }
@@ -194,6 +192,7 @@ public class MainController extends Application implements Initializable {
         if (gameStage.goRoom(direction))
         {
             setupOutsideRoom();
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Outside.png")));
         }
 
     }
@@ -205,9 +204,10 @@ public class MainController extends Application implements Initializable {
             cardRowController.loadDeals();
             outside.setVisible(false);
             government.setVisible(true);
+
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Goverment.png")));
         }
 
     }
@@ -219,8 +219,10 @@ public class MainController extends Application implements Initializable {
             cardRowController.loadTrainCountries();
             outside.setVisible(false);
             train.setVisible(true);
+
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Trainstation.png")));
         }
 
     }
@@ -233,7 +235,7 @@ public class MainController extends Application implements Initializable {
             culture.setVisible(true);
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-
+            Local.setImage(new Image (getClass().getResourceAsStream("/images/Culture.png")));
         }
     }
 
