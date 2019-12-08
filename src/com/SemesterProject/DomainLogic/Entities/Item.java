@@ -5,7 +5,7 @@
  */
 package com.SemesterProject.DomainLogic.Entities;
 
-import com.SemesterProject.DomainLogic.Enum.CountryList;
+import com.SemesterProject.DomainLogic.Enum.Countries;
 
 /**
  * @author tes_7
@@ -13,14 +13,14 @@ import com.SemesterProject.DomainLogic.Enum.CountryList;
 public class Item {
 
     private String name; //Name of item
-    private CountryList countryGood; // Name of the country the item has a good effect on
+    private Countries countryGood; // Name of the country the item has a good effect on
     private int pointsGood; // The + points you get from being in the good country
-    private CountryList countryBad; //Name of the bad country the item has a bad effect on
+    private Countries countryBad; //Name of the bad country the item has a bad effect on
     private int pointsBad; // The - points you get from being in the bad country
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
 
-    public Item(String name, CountryList countryGood, int pointsGood, CountryList countryBad, int pointsBad){
+    public Item(String name, Countries countryGood, int pointsGood, Countries countryBad, int pointsBad){
         this.name = name;
         this.countryGood = countryGood;
         this.pointsGood = pointsGood;
@@ -63,14 +63,14 @@ public class Item {
     /**
      * @return countryGood
      */
-    public CountryList getCountryGood()
+    public Countries getCountryGood()
     {
         return countryGood;
     }
     /**
      * @return contryBad
      */
-    public CountryList getCountryBad()
+    public Countries getCountryBad()
     {
         return countryBad;
     }

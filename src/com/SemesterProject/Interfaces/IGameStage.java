@@ -1,8 +1,10 @@
 package com.SemesterProject.Interfaces;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Entities.Item;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IGameStage
 {
@@ -16,6 +18,8 @@ public interface IGameStage
     boolean goRandomCountry(int price);
     List<String> getFlyExist();
     List<String> getTrainExist();
+    void removeDealFromRoom(UUID id);
+    boolean takeDeal(Deal deal, Item itemUsed);
     IConfig getConfig();
 
 }

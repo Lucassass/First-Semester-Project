@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../../../Desktop/Unavngivet.png"  />
+                  <Image url="@../../../../../../Desktop/Unavngivet.png" />
                </image>
             </ImageView>
          </children>
@@ -29,7 +29,12 @@
                         <Font size="62.0" />
                      </font>
                   </Label>
-                  <Button layoutX="366.0" layoutY="527.0" mnemonicParsing="false" text="click me" />
+                  <Button layoutX="366.0" layoutY="527.0" mnemonicParsing="false" onAction="#onItemClick" text="click me" />
+                  <Label fx:id="itemText" layoutX="366.0" layoutY="424.0" text="Label">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </center>

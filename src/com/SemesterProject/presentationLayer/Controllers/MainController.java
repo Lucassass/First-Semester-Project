@@ -125,9 +125,23 @@ public class MainController extends Application implements Initializable {
 
     public void addDeal(Deal deal)
     {
-        inventory.addDeal(deal);
-        appendDialog("Added deal: " + deal.getName());
-        inventoryListView.getItems().add(deal.getName());
+        if (!getInventory().isFull(deal))
+        {
+            //gameStage.takeDeal(deal, null)
+            if (true)
+            {
+                inventory.addDeal(deal);
+                appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
+                inventoryListView.getItems().add(deal.getName() + " | " + deal.getCategory());
+            }
+            gameStage.removeDealFromRoom(deal.getUuid());
+
+        }
+        else {
+            appendDialog("You can't hold more deal of " + deal.getCategory() + ". Please remove \na deal of the " +
+                    "same category and try again.");
+        }
+
 
     }
 

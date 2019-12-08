@@ -12,4 +12,5 @@ public interface IInventory
     List<Deal> getDeals();
     List<Item> getItems();
     void addItem(Item item);
+    boolean isFull(Deal deal);
 }

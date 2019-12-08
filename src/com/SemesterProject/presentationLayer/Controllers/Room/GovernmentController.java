@@ -24,10 +24,6 @@ public class GovernmentController extends Injection<MainController> {
         getController().onMouseExit();
     }
 
-    public void setRoomDescription(String roomDescription) {
-        roomText.setText(roomDescription);
-    }
-
     public void openWindowTest(ActionEvent actionEvent)
     {
         getController().cardRow.setVisible(true);

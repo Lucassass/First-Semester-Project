@@ -38,6 +38,25 @@ public class Inventory implements IInventory {
     {
     }
 
+    public boolean isFull(Deal deal)
+    {
+        if (deal.getCategory() == DealCategory.Energy && energy.size() <= maxEnergy)
+        {
+            return false;
+        }
+        else if (deal.getCategory() == DealCategory.Food && food.size() <= maxFood)
+        {
+            return false;
+        }
+        else if (deal.getCategory() == DealCategory.Knowledge && knowledge.size() <= maxKnowledge)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+
     @Override
     public void addDeal(Deal deal)
     {

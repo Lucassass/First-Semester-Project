@@ -64,6 +64,19 @@ public class CardRowController extends Injection<MainController>
     public void onClose(ActionEvent actionEvent)
     {
         anchorPane.setVisible(false);
+        var room = getController().getGameStage().getRoomName();
+        switch (room.toLowerCase())
+        {
+            case "airport":
+                loadAirportChoice();
+                break;
+            case "government":
+                loadDeals();
+                break;
+            case "train":
+                loadTrainCountries();
+                break;
+        }
     }
 
 

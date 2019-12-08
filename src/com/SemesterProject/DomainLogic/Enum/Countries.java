@@ -1,6 +1,6 @@
 package com.SemesterProject.DomainLogic.Enum;
 
-public enum CountryList
+public enum Countries
 {
     USA("USA"),
     Russia("Russia"),
@@ -11,7 +11,7 @@ public enum CountryList
 
     private String name;
 
-    CountryList(String name)
+    Countries(String name)
     {
         this.name = name;
     }
