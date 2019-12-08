@@ -19,7 +19,7 @@ public class Country {
         var government = new Room("Government",governmentDescription);
         var outside = new Room("Outside",outsideDescription);
         var trainStation = new Room("Train station",trainStationDescription);
-        var culture = new Room("Culture room",cultureDescription);
+        var culture = new Room("Culture",cultureDescription);
 
 
         airport.setExit("down", outside);

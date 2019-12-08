@@ -194,6 +194,14 @@ public class GameStage implements IGameStage
         }
     }
 
+    public void addItemToRoom(Item item)
+    {
+        if (currentRoom.getName().equalsIgnoreCase("culture"))
+        {
+            currentRoom.setItem(item);
+        }
+    }
+
 
     @Override
     public IConfig getConfig() {

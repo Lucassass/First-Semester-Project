@@ -36,7 +36,9 @@ public class MainController extends Application implements Initializable {
     public Label money;
 
     public TextArea dialog;
-    public ListView inventoryListView;
+    //public ListView inventoryListView;
+    public ListView<Item> inventoryItems;
+    public ListView<Deal> inventoryDeals;
 
     @FXML
     private CardRowController cardRowController;
@@ -112,33 +114,30 @@ public class MainController extends Application implements Initializable {
         setupOutsideRoom();
 
 
-        inventoryListView.setCellFactory(param -> new ListCell<>()
+        inventoryItems.setCellFactory(param -> new ListCell<>()
         {
             @Override
-            protected void updateItem(Object item, boolean empty) {
+            protected void updateItem(Item item, boolean empty) {
+                super.updateItem( item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName());
+                }
+
+            }
+        });
+
+        inventoryDeals.setCellFactory(param -> new ListCell<>(){
+            @Override
+            protected void updateItem(Deal item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item == null) {setText(null);}
-
-                if (item instanceof Deal)
-                {
-                    if (empty || ((Deal) item).getName() == null) {
-                        setText(null);
-                    } else {
-                        setText(((Deal) item).getName() + " | " + ((Deal) item).getCategory());
-                    }
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName() + " | " + item.getCategory());
                 }
-
-
-                if (item instanceof Item)
-                {
-                    if (empty || ((Item) item).getName() == null) {
-                        setText(null);
-                    } else {
-                        setText(((Item) item).getName());
-                    }
-                }
-
-
             }
         });
     }
@@ -168,7 +167,7 @@ public class MainController extends Application implements Initializable {
                 {
                     inventory.addDeal(deal);
                     appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
-                    inventoryListView.getItems().add(deal);
+                    inventoryDeals.getItems().add(deal);
                 }
                 else
                 {
@@ -197,7 +196,7 @@ public class MainController extends Application implements Initializable {
         {
             inventory.addItem(item);
             appendDialog("Added item: " + item.getName());
-            inventoryListView.getItems().add(item);
+            inventoryItems.getItems().add(item);
             gameStage.removeItemFromRoom(item.getUuid());
         }
         else
@@ -208,48 +207,69 @@ public class MainController extends Application implements Initializable {
 
     }
 
-    public void onItemRemove(ActionEvent actionEvent)
+
+    public void onDealRemove(ActionEvent actionEvent)
     {
-        var item = inventoryListView.getSelectionModel().getSelectedItem();
-        if (item instanceof Deal)
+        var item = inventoryDeals.getSelectionModel().getSelectedItem();
+
+        inventory.removeDeal((Deal) item);
+        inventoryDeals.getItems().remove(item);
+        appendDialog("Removed deal: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
+    }
+
+    public void onItemSwitch(ActionEvent actionEvent)
+    {
+        var item = inventoryItems.getSelectionModel().getSelectedItem();
+
+        if (gameStage.getRoomName().equalsIgnoreCase("culture"))
         {
-            inventory.removeDeal((Deal) item);
-            inventoryListView.getItems().remove(item);
-            appendDialog("Removed deal: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
+            var itemInRoom = gameStage.getItemFromRoom();
+
+            if (itemInRoom != null)
+            {
+                appendDialog("Switching " + item.getName() + " out with " + itemInRoom.getName());
+                removeItem(item);
+                cultureController.setItem(item);
+                gameStage.addItemToRoom(item);
+                addItem(itemInRoom);
+            }
+            else
+            {
+                appendDialog("Switching " + item.getName() + " out with nothing");
+                removeItem(item);
+                cultureController.setItem(item);
+                gameStage.addItemToRoom(item);
+            }
         }
-        else if (item instanceof Item)
-        {
-            removeItem((Item) item);
+        else{
+            appendDialog("You can't switch items outside of the culture room");
         }
 
+        //removeItem(item);
+        //cultureController.setItem();
     }
+
+
 
     public void onItemUse(ActionEvent actionEvent)
     {
-        var item = inventoryListView.getSelectionModel().getSelectedItem();
-        if (item instanceof  Deal)
-        {
-            appendDialog("Can't use a deal");
-        }
+        var item = inventoryItems.getSelectionModel().getSelectedItem();
 
-        if (item instanceof Item)
+        if (gameStage.getRoomName().equalsIgnoreCase("government"))
         {
-            if (gameStage.getRoomName().equalsIgnoreCase("government"))
-            {
-                appendDialog("You have used " + ((Item) item).getName());
-                removeItem((Item) item);
-            }
-            else {
-                appendDialog("You can't use items outside of the government room");
-            }
+            appendDialog("You have used " + (item).getName());
+            removeItem(item);
+        }
+        else {
+            appendDialog("You can't use items outside of the government room");
         }
     }
 
     private void removeItem(Item item)
     {
-        inventory.removeItem((Item) item);
-        inventoryListView.getItems().remove(item);
-        appendDialog("Removed item: " + ((Item) item).getName());
+        inventory.removeItem(item);
+        inventoryItems.getItems().remove(item);
+        appendDialog("Removed item: " + item.getName());
     }
 
     public void onMouseEnter()
@@ -357,7 +377,6 @@ public class MainController extends Application implements Initializable {
     {
         dialog.appendText(text + "\n");
     }
-
 
 
 }

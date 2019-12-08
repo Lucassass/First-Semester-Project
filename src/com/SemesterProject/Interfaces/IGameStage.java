@@ -24,4 +24,5 @@ public interface IGameStage
     IConfig getConfig();
     Item getItemFromRoom();
     void removeItemFromRoom(UUID uuid);
+    void addItemToRoom(Item item);
 }
