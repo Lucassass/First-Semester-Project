@@ -100,21 +100,6 @@ public class Room
         return items;
     }
 
-    /**
-     * Check whether or not room got fly points
-     * @return true if the room got fly exits
-     */
-    public boolean gotFlyPoint()
-    {
-        return flyExits.size() != 0;
-    }
-
-    /**
-     * Check whether or not room got train points
-     * @return true if the room got train exits
-     */
-    public boolean gotTrainPoint(){return trainExits.size() != 0;}
-
 
     
     /**
