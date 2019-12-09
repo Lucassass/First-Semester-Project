@@ -84,7 +84,11 @@ public class Room
      */
     public void addItem(Item[] items)
     {
-        this.items.addAll(Arrays.asList(items));
+        for (int i = 0; i < items.length; i++) {
+            Item item = items[i];
+            item.setIndex(i);
+            this.items.add(item);
+        }
     }
 
     public void addItem(Item item)

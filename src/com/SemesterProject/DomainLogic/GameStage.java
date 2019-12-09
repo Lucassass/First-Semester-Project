@@ -293,7 +293,8 @@ public class GameStage implements IGameStage
         china = new Country("China", "Airport", "Train",
                 "outside", "government", "culture", chinaDeals, chinaItem );
         usa = new Country("USA", "Airport Description", "Train ff",
-                "outside gg", "government Jo", "culture qq", usaDeals, usaItem, usaItem2, usaItem3);
+                "outside gg", "government Jo", "culture qq",
+                usaDeals, usaItem, usaItem2, usaItem3);
         russia = new Country("Russia", "Airport", "Train",
                 "outside", "government", "culture",  russiaDeals,russiaItem);
         japan = new Country("Japan", "Airport", "Train",

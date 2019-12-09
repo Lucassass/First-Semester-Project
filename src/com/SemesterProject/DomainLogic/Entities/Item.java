@@ -24,6 +24,7 @@ public class Item {
     private Image image;
     private String textBad; // Text that prints during dice roll
     private String textGood; // Text that prints during dice roll
+    private int index;
 
     public Item(String name, Countries countryGood, int pointsGood, Countries countryBad, int pointsBad,
                 String imageName)
@@ -40,6 +41,14 @@ public class Item {
         textBad = textBad0;
         String textGood0 = "This is the reason why the item gives positive points in a dice roll";
         textGood = textGood0;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public Image getImage() {

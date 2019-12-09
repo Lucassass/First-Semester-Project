@@ -3,58 +3,26 @@ package com.SemesterProject.presentationLayer.Controllers.Room;
 import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-class ItemImage
-{
-    private ImageView image;
-    private Item item;
 
-    public ItemImage(ImageView image, Item item) {
-        this.image = image;
-        this.item = item;
-        image.setImage(item.getImage());
-    }
-
-    ImageView getImage() {
-        return image;
-    }
-
-    Item getItem() {
-        return item;
-    }
-
-    void setItem(Item item) {
-        this.item = item;
-        image.setImage(item.getImage());
-    }
-
-    void pickUp()
-    {
-        item = null;
-        image.setImage(null);
-    }
-}
 
 public class CultureController extends Injection<MainController>
 {
 
 
-    public ImageView backgroundImage;
+    @FXML private ImageView backgroundImage;
 
-    public ImageView firstItemImage;
-    public ImageView secondItemImage;
-    public ImageView thirdItemImage;
+    @FXML private ImageView firstItemImage;
+    @FXML private ImageView secondItemImage;
+    @FXML private ImageView thirdItemImage;
 
-    private ArrayList<ItemImage> items;
-
-    private Item firstItem;
-    private Item secondItem;
-    private Item thirdItem;
+    private ArrayList<ImageItem> imageItems = new ArrayList<>();
 
 
     @Override
@@ -68,29 +36,44 @@ public class CultureController extends Injection<MainController>
         this.backgroundImage.setImage(backgroundImage);
     }
 
-    public void setItem(ArrayList<Item> items)
+    private void clearItems()
     {
-        this.items = new ArrayList<>();
-
-        for (var item: items) {
-            switch (this.items.size())
-            {
-                case 0:
-                    this.items.add(new ItemImage(firstItemImage, item));
-                    break;
-                case 1:
-                    this.items.add(new ItemImage(secondItemImage, item));
-                    break;
-                case 2:
-                    this.items.add(new ItemImage(thirdItemImage, item));
-                    break;
+        if (imageItems != null)
+        {
+            for (var item: imageItems) {
+                item.setItem(null);
             }
         }
+
+        imageItems = new ArrayList<>();
+        imageItems.add(new ImageItem(firstItemImage, null));
+        imageItems.add(new ImageItem(secondItemImage, null));
+        imageItems.add(new ImageItem(thirdItemImage, null));
+    }
+
+    public void setItem(ArrayList<Item> items)
+    {
+        clearItems();
+
+
+        for (var item : items)
+        {
+            for (int i = 0; i < imageItems.size(); i++) {
+                ImageItem imageItem = imageItems.get(i);
+
+                if (item.getIndex() == i)
+                {
+                    imageItem.setItem(item);
+                }
+
+            }
+        }
+
     }
 
     public Item replaceItem(Item item)
     {
-        for (var itemImage: items)
+        for (var itemImage: imageItems)
         {
             if (itemImage.getItem() == null)
             {
@@ -99,48 +82,15 @@ public class CultureController extends Injection<MainController>
             }
         }
 
-        if (items.size() > 0)
+        if (imageItems.size() > 0)
         {
-            var currentItem = items.get(0).getItem();
-            items.get(0).setItem(item);
+            var currentItem = imageItems.get(0).getItem();
+            imageItems.get(0).setItem(item);
             return currentItem;
         }
 
         return null;
     }
-
-/*
-    public void setFirstItem(Item item)
-    {
-        if (item == null) {
-            firstItemImage.setImage(null);
-        } else {
-            firstItemImage.setImage(item.getImage());
-        }
-        this.firstItem = item;
-    }
-
-    public void setSecondItem(Item item)
-    {
-        if (item == null) {
-            secondItemImage.setImage(null);
-        } else {
-            secondItemImage.setImage(item.getImage());
-        }
-        this.secondItem = item;
-    }
-
-    public void setThirdItem(Item item)
-    {
-        if (item == null) {
-            thirdItemImage.setImage(null);
-        } else {
-            thirdItemImage.setImage(item.getImage());
-        }
-        this.thirdItem = item;
-    }
-
- */
 
 
     public void onClickOutside(MouseEvent mouseEvent)
@@ -149,47 +99,109 @@ public class CultureController extends Injection<MainController>
     }
 
 
-    public void onItemClicked(MouseEvent mouseEvent)
-    {
-
-    }
-
     public void onThirdItemClicked(MouseEvent mouseEvent)
     {
-        if (items.size() < 2) return;
+        if (imageItems.size() < 2) return;
 
-        var thirdItem = items.get(2);
+        var thirdItem = imageItems.get(2);
 
         if (thirdItem != null)
         {
             getController().addItem(thirdItem.getItem());
-            thirdItem.pickUp();
+            updateItem();
         }
         //setFirstItem(getController().getGameStage().getItemFromRoom());
     }
 
     public void onFirstItemClicked(MouseEvent mouseEvent)
     {
-        if (items.isEmpty()) return;
+        if (imageItems.isEmpty()) return;
 
-        var firstItem = items.get(0);
+        var firstItem = imageItems.get(0);
         if (firstItem != null)
         {
             getController().addItem(firstItem.getItem());
-            firstItem.pickUp();
+            //firstItem.pickUp();
+            updateItem();
         }
     }
 
     public void onSecondItemClicked(MouseEvent mouseEvent)
     {
-        if (items.size() < 1) return;
+        if (imageItems.size() < 1) return;
 
-        var secondItem = items.get(1);
+        var secondItem = imageItems.get(1);
 
         if (secondItem != null)
         {
             getController().addItem(secondItem.getItem());
-            secondItem.pickUp();
+            updateItem();
         }
+    }
+
+    private void updateItem()
+    {
+        var itemsInRoom = getController().getGameStage().getItemFromRoom();
+
+        for (var item : imageItems)
+        {
+            boolean found = false;
+            for (var itemInRoom: itemsInRoom)
+            {
+                if (item.getItem() == null) continue;
+
+                if (item.getItem().getUuid() == itemInRoom.getUuid())
+                {
+                    found = true;
+                    break;
+                }
+
+            }
+
+            if (!found && item != null)
+            {
+                item.setItem(null);
+            }
+        }
+    }
+}
+
+class ImageItem
+{
+    private ImageView image;
+    private Item item;
+
+    ImageItem(ImageView image, Item item) {
+        this.image = image;
+        this.item = item;
+        if (item == null)
+        {
+            image.setImage(null);
+        }
+        else
+        {
+            image.setImage(item.getImage());
+        }
+    }
+
+    Item getItem() {
+        return item;
+    }
+
+    void setItem(Item item) {
+        this.item = item;
+        if (item == null){
+            image.setImage(null);
+        }
+        else
+        {
+            image.setImage(item.getImage());
+        }
+    }
+
+    void pickUp()
+    {
+        item = null;
+        image.setImage(null);
     }
 }

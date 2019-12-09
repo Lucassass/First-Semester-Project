@@ -264,36 +264,30 @@ public class MainController extends Application implements Initializable {
 
         if (gameStage.getRoomName().equalsIgnoreCase("culture"))
         {
-            var itemInRoom = gameStage.getItemFromRoom();
-
             var replacedItem = cultureController.replaceItem(item);
 
             if (replacedItem != null)
             {
                 appendDialog("Switching " + item.getName() + " out with " + replacedItem.getName());
 
-                removeItemFromInventory(item);
-
                 cultureController.replaceItem(item);
 
-                gameStage.addItemToRoom(item);
-
                 addItem(replacedItem);
-
             }
             else
             {
                 appendDialog("Switching " + item.getName() + " out with nothing");
-                removeItemFromInventory(item);
-                gameStage.addItemToRoom(item);
+
             }
+
+            removeItemFromInventory(item);
+            gameStage.addItemToRoom(item);
         }
         else{
             appendDialog("You can't switch items outside of the culture room");
         }
 
-        //removeItem(item);
-        //cultureController.setItem();
+
     }
 
 
