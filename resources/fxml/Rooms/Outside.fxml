@@ -13,7 +13,7 @@
    <children>
       <AnchorPane>
          <children>
-            <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
+            <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true" fx:id="backgroundImage">
                <image>
                   <Image url="@../../../../../../Desktop/Unavngivet.png" />
                </image>

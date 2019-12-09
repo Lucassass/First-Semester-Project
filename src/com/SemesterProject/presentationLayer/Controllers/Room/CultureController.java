@@ -4,7 +4,10 @@ import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -14,8 +17,14 @@ public class CultureController extends Injection<MainController>
 
     public Label roomText;
     public Label itemText;
+    public ImageView backgroundImage;
+
 
     private Item item;
+
+    public void setBackgroundImage(Image backgroundImage) {
+        this.backgroundImage.setImage(backgroundImage);
+    }
 
     public void setItem(Item item)
     {

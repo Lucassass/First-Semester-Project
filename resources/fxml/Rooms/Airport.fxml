@@ -14,7 +14,7 @@
             <ImageView fitHeight="707.0" fitWidth="846.0" pickOnBounds="true">
                <image>
 
-                  <Image url="@../../images/airportWithPerson.png" />
+                  <Image url="@../../images/rooms/airportWithPerson.png" />
                </image>
             </ImageView>
          </children>

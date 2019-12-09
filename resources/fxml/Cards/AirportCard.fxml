@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Button fx:id="chooseButton" layoutX="145.0" layoutY="507.0" mnemonicParsing="false" text="Choose" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <Label fx:id="cardPrice" alignment="CENTER" layoutX="65.0" layoutY="446.0" prefHeight="39.0" prefWidth="212.0" text="Price: 50" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Label fx:id="cardPrice" alignment="CENTER" layoutY="446.0" prefHeight="39.0" prefWidth="191.0" text="Price: 50" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="19.0" />
          </font>

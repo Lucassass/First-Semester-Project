@@ -4,14 +4,22 @@ import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class OutsideController extends Injection<MainController>
 {
 
 
+    @FXML
+    private ImageView backgroundImage;
     @FXML private Label roomText;
 
+
+    public void setBackgroundImage(Image backgroundImage) {
+        this.backgroundImage.setImage(backgroundImage);
+    }
 
     public void setRoomDescription(String description)
     {

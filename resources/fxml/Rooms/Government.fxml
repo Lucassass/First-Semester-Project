@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="700.0" fitWidth="846.0" pickOnBounds="true">
                <image>
-                  <Image url="/images/goverment + man.png" />
+                  <Image url="/images/rooms/goverment + man.png" />
                </image>
             </ImageView>
          </children>

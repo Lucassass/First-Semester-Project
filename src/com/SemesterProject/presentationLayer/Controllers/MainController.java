@@ -297,6 +297,7 @@ public class MainController extends Application implements Initializable {
         setStageName();
         cardRowController.anchorPane.setVisible(false);
         appendDialog("Moving to: " + getGameStage().getCountryName());
+        outsideController.setBackgroundImage(getImageOfOutsideRoom());
     }
 
     public void goToAirport()
@@ -359,6 +360,7 @@ public class MainController extends Application implements Initializable {
     {
         if (gameStage.goRoom("down"))
         {
+            cultureController.setBackgroundImage(getImageOfCultureRoom());
             cultureController.setItem(getGameStage().getItemFromRoom());
             outside.setVisible(false);
             culture.setVisible(true);
@@ -376,6 +378,7 @@ public class MainController extends Application implements Initializable {
         train.setVisible(false);
         outside.setVisible(true);
         appendDialog(getGameStage().getRoomDescription());
+        outsideController.setBackgroundImage(getImageOfOutsideRoom());
     }
 
     public void appendDialog(String text)
@@ -383,5 +386,47 @@ public class MainController extends Application implements Initializable {
         dialog.appendText(text + "\n");
     }
 
+
+    private Image getImageOfCultureRoom()
+    {
+        switch (gameStage.getCountryName().toLowerCase())
+        {
+            case "usa":
+
+            case "russia":
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomRussia.png"));
+            case "japan":
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomJapan.png"));
+            case "germany":
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomGermany.png"));
+            case "india":
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomIndia.png"));
+            case "china":
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomChina.png"));
+        }
+
+        return null;
+    }
+
+    private Image getImageOfOutsideRoom()
+    {
+        switch (gameStage.getCountryName().toLowerCase())
+        {
+            case "usa":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideUSA.png"));
+            case "russia":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideRussia.png"));
+            case "japan":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideJapan.png"));
+            case "germany":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideGermany.png"));
+            case "india":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideIndia.png"));
+            case "china":
+                return new Image(getClass().getResourceAsStream("/images/rooms/outsideChina.png"));
+        }
+
+        return null;
+    }
 
 }
