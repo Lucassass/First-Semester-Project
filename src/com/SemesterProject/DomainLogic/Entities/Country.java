@@ -12,7 +12,7 @@ public class Country {
 
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, Item item, ArrayList<Deal> dealObsoletes)
+                   String governmentDescription, String cultureDescription, ArrayList<Deal> deal, Item... item)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);
@@ -30,8 +30,8 @@ public class Country {
         outside.setExit("down", culture);
         outside.setExit("left", government);
         outside.setExit("right", trainStation);
-        culture.setItem(item);
-        government.setDeals(dealObsoletes);
+        culture.addItem(item);
+        government.setDeals(deal);
 
         governmentRoom = government;
         setStartRoom(outside);

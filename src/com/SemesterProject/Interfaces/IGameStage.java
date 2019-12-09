@@ -4,6 +4,7 @@ import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.DomainLogic.Entities.EndGameResult;
 import com.SemesterProject.DomainLogic.Entities.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public interface IGameStage
     boolean takeDeal(Deal deal, Item itemUsed);
     boolean gotEnoughMoneyToKeepPlaying();
     IConfig getConfig();
-    Item getItemFromRoom();
+    ArrayList<Item> getItemFromRoom();
     void removeItemFromRoom(UUID uuid);
     void addItemToRoom(Item item);
     String quoteFromItemUsed(Item item);

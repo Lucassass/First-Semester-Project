@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -31,14 +30,14 @@ import java.util.ResourceBundle;
 
 public class MainController extends Application implements Initializable {
 
-    public AnchorPane cardRow;
+    @FXML private AnchorPane cardRow;
 
-    public Label money;
+    @FXML private Label money;
 
-    public TextArea dialog;
-    //public ListView inventoryListView;
-    public ListView<Item> inventoryItems;
-    public ListView<Deal> inventoryDeals;
+    @FXML private TextArea dialog;
+
+    @FXML private ListView<Item> inventoryItems;
+    @FXML private ListView<Deal> inventoryDeals;
 
 
     @FXML private Label sustainabilityPoint;
@@ -48,8 +47,6 @@ public class MainController extends Application implements Initializable {
     @FXML private AnchorPane endScreen;
     @FXML private ImageView endScreenImage;
 
-    @FXML
-    private CardRowController cardRowController;
 
     @FXML private ImageView Local, Global;
 
@@ -71,6 +68,7 @@ public class MainController extends Application implements Initializable {
     @FXML private StackPane train;
     @FXML private TrainController trainController;
 
+    @FXML private CardRowController cardRowController;
     private static IGameStage gameStage;
     private static IInventory inventory;
 
@@ -88,6 +86,10 @@ public class MainController extends Application implements Initializable {
 
     public CardRowController getCardRowController() {
         return cardRowController;
+    }
+
+    public AnchorPane getCardRow() {
+        return cardRow;
     }
 
     public static void main(String[] args)
@@ -264,19 +266,25 @@ public class MainController extends Application implements Initializable {
         {
             var itemInRoom = gameStage.getItemFromRoom();
 
-            if (itemInRoom != null)
+            var replacedItem = cultureController.replaceItem(item);
+
+            if (replacedItem != null)
             {
-                appendDialog("Switching " + item.getName() + " out with " + itemInRoom.getName());
-                removeItem(item);
-                cultureController.setItem(item);
+                appendDialog("Switching " + item.getName() + " out with " + replacedItem.getName());
+
+                removeItemFromInventory(item);
+
+                cultureController.replaceItem(item);
+
                 gameStage.addItemToRoom(item);
-                addItem(itemInRoom);
+
+                addItem(replacedItem);
+
             }
             else
             {
                 appendDialog("Switching " + item.getName() + " out with nothing");
-                removeItem(item);
-                cultureController.setItem(item);
+                removeItemFromInventory(item);
                 gameStage.addItemToRoom(item);
             }
         }
@@ -299,7 +307,7 @@ public class MainController extends Application implements Initializable {
         {
             appendDialog("You have used " + (item).getName());
             appendDialog(getGameStage().quoteFromItemUsed(item));
-            removeItem(item);
+            removeItemFromInventory(item);
             governmentController.setItemUsed(item);
 
 
@@ -309,7 +317,7 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    private void removeItem(Item item)
+    private void removeItemFromInventory(Item item)
     {
         inventory.removeItem(item);
         inventoryItems.getItems().remove(item);
@@ -391,13 +399,12 @@ public class MainController extends Application implements Initializable {
     {
         if (gameStage.goRoom("down"))
         {
-            var item = getGameStage().getItemFromRoom();
+            var items = getGameStage().getItemFromRoom();
             cultureController.setBackgroundImage(getImageOfCultureRoom());
-            cultureController.setItem(item);
-            if (item != null)
-            {
-                cultureController.setItemImage(item.getImage());
-            }
+
+            cultureController.setItem(items);
+
+
             outside.setVisible(false);
             culture.setVisible(true);
             setStageName();

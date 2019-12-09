@@ -1,6 +1,7 @@
 package com.SemesterProject.DomainLogic.Entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class Room
     private HashMap<String, Room> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
-    private Item item;
+    private ArrayList<Item> items;
     private ArrayList<Deal> Deals;
     private String name;
 
@@ -35,6 +36,7 @@ public class Room
         flyExits = new HashMap<>();
         trainExits = new HashMap<>();
         Deals = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public String getName() {
@@ -78,14 +80,20 @@ public class Room
 
     /**
      * Set items for the room
-     * @param item Arraylist of items you wanna add to the room
+     * @param items Arraylist of items you wanna add to the room
      */
-    public void setItem(Item item) {
-        this.item = item;
+    public void addItem(Item[] items)
+    {
+        this.items.addAll(Arrays.asList(items));
     }
 
-    public Item getItem() {
-        return item;
+    public void addItem(Item item)
+    {
+        this.items.add(item);
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     /**
@@ -193,5 +201,7 @@ public class Room
     }
 
     public ArrayList<Country> getTrainExits(){ return new ArrayList<>(trainExits.values());}
+
+
 }
 

@@ -11,7 +11,7 @@ public abstract class Injection<T> implements IInjection<T>
     {
 
         this.controller = controller;
-        afterInjected();
+        postInjection();
     }
 
 
@@ -30,7 +30,7 @@ public abstract class Injection<T> implements IInjection<T>
         return controller;
     }
 
-    public void afterInjected(){
+    public void postInjection(){
 
 
     }

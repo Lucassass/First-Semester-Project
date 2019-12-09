@@ -29,7 +29,7 @@ public class GovernmentController extends Injection<MainController> {
 
     public void onManClicked(MouseEvent mouseEvent)
     {
-        getController().cardRow.setVisible(true);
+        getController().getCardRow().setVisible(true);
         getController().getCardRowController().loadDeals();
     }
 }
