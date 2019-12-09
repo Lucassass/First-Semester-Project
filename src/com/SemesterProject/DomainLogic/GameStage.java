@@ -1,9 +1,6 @@
 package com.SemesterProject.DomainLogic;
 
-import com.SemesterProject.DomainLogic.Entities.Country;
-import com.SemesterProject.DomainLogic.Entities.Deal;
-import com.SemesterProject.DomainLogic.Entities.Item;
-import com.SemesterProject.DomainLogic.Entities.Room;
+import com.SemesterProject.DomainLogic.Entities.*;
 import com.SemesterProject.DomainLogic.Enum.Countries;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
 import com.SemesterProject.Interfaces.IConfig;
@@ -22,10 +19,12 @@ public class GameStage implements IGameStage
     private IConfig config;
     private Random random = new Random();
     private Inventory inventory = Inventory.getInstance();
+    private ArrayList<Country> countries;
 
     public GameStage()
     {
         config = new Config();
+        countries = new ArrayList<>();
         createRooms();
 
     }
@@ -105,6 +104,25 @@ public class GameStage implements IGameStage
             return item.getTextBad() + "\n it gave " + item.getPointsBad();
         }
         return "It did nothing";
+    }
+
+    @Override
+    public EndGameResult getEndGameResult()
+    {
+        int energyPoint = 0;
+        int sustainabilityPoint = 0;
+        int environmentPoint = 0;
+
+        var dealCategories = inventory.getDeals();
+        for (var dealCategory: dealCategories) {
+            for (var deal : dealCategory)
+            {
+                energyPoint += deal.getEnergyPoints();
+                sustainabilityPoint += deal.getSustainabilityPoints();
+                environmentPoint += deal.getEnvironmentPoints();
+            }
+        }
+        return new EndGameResult(environmentPoint, sustainabilityPoint, energyPoint);
     }
 
     private boolean successfullyNegotiateDeal(Deal deal, Item itemUsed) {
@@ -229,9 +247,6 @@ public class GameStage implements IGameStage
         return currentRoom.getItem();
     }
 
-
-
-
     private void createRooms()
     {
 
@@ -350,6 +365,13 @@ public class GameStage implements IGameStage
         india.setTrainExit("China", china);
         india.setTrainExit("Japan", japan);
         india.setTrainExit("Usa", usa);
+
+        countries.add(usa);
+        countries.add(germany);
+        countries.add(india);
+        countries.add(japan);
+        countries.add(china);
+        countries.add(russia);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();

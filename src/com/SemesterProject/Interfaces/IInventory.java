@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface IInventory
 {
     void addDeal(Deal deal);
-    List<Deal> getDeals();
+    //List<Deal> getDeals();
     List<Item> getItems();
     void addItem(Item item);
     void removeItem(Item item);

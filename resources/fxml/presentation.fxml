@@ -21,13 +21,38 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+
+
        <fx:include fx:id="outside" source="Rooms/Outside.fxml" />
        <fx:include fx:id="airport" source="Rooms/Airport.fxml" />
        <fx:include fx:id="culture" source="Rooms/Culture.fxml" />
        <fx:include fx:id="train" source="Rooms/TrainStation.fxml" />
        <fx:include fx:id="government" source="Rooms/Government.fxml" />
        <fx:include fx:id="cardRow" source="Cards/DealRow.fxml" visible="false" />
-
+       <AnchorPane fx:id="endScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+   <children>
+              <ImageView fx:id="endScreenImage" fitHeight="707" fitWidth="846" pickOnBounds="true">
+                  <image>
+                      <Image url="@../images/endGameImages/endGameHelloHell.png" />
+                  </image>
+              </ImageView>
+            <Label fx:id="energyPoint" alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="261.0" prefHeight="218.0" prefWidth="198.0" text="1000" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="84.0" />
+               </font>
+            </Label>
+            <Label fx:id="sustainabilityPoint" alignment="CENTER" contentDisplay="CENTER" layoutX="333.0" layoutY="261.0" prefHeight="218.0" prefWidth="198.0" text="1000" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="84.0" />
+               </font>
+            </Label>
+            <Label fx:id="environmentPoint" alignment="CENTER" contentDisplay="CENTER" layoutX="617.0" layoutY="261.0" prefHeight="218.0" prefWidth="198.0" text="1000" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="84.0" />
+               </font>
+            </Label>
+   </children>
+       </AnchorPane>
        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
             <Label fx:id="money" layoutX="14.0" layoutY="633.0" text="Money" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">

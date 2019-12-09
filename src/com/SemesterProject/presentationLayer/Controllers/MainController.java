@@ -40,6 +40,14 @@ public class MainController extends Application implements Initializable {
     public ListView<Item> inventoryItems;
     public ListView<Deal> inventoryDeals;
 
+
+    @FXML private Label sustainabilityPoint;
+    @FXML private Label environmentPoint;
+    @FXML private Label energyPoint;
+
+    @FXML private AnchorPane endScreen;
+    @FXML private ImageView endScreenImage;
+
     @FXML
     private CardRowController cardRowController;
 
@@ -143,7 +151,37 @@ public class MainController extends Application implements Initializable {
     }
 
     public void onQuitButton(ActionEvent actionEvent) {
-        System.exit(0);
+        endGame();
+    }
+
+    private void endGame()
+    {
+        endScreenImage.setImage(getEndGameImage());
+        endScreen.setVisible(true);
+        appendDialog("Game have ended");
+        var result = getGameStage().getEndGameResult();
+        energyPoint.setText(String.valueOf(result.getEnergyPoint()));
+        environmentPoint.setText(String.valueOf(result.getEnergyPoint()));
+        sustainabilityPoint.setText(String.valueOf(result.getEnergyPoint()));
+
+    }
+
+    private Image getEndGameImage()
+    {
+        var points = getGameStage().getEndGameResult().getSum();
+        if (points > 700)
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGamePARADISE.png"));
+        }
+        else if (points > 300)
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameStillBREATHING.png"));
+
+        }
+        else
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameHelloHell.png"));
+        }
     }
 
     public void updateMoney()

@@ -1,6 +1,7 @@
 package com.SemesterProject.Interfaces;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.DomainLogic.Entities.EndGameResult;
 import com.SemesterProject.DomainLogic.Entities.Item;
 
 import java.util.List;
@@ -26,4 +27,5 @@ public interface IGameStage
     void removeItemFromRoom(UUID uuid);
     void addItemToRoom(Item item);
     String quoteFromItemUsed(Item item);
+    EndGameResult getEndGameResult();
 }

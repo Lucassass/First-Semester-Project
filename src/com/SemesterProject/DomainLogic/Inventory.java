@@ -23,7 +23,7 @@ public class Inventory implements IInventory {
 
     private static Inventory instance = new Inventory();
     private ArrayList<Item> items = new ArrayList<>(); //ArrayList that contains Items
-    private ArrayList<ArrayList<Deal>> inventoryDeals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
+    private ArrayList<ArrayList<Deal>> deals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
     private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
     private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
     private ArrayList<Deal> knowledge = new ArrayList<Deal>(); //Deals with category knowledge(will be placed in inventoryDeals
@@ -35,9 +35,9 @@ public class Inventory implements IInventory {
 
     private Inventory()
     {
-        inventoryDeals.add(food);
-        inventoryDeals.add(energy);
-        inventoryDeals.add(knowledge);
+        deals.add(food);
+        deals.add(energy);
+        deals.add(knowledge);
     }
 
     public boolean isFullOfDeals(Deal deal)
@@ -82,12 +82,6 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public List<Deal> getDeals() {
-        return null;
-
-    }
-
-    @Override
     public List<Item> getItems() {
         return null;
     }
@@ -115,7 +109,7 @@ public class Inventory implements IInventory {
     public void removeDeal(Deal deal)
     {
         outside:
-        for (var categories : inventoryDeals)
+        for (var categories : deals)
         {
             for (var temp : categories)
             {
@@ -140,7 +134,7 @@ public class Inventory implements IInventory {
     /**
      * @return inventory Deals
      */
-    public ArrayList<ArrayList<Deal>> getInventoryDeals(){return inventoryDeals;}
+    public ArrayList<ArrayList<Deal>> getDeals(){return deals;}
 
     /**
      *  ------> SHOULD BE USED IN ANOTHER CLASS OR COMMANDWORD <--------
@@ -327,7 +321,7 @@ public class Inventory implements IInventory {
 
     public void removeDealFromInventory(Deal dealToRemove)
     {
-        for (var dealCategory : inventoryDeals)
+        for (var dealCategory : deals)
         {
             if (dealCategory.size() != 0 && dealCategory.get(0).getCategory() == dealToRemove.getCategory())
             {
@@ -428,9 +422,9 @@ public class Inventory implements IInventory {
     {
 
             ConfigObsolete.subtractMoney(deal.getPrice());
-            inventoryDeals.add(food);
-            inventoryDeals.add(energy);
-            inventoryDeals.add(knowledge);
+            deals.add(food);
+            deals.add(energy);
+            deals.add(knowledge);
             if (deal.getCategory() == DealCategory.Food)
             {
                 addCategory(deal,food,maxFood,country);
