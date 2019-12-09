@@ -35,11 +35,9 @@ public class GovernmentController extends Injection<MainController> {
         getController().onMouseExit();
     }
 
-    public void openWindowTest(ActionEvent actionEvent)
+    public void onManClicked(MouseEvent mouseEvent)
     {
         getController().cardRow.setVisible(true);
         getController().getCardRowController().loadDeals();
     }
-
-
 }

@@ -14,7 +14,6 @@ public class OutsideController extends Injection<MainController>
 
     @FXML
     private ImageView backgroundImage;
-    @FXML private Label roomText;
 
 
     public void setBackgroundImage(Image backgroundImage) {

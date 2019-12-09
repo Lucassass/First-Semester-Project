@@ -24,11 +24,6 @@
          <center>
             <AnchorPane>
                <children>
-                  <Label fx:id="roomText" layoutX="78.0" layoutY="161.0" prefHeight="346.0" prefWidth="589.0" text="Train station" textFill="#c60f0f" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="62.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </center>

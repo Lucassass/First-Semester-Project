@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class CultureController extends Injection<MainController>
 {
 
-    public Label roomText;
-    public Label itemText;
 
     public ImageView backgroundImage;
     public ImageView itemImage;
@@ -37,12 +35,10 @@ public class CultureController extends Injection<MainController>
     {
         if (item == null)
         {
-            itemText.setText("");
             itemImage.setImage(null);
         }
         else
         {
-            itemText.setText(item.getName());
             itemImage.setImage(item.getImage());
         }
 
@@ -61,12 +57,6 @@ public class CultureController extends Injection<MainController>
 
     public void onMouseExited(MouseEvent mouseEvent) {
         getController().onMouseExit();
-    }
-
-
-    public void onItemClick(ActionEvent actionEvent)
-    {
-
     }
 
 

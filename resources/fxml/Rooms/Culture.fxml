@@ -24,17 +24,6 @@
          <center>
             <AnchorPane>
                <children>
-                  <Label fx:id="roomText" layoutX="130.0" layoutY="33.0" prefHeight="346.0" prefWidth="589.0" text="Culture" textFill="#c60f0f" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="62.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="130.0" layoutY="543.0" mnemonicParsing="false" onAction="#onItemClick" text="click me" />
-                  <Label fx:id="itemText" layoutX="674.0" layoutY="499.0" text="Label">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Label>
                   <ImageView fx:id="itemImage" fitHeight="229.0" fitWidth="184.0" layoutX="333.0" layoutY="339.0" onMouseClicked="#onItemClicked" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/endGameImages/endGameStillBREATHING.png" />
