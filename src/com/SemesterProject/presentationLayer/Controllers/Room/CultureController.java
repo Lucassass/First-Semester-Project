@@ -17,10 +17,17 @@ public class CultureController extends Injection<MainController>
 
     public Label roomText;
     public Label itemText;
+
     public ImageView backgroundImage;
+    public ImageView itemImage;
 
 
     private Item item;
+
+    public void setItemImage(Image itemImage)
+    {
+        this.itemImage.setImage(itemImage);
+    }
 
     public void setBackgroundImage(Image backgroundImage) {
         this.backgroundImage.setImage(backgroundImage);
@@ -31,11 +38,14 @@ public class CultureController extends Injection<MainController>
         if (item == null)
         {
             itemText.setText("");
+            itemImage.setImage(null);
         }
         else
         {
             itemText.setText(item.getName());
+            itemImage.setImage(item.getImage());
         }
+
         this.item = item;
     }
 
@@ -56,12 +66,16 @@ public class CultureController extends Injection<MainController>
 
     public void onItemClick(ActionEvent actionEvent)
     {
+
+    }
+
+
+    public void onItemClicked(MouseEvent mouseEvent)
+    {
         if (item != null)
         {
             getController().addItem(item);
         }
         setItem(getController().getGameStage().getItemFromRoom());
     }
-
-
 }

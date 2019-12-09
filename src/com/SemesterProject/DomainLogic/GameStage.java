@@ -72,7 +72,8 @@ public class GameStage implements IGameStage
     {
         var cheapestDealInCountry = getCheapestDealInCountry();
 
-        return config.getMoney() > cheapestDealInCountry || config.getMoney() > config.getLowestCost();
+        return (config.getMoney() > cheapestDealInCountry && cheapestDealInCountry != 0) ||
+                config.getMoney() > config.getLowestCost();
     }
 
     private int getCheapestDealInCountry()
@@ -248,34 +249,34 @@ public class GameStage implements IGameStage
     private void createRooms()
     {
 
-        var usaItem = new Item("Vodka", Countries.Russia, 2, Countries.India, -2);
+        var usaItem = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
         var usaDeals = new ArrayList<Deal>();
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
-        var chinaItem = new Item("Frankfurter", Countries.Germany,2, Countries.Japan,-2);
+        var chinaItem = new Item("Vodka", Countries.Germany,2, Countries.Japan,-2, "vodka.png");
         var chinaDeals = new ArrayList<Deal>();
         chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
         chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var germanyItem = new Item("Sushi", Countries.Japan,2, Countries.USA,-2);
+        var germanyItem = new Item("Flute", Countries.Japan,2, Countries.USA,-2, "flute.png");
         var germanyDeals = new ArrayList<Deal>();
         germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
         germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var russiaItem = new Item("Curry", Countries.India,2, Countries.Russia,-2);
+        var russiaItem = new Item("Katana", Countries.India,2, Countries.Russia,-2, "katana.png");
         var russiaDeals = new ArrayList<Deal>();
         russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
         russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var indiaItem = new Item("Not Curry", Countries.India,2, Countries.Russia,-2);
+        var indiaItem = new Item("Sausage", Countries.India,2, Countries.Russia,-2, "sausage.png");
         var indiaDeals = new ArrayList<Deal>();
         indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
-        var japanItem = new Item("Sushi", Countries.Japan,2, Countries.USA,-2);
+        var japanItem = new Item("Gun", Countries.Japan,2, Countries.USA,-2, "gun.png");
         var japanDeals = new ArrayList<Deal>();
         japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
         japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));

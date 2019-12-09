@@ -161,8 +161,8 @@ public class MainController extends Application implements Initializable {
         appendDialog("Game have ended");
         var result = getGameStage().getEndGameResult();
         energyPoint.setText(String.valueOf(result.getEnergyPoint()));
-        environmentPoint.setText(String.valueOf(result.getEnergyPoint()));
-        sustainabilityPoint.setText(String.valueOf(result.getEnergyPoint()));
+        environmentPoint.setText(String.valueOf(result.getEnvironmentPoint()));
+        sustainabilityPoint.setText(String.valueOf(result.getSustainabilityPoint()));
 
     }
 
@@ -191,6 +191,7 @@ public class MainController extends Application implements Initializable {
         {
             //GAME SHOULD END HERE
             appendDialog("You dont have enough money to do anything");
+            endGame();
         }
     }
 
@@ -292,6 +293,7 @@ public class MainController extends Application implements Initializable {
     public void onItemUse(ActionEvent actionEvent)
     {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
+        if (item == null) return;
 
         if (gameStage.getRoomName().equalsIgnoreCase("government"))
         {
@@ -399,8 +401,13 @@ public class MainController extends Application implements Initializable {
     {
         if (gameStage.goRoom("down"))
         {
+            var item = getGameStage().getItemFromRoom();
             cultureController.setBackgroundImage(getImageOfCultureRoom());
-            cultureController.setItem(getGameStage().getItemFromRoom());
+            cultureController.setItem(item);
+            if (item != null)
+            {
+                cultureController.setItemImage(item.getImage());
+            }
             outside.setVisible(false);
             culture.setVisible(true);
             setStageName();
@@ -431,7 +438,7 @@ public class MainController extends Application implements Initializable {
         switch (gameStage.getCountryName().toLowerCase())
         {
             case "usa":
-
+                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomUSA.png"));
             case "russia":
                 return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomRussia.png"));
             case "japan":
