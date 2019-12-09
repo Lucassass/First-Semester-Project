@@ -19,12 +19,10 @@ public class GameStage implements IGameStage
     private IConfig config;
     private Random random = new Random();
     private Inventory inventory = Inventory.getInstance();
-    private ArrayList<Country> countries;
 
     public GameStage()
     {
         config = new Config();
-        countries = new ArrayList<>();
         createRooms();
 
     }
@@ -365,13 +363,6 @@ public class GameStage implements IGameStage
         india.setTrainExit("China", china);
         india.setTrainExit("Japan", japan);
         india.setTrainExit("Usa", usa);
-
-        countries.add(usa);
-        countries.add(germany);
-        countries.add(india);
-        countries.add(japan);
-        countries.add(china);
-        countries.add(russia);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();
