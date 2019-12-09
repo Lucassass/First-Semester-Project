@@ -21,10 +21,6 @@ public class OutsideController extends Injection<MainController>
         this.backgroundImage.setImage(backgroundImage);
     }
 
-    public void setRoomDescription(String description)
-    {
-        roomText.setText(description);
-    }
     public void onMouseEntered(MouseEvent mouseEvent)
     {
 

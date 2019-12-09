@@ -278,6 +278,7 @@ public class MainController extends Application implements Initializable {
 
     public void onMouseEnter()
     {
+
         mainWindow.setCursor(Cursor.HAND);
     }
 
