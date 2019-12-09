@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.Cursor?>
 <StackPane prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Room.AirportController">
 <?import javafx.scene.text.Font?>
    <children>
@@ -16,21 +17,29 @@
 
                   <Image url="@../../images/rooms/airportWithPerson.png" />
                </image>
+
             </ImageView>
          </children>
       </AnchorPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <bottom>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </bottom>
          <center>
             <AnchorPane>
                <children>
-                  <Pane layoutX="509.0" layoutY="191.0" onMouseClicked="#onMouseClickGirl" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="446.0" prefWidth="130.0" style="-fx-background-color: Transperent;" />
+                  <Pane layoutX="509.0" layoutY="191.0" onMouseClicked="#onMouseClickGirl" prefHeight="446.0" prefWidth="130.0" style="-fx-background-color: Transperent;" >
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
                </children>
             </AnchorPane>
          </center>

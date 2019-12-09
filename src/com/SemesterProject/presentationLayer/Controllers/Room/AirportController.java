@@ -17,15 +17,6 @@ public class AirportController extends Injection<MainController>
         getController().goToOutsideFrom("down");
     }
 
-    public void onMouseEntered(MouseEvent mouseEvent) {
-        getController().onMouseEnter();
-
-    }
-
-    public void onMouseExited(MouseEvent mouseEvent) {
-        getController().onMouseExit();
-    }
-
 
     public void onMouseClickGirl(MouseEvent mouseEvent)
     {

@@ -316,16 +316,6 @@ public class MainController extends Application implements Initializable {
         appendDialog("Removed item: " + item.getName());
     }
 
-    public void onMouseEnter()
-    {
-
-        mainWindow.setCursor(Cursor.HAND);
-    }
-
-    public void onMouseExit()
-    {
-        mainWindow.setCursor(Cursor.DEFAULT);
-    }
 
     public void goToNewCountry()
     {
@@ -425,6 +415,7 @@ public class MainController extends Application implements Initializable {
         outside.setVisible(true);
         appendDialog(getGameStage().getRoomDescription());
         outsideController.setBackgroundImage(getImageOfOutsideRoom());
+        setStageName();
     }
 
     public void appendDialog(String text)

@@ -8,23 +8,8 @@ import javafx.scene.input.MouseEvent;
 
 public class TrainController  extends Injection<MainController> {
 
-
-    @FXML private Label roomText;
-
-    public void setRoomDescription(String description)
-    {
-        roomText.setText(description);
-    }
-
     public void onClickOutside(MouseEvent mouseEvent) {
         getController().goToOutsideFrom("left");
-    }
-
-    public void onMouseEntered(MouseEvent mouseEvent) {
-        getController().onMouseEnter();
-    }
-
-    public void onMouseExited(MouseEvent mouseEvent) { getController().onMouseExit();
     }
 
     public void onTrainManClick(MouseEvent mouseEvent)
@@ -34,11 +19,5 @@ public class TrainController  extends Injection<MainController> {
         getController().getCardRowController().loadTrainCountries();
     }
 
-    public void onTrainManEnter(MouseEvent mouseEvent) {
-        getController().onMouseEnter();
-    }
 
-    public void onTrainManExit(MouseEvent mouseEvent) {
-        getController().onMouseExit();
-    }
 }

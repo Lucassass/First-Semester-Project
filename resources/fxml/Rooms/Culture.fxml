@@ -36,10 +36,13 @@
             </AnchorPane>
          </center>
          <top>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="180.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickOutside"  pickOnBounds="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </top>
       </BorderPane>

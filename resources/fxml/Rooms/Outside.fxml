@@ -22,37 +22,50 @@
       </AnchorPane>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
          <bottom>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickCulture" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickCulture" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
+
          </bottom>
          <left>
-            <ImageView fitHeight="72.0" fitWidth="149.0" onMouseClicked="#onClickGovernment" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="90.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="72.0" fitWidth="149.0" onMouseClicked="#onClickGovernment"  pickOnBounds="true" rotate="90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
                <BorderPane.margin>
                   <Insets left="-40.0" />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </left>
          <right>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickTrainStation" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="-90.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickTrainStation"  pickOnBounds="true" rotate="-90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
                <BorderPane.margin>
                   <Insets right="-50.0" />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </right>
          <top>
-            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickAirport" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="180.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="47.0" fitWidth="149.0" onMouseClicked="#onClickAirport"  pickOnBounds="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </top>
          <center>

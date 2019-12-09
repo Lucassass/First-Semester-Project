@@ -27,14 +27,6 @@ public class GovernmentController extends Injection<MainController> {
         getController().goToOutsideFrom("right");
     }
 
-    public void onMouseEntered(MouseEvent mouseEvent) {
-        getController().onMouseEnter();
-    }
-
-    public void onMouseExited(MouseEvent mouseEvent) {
-        getController().onMouseExit();
-    }
-
     public void onManClicked(MouseEvent mouseEvent)
     {
         getController().cardRow.setVisible(true);

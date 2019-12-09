@@ -20,16 +20,6 @@ public class OutsideController extends Injection<MainController>
         this.backgroundImage.setImage(backgroundImage);
     }
 
-    public void onMouseEntered(MouseEvent mouseEvent)
-    {
-
-        getController().onMouseEnter();
-    }
-
-    public void onMouseExited(MouseEvent mouseEvent)
-    {
-        getController().onMouseExit();
-    }
 
     public void onClickAirport(MouseEvent mouseEvent) {
 

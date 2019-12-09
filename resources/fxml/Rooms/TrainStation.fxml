@@ -28,23 +28,29 @@
             </AnchorPane>
          </center>
          <left>
-            <ImageView fitHeight="72.0" fitWidth="149.0" onMouseClicked="#onClickOutside" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" pickOnBounds="true" rotate="90.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="72.0" fitWidth="149.0" onMouseClicked="#onClickOutside"  pickOnBounds="true" rotate="90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Arrow.png" />
                </image>
                <BorderPane.margin>
                   <Insets bottom="150.0" left="-40.0" />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </left>
          <top>
-            <Pane onMouseClicked="#onTrainManClick" onMouseEntered="#onTrainManEnter" onMouseExited="#onTrainManExit" prefHeight="146.0" prefWidth="267.0" style="-fx-background-color: Transperent;" BorderPane.alignment="TOP_LEFT">
+            <Pane onMouseClicked="#onTrainManClick"  prefHeight="146.0" prefWidth="267.0" style="-fx-background-color: Transperent;" BorderPane.alignment="TOP_LEFT">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <BorderPane.margin>
                   <Insets right="740.0" />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
          </top>
       </BorderPane>
