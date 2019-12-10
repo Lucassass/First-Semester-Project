@@ -1,4 +1,4 @@
-package com.SemesterProject.presentationLayer;
+package com.SemesterProject.presentationLayer.Enum;
 
 public enum CardAirportType
 {

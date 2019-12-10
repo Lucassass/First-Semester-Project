@@ -75,8 +75,6 @@ public class MainController extends Application implements Initializable {
     public static IGameStage getGameStage() {
         return gameStage;
     }
-    public static IInventory getInventory() { return inventory; }
-
 
     private void setStageName(){
         stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
@@ -100,7 +98,6 @@ public class MainController extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws Exception
     {
-
         MainController.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/presentation.fxml"));
         Scene scene = new Scene(root);
@@ -121,7 +118,21 @@ public class MainController extends Application implements Initializable {
         updateMoney();
         setupOutsideRoom();
         globalMap.setImage(getGlobalMap());
+        configureInventory();
+    }
 
+    private void configureInventory() {
+        inventoryDeals.setCellFactory(param -> new ListCell<>(){
+            @Override
+            protected void updateItem(Deal item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName() + " | " + item.getCategory());
+                }
+            }
+        });
 
         inventoryItems.setCellFactory(param -> new ListCell<>()
         {
@@ -135,18 +146,6 @@ public class MainController extends Application implements Initializable {
                     setText(item.getName());
                 }
 
-            }
-        });
-
-        inventoryDeals.setCellFactory(param -> new ListCell<>(){
-            @Override
-            protected void updateItem(Deal item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.getName() + " | " + item.getCategory());
-                }
             }
         });
     }
@@ -198,7 +197,7 @@ public class MainController extends Application implements Initializable {
 
     public void addDeal(Deal deal)
     {
-        if (!getInventory().isFullOfDeals(deal))
+        if (!inventory.isFullOfDeals(deal))
         {
             if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
             {

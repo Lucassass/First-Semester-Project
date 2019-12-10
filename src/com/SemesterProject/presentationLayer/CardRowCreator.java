@@ -4,7 +4,7 @@ import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.presentationLayer.Controllers.Card.CountryCardController;
 import com.SemesterProject.presentationLayer.Controllers.Card.DealCardController;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
-import com.sun.tools.javac.Main;
+import com.SemesterProject.presentationLayer.Enum.CardAirportType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;

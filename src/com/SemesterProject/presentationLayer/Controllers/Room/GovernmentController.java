@@ -11,8 +11,6 @@ import javafx.scene.input.MouseEvent;
 public class GovernmentController extends Injection<MainController> {
 
 
-    @FXML private Label roomText;
-
     private Item itemUsed;
 
     public void setItemUsed(Item itemUsed) {

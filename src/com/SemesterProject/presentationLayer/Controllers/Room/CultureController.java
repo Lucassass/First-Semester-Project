@@ -110,7 +110,6 @@ public class CultureController extends Injection<MainController>
             getController().addItem(thirdItem.getItem());
             updateItem();
         }
-        //setFirstItem(getController().getGameStage().getItemFromRoom());
     }
 
     public void onFirstItemClicked(MouseEvent mouseEvent)
@@ -121,7 +120,6 @@ public class CultureController extends Injection<MainController>
         if (firstItem != null)
         {
             getController().addItem(firstItem.getItem());
-            //firstItem.pickUp();
             updateItem();
         }
     }
@@ -199,9 +197,4 @@ class ImageItem
         }
     }
 
-    void pickUp()
-    {
-        item = null;
-        image.setImage(null);
-    }
 }

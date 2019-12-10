@@ -3,7 +3,7 @@ package com.SemesterProject.presentationLayer;
 import com.SemesterProject.presentationLayer.Exceptions.ControllerNotInjected;
 
 
-public abstract class Injection<T> implements IInjection<T>
+public abstract class Injection<T>
 {
     private T controller;
 
