@@ -253,15 +253,15 @@ public class CardRowCreator
     {
         gridPane.getChildren().clear();
         gridPane.getColumnConstraints().clear();
-        var test = new ColumnConstraints();
-        test.setPercentWidth(-1);
-        test.setMinWidth(-1);
-        test.setPrefWidth(-1);
-        test.setMaxWidth(-1);
-        test.setHgrow(null);
-        test.setFillWidth(true);
-        test.setHalignment(null);
-        gridPane.getColumnConstraints().add(test);
+        var columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(-1);
+        columnConstraints.setMinWidth(-1);
+        columnConstraints.setPrefWidth(-1);
+        columnConstraints.setMaxWidth(-1);
+        columnConstraints.setHgrow(null);
+        columnConstraints.setFillWidth(true);
+        columnConstraints.setHalignment(null);
+        gridPane.getColumnConstraints().add(columnConstraints);
     }
 
     private  double getCardPercent(int size, double percentPerEmptyRow)

@@ -65,7 +65,6 @@ public class CultureController extends Injection<MainController>
     {
         clearItems();
 
-
         for (var item : items)
         {
             for (int i = 0; i < imageItems.size(); i++) {

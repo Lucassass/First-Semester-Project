@@ -119,6 +119,8 @@ public class MainController extends Application implements Initializable {
         setupOutsideRoom();
         globalMap.setImage(getGlobalMap());
         configureInventory();
+        appendDialog("This is a game of choice. Everything you do has an effect so choose wisely. But here's the catch you won’t know how you did until you finish the game\n" +
+                "for more information, try “Help”\n");
     }
 
     private void configureInventory() {
@@ -328,7 +330,7 @@ public class MainController extends Application implements Initializable {
         setStageName();
         cardRowController.anchorPane.setVisible(false);
         appendDialog("Moving to: " + getGameStage().getCountryName());
-        outsideController.setBackgroundImage(getImageOfOutsideRoom());
+        //outsideController.setBackgroundImage(getImageOfOutsideRoom());
 
         globalMap.setImage(getGlobalMap());
     }
@@ -394,7 +396,7 @@ public class MainController extends Application implements Initializable {
         if (gameStage.goRoom("down"))
         {
             var items = getGameStage().getItemFromRoom();
-            cultureController.setBackgroundImage(getImageOfCultureRoom());
+            //cultureController.setBackgroundImage(getImageOfCultureRoom());
 
             cultureController.setItem(items);
 
@@ -415,56 +417,13 @@ public class MainController extends Application implements Initializable {
         train.setVisible(false);
         outside.setVisible(true);
         appendDialog(getGameStage().getRoomDescription());
-        outsideController.setBackgroundImage(getImageOfOutsideRoom());
+        //outsideController.setBackgroundImage(getImageOfOutsideRoom());
         setStageName();
     }
 
     public void appendDialog(String text)
     {
         dialog.appendText(text + "\n");
-    }
-
-
-    private Image getImageOfCultureRoom()
-    {
-        switch (gameStage.getCountryName().toLowerCase())
-        {
-            case "usa":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomUSA.png"));
-            case "russia":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomRussia.png"));
-            case "japan":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomJapan.png"));
-            case "germany":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomGermany.png"));
-            case "india":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomIndia.png"));
-            case "china":
-                return new Image(getClass().getResourceAsStream("/images/rooms/cultureRoomChina.png"));
-        }
-
-        return null;
-    }
-
-    private Image getImageOfOutsideRoom()
-    {
-        switch (gameStage.getCountryName().toLowerCase())
-        {
-            case "usa":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideUSA.png"));
-            case "russia":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideRussia.png"));
-            case "japan":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideJapan.png"));
-            case "germany":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideGermany.png"));
-            case "india":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideIndia.png"));
-            case "china":
-                return new Image(getClass().getResourceAsStream("/images/rooms/outsideChina.png"));
-        }
-
-        return null;
     }
 
     private Image getGlobalMap()
