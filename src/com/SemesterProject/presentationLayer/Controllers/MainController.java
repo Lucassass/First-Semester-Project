@@ -48,10 +48,8 @@ public class MainController extends Application implements Initializable {
     @FXML private ImageView endScreenImage;
 
 
-    @FXML private ImageView Local, Global;
+    @FXML private ImageView localMap, globalMap;
 
-    @FXML private GridPane mainWindow;
-    @FXML private Label labelTest;
 
     @FXML private StackPane airport;
     @FXML private AirportController airportController;
@@ -122,6 +120,7 @@ public class MainController extends Application implements Initializable {
         cardRowController.injectController(this);
         updateMoney();
         setupOutsideRoom();
+        globalMap.setImage(getGlobalMap());
 
 
         inventoryItems.setCellFactory(param -> new ListCell<>()
@@ -331,6 +330,8 @@ public class MainController extends Application implements Initializable {
         cardRowController.anchorPane.setVisible(false);
         appendDialog("Moving to: " + getGameStage().getCountryName());
         outsideController.setBackgroundImage(getImageOfOutsideRoom());
+
+        globalMap.setImage(getGlobalMap());
     }
 
     public void goToAirport()
@@ -343,7 +344,7 @@ public class MainController extends Application implements Initializable {
 
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-            Local.setImage(new Image (getClass().getResourceAsStream("/images/Airport.png")));
+            localMap.setImage(new Image (getClass().getResourceAsStream("/images/Airport.png")));
         }
 
     }
@@ -353,7 +354,7 @@ public class MainController extends Application implements Initializable {
         if (gameStage.goRoom(direction))
         {
             setupOutsideRoom();
-            Local.setImage(new Image (getClass().getResourceAsStream("/images/Outside.png")));
+            localMap.setImage(new Image (getClass().getResourceAsStream("/images/Outside.png")));
         }
 
     }
@@ -369,7 +370,7 @@ public class MainController extends Application implements Initializable {
 
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-            Local.setImage(new Image (getClass().getResourceAsStream("/images/Goverment.png")));
+            localMap.setImage(new Image (getClass().getResourceAsStream("/images/Goverment.png")));
         }
 
     }
@@ -384,7 +385,7 @@ public class MainController extends Application implements Initializable {
 
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-            Local.setImage(new Image (getClass().getResourceAsStream("/images/Trainstation.png")));
+            localMap.setImage(new Image (getClass().getResourceAsStream("/images/Trainstation.png")));
         }
 
     }
@@ -403,7 +404,7 @@ public class MainController extends Application implements Initializable {
             culture.setVisible(true);
             setStageName();
             appendDialog(getGameStage().getRoomDescription());
-            Local.setImage(new Image (getClass().getResourceAsStream("/images/Culture.png")));
+            localMap.setImage(new Image (getClass().getResourceAsStream("/images/Culture.png")));
         }
     }
 
@@ -464,6 +465,26 @@ public class MainController extends Application implements Initializable {
                 return new Image(getClass().getResourceAsStream("/images/rooms/outsideChina.png"));
         }
 
+        return null;
+    }
+
+    private Image getGlobalMap()
+    {
+        switch (gameStage.getCountryName().toLowerCase())
+        {
+            case "usa":
+                return new Image(getClass().getResourceAsStream("/images/USA.png"));
+            case "russia":
+                return new Image(getClass().getResourceAsStream("/images/Russia.png"));
+            case "japan":
+                return new Image(getClass().getResourceAsStream("/images/Japan.png"));
+            case "germany":
+                return new Image(getClass().getResourceAsStream("/images/Germany.png"));
+            case "india":
+                return new Image(getClass().getResourceAsStream("/images/India.png"));
+            case "china":
+                return new Image(getClass().getResourceAsStream("/images/China.png"));
+        }
         return null;
     }
 
