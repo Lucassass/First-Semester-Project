@@ -21,7 +21,6 @@ public class Deal {
     private int environmentPoints; // effect on environment
     private String description; //Information about deal
     private int price;// price on deal
-    private int timesTried;
     private UUID uuid;
 
     //Hoved Deal objektet der gerne skulle bruges
@@ -35,18 +34,9 @@ public class Deal {
         this.environmentPoints = environmentPoints;
         this.description = info;
         this.price = price;
-        this.timesTried = 0;
         uuid = UUID.randomUUID();
     }
 
-    public int getTimesTried() {
-        return timesTried;
-    }
-
-    public void addOneTry()
-    {
-        timesTried++;
-    }
 
     public int getPrice()
     {
@@ -64,14 +54,7 @@ public class Deal {
     {
         return description;
     }
-    /**
-     * sets information about each deal
-     * @param info - about deal
-     */
-    public void setInfo(String info)
-    {
-        description = info;
-    }
+
     /**
      * @return Name
      */

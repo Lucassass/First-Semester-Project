@@ -13,8 +13,6 @@ public class Config implements IConfig
     private int commercialFlyingCost = 100;
     private int privateFlyingCost = 250;
     private int trainCost = 50;
-    private int dealMaxTries = 1;
-    private int diceAdvantage;
 
     public boolean gotEnoughMoney(int amount){
         return money > amount;
@@ -50,58 +48,6 @@ public class Config implements IConfig
         return 0;
     }
 
-    public boolean ranOutOfMoney(){
-        return money < commercialFlyingCost || money < privateFlyingCost || money < trainCost;
-    }
-    /**
-     *
-     * @return true if you have enough money for train
-     */
-    public boolean gotMoneyForTrain()
-    {
-        return money >= trainCost;
-    }
-
-    /**
-     *
-     * @return true if you have enough money for commercial flying
-     */
-    public boolean gotMoneyForCommercialFlying()
-    {
-        return money >= commercialFlyingCost;
-    }
-
-    /**
-     *
-     * @return true if you have enough money for private flying
-     */
-    public boolean gotMoneyForPrivateFlying()
-    {
-        return money >= privateFlyingCost;
-    }
-
-    /**
-     * subtract commercial flying cost from your money
-     */
-    public void buyFlyCommercial()
-    {
-        money -= commercialFlyingCost;
-    }
-
-    /**
-     * subtract private flying cost from your money
-     */
-    public void buyFlyPrivate() {
-        money -= privateFlyingCost;
-    }
-
-    /**
-     * subtract train cost from your money
-     */
-    public void buyTrainTicket()
-    {
-        money -= trainCost;
-    }
 
 
 }

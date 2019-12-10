@@ -60,49 +60,6 @@ public class Country {
     }
 
     /**
-     * Get country you wanna fly to, if exist else returns null
-     * @param countryName The name of the country you want to fly to
-     * @return a country or null
-     */
-    public Country getAirPortExit(String countryName) {
-        return airPortRoom.getFlyExit(countryName);
-    }
-
-    /**
-     * Get country you wanna take the train to, if exist else returns null
-     * @param country The name of the country you want to go to
-     * @return a country or null
-     */
-    public Country getTrainStationExit(String country){
-
-        return trainStation.getTrainExit(country);
-    }
-
-    /**
-     *
-     * @return return all countries you can get to from the airport
-     */
-    public ArrayList<Country> getAirportExits(){
-        return airPortRoom.getFlyExits();
-    }
-
-    /**
-     *
-     * @return returns train station room
-     */
-    public Room getTrainStation() {
-        return trainStation;
-    }
-
-    /**
-     *
-     * @return returns airport room
-     */
-    public Room getAirPortRoom() {
-        return airPortRoom;
-    }
-
-    /**
      *
      * @param startRoom The room you want to be the start room
      */
