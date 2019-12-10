@@ -17,8 +17,11 @@ public class GovernmentController extends Injection<MainController> {
         this.itemUsed = itemUsed;
     }
 
-    public Item getItemUsed() {
-        return itemUsed;
+    public Item getItemUsed()
+    {
+        var itemToReturn = itemUsed;
+        itemUsed = null;
+        return itemToReturn;
     }
 
     public void onClickOutside(MouseEvent mouseEvent) {

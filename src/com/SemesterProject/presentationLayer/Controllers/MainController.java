@@ -231,7 +231,7 @@ public class MainController extends Application implements Initializable {
 
     public void addItem(Item item)
     {
-        if (!inventory.isFullOfItems())
+        if (!inventory.isFullOfItems() && item != null)
         {
             inventory.addItem(item);
             appendDialog("Added item: " + item.getName());

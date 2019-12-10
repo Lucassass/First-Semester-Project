@@ -25,6 +25,9 @@ public class CultureController extends Injection<MainController>
     private ArrayList<ImageItem> imageItems = new ArrayList<>();
 
 
+    /**
+     *
+     */
     @Override
     public void postInjection() {
         firstItemImage.setImage(null);
@@ -32,10 +35,17 @@ public class CultureController extends Injection<MainController>
         thirdItemImage.setImage(null);
     }
 
+    /**
+     *
+     * @param backgroundImage background image
+     */
     public void setBackgroundImage(Image backgroundImage) {
         this.backgroundImage.setImage(backgroundImage);
     }
 
+    /**
+     * 
+     */
     private void clearItems()
     {
         if (imageItems != null)
@@ -103,36 +113,29 @@ public class CultureController extends Injection<MainController>
     {
         if (imageItems.size() < 2) return;
 
-        var thirdItem = imageItems.get(2);
+        clickItem(imageItems.get(2));
 
-        if (thirdItem != null)
-        {
-            getController().addItem(thirdItem.getItem());
-            updateItem();
-        }
     }
 
     public void onFirstItemClicked(MouseEvent mouseEvent)
     {
         if (imageItems.isEmpty()) return;
 
-        var firstItem = imageItems.get(0);
-        if (firstItem != null)
-        {
-            getController().addItem(firstItem.getItem());
-            updateItem();
-        }
+        clickItem(imageItems.get(0));
     }
 
     public void onSecondItemClicked(MouseEvent mouseEvent)
     {
         if (imageItems.size() < 1) return;
 
-        var secondItem = imageItems.get(1);
+        clickItem(imageItems.get(1));
+    }
 
-        if (secondItem != null)
+    private void clickItem(ImageItem item)
+    {
+        if (item != null && item.getImage() != null)
         {
-            getController().addItem(secondItem.getItem());
+            getController().addItem(item.getItem());
             updateItem();
         }
     }
@@ -197,4 +200,7 @@ class ImageItem
         }
     }
 
+    public Image getImage() {
+        return image.getImage();
+    }
 }
