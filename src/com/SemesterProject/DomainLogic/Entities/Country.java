@@ -1,5 +1,8 @@
 package com.SemesterProject.DomainLogic.Entities;
 
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
+
 import java.util.ArrayList;
 
 public class Country {
@@ -12,7 +15,7 @@ public class Country {
 
 
     public Country(String name, String airportDescription, String trainStationDescription, String outsideDescription,
-                   String governmentDescription, String cultureDescription, ArrayList<Deal> deal, Item... items)
+                   String governmentDescription, String cultureDescription, ArrayList<IDeal> deal, IItem... items)
     {
         this.name = name;
         var airport = new Room("Airport",airportDescription);

@@ -1,6 +1,7 @@
 package com.SemesterProject.presentationLayer.Controllers.Room;
 
 import com.SemesterProject.DomainLogic.Entities.Item;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.event.ActionEvent;
@@ -11,13 +12,13 @@ import javafx.scene.input.MouseEvent;
 public class GovernmentController extends Injection<MainController> {
 
 
-    private Item itemUsed;
+    private IItem itemUsed;
 
-    public void setItemUsed(Item itemUsed) {
+    public void setItemUsed(IItem itemUsed) {
         this.itemUsed = itemUsed;
     }
 
-    public Item getItemUsed()
+    public IItem getItemUsed()
     {
         var itemToReturn = itemUsed;
         itemUsed = null;

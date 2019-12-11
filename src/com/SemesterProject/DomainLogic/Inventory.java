@@ -12,6 +12,8 @@ package com.SemesterProject.DomainLogic;
 import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import com.SemesterProject.Interfaces.IInventory;
 
 import java.util.ArrayList;
@@ -21,11 +23,11 @@ import java.util.Scanner;
 public class Inventory implements IInventory {
 
     private static Inventory instance = new Inventory();
-    private ArrayList<Item> items = new ArrayList<>(); //ArrayList that contains Items
-    private ArrayList<ArrayList<Deal>> deals = new ArrayList<ArrayList<Deal>>(); // ArrayList that contains deals
-    private ArrayList<Deal> food = new ArrayList<Deal>(); //Deals with category food (will be placed in inventoryDeals
-    private ArrayList<Deal> energy = new ArrayList<Deal>(); //Deals with category energy (will be placed in inventoryDeals
-    private ArrayList<Deal> knowledge = new ArrayList<Deal>(); //Deals with category knowledge(will be placed in inventoryDeals
+    private ArrayList<IItem> items = new ArrayList<>(); //ArrayList that contains Items
+    private ArrayList<ArrayList<IDeal>> deals = new ArrayList<>(); // ArrayList that contains deals
+    private ArrayList<IDeal> food = new ArrayList<>(); //Deals with category food (will be placed in inventoryDeals
+    private ArrayList<IDeal> energy = new ArrayList<>(); //Deals with category energy (will be placed in inventoryDeals
+    private ArrayList<IDeal> knowledge = new ArrayList<>(); //Deals with category knowledge(will be placed in inventoryDeals
 
     private final int maxItem = 3;
     private final int maxFood = 1;
@@ -39,7 +41,8 @@ public class Inventory implements IInventory {
         deals.add(knowledge);
     }
 
-    public boolean isFullOfDeals(Deal deal)
+    @Override
+    public boolean isFullOfDeals(IDeal deal)
     {
         if (deal.getCategory() == DealCategory.Energy && energy.size() <= maxEnergy)
         {
@@ -64,7 +67,7 @@ public class Inventory implements IInventory {
 
 
     @Override
-    public void addDeal(Deal deal)
+    public void addDeal(IDeal deal)
     {
         if (deal.getCategory() == DealCategory.Energy)
         {
@@ -80,19 +83,16 @@ public class Inventory implements IInventory {
         }
     }
 
-    @Override
-    public List<Item> getItems() {
-        return null;
-    }
+
 
     @Override
-    public void addItem(Item item)
+    public void addItem(IItem item)
     {
         items.add(item);
     }
 
 
-    public void removeItem(Item item)
+    public void removeItem(IItem item)
     {
         for (var tempItems : items)
         {
@@ -105,7 +105,7 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void removeDeal(Deal deal)
+    public void removeDeal(IDeal deal)
     {
         outside:
         for (var categories : deals)
@@ -133,6 +133,6 @@ public class Inventory implements IInventory {
     /**
      * @return inventory Deals
      */
-    public ArrayList<ArrayList<Deal>> getDeals(){return deals;}
+    public ArrayList<ArrayList<IDeal>> getDeals(){return deals;}
 
 }

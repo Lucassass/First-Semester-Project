@@ -1,21 +1,15 @@
 package com.SemesterProject.Interfaces;
 
-import com.SemesterProject.DomainLogic.Entities.Deal;
-import com.SemesterProject.DomainLogic.Entities.Item;
-import com.SemesterProject.DomainLogic.Enum.DealCategory;
-
-import java.util.List;
-import java.util.UUID;
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
 
 public interface IInventory
 {
-    void addDeal(Deal deal);
-    //List<Deal> getDeals();
-    List<Item> getItems();
-    void addItem(Item item);
-    void removeItem(Item item);
-    void removeDeal(Deal deal);
-    boolean isFullOfDeals(Deal deal);
+    void addDeal(IDeal deal);
+    void addItem(IItem item);
+    void removeItem(IItem item);
+    void removeDeal(IDeal deal);
+    boolean isFullOfDeals(IDeal deal);
     boolean isFullOfItems();
 
 }

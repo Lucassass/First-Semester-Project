@@ -1,6 +1,8 @@
 package com.SemesterProject.DomainLogic.Entities;
 
-public class EndGameResult
+import com.SemesterProject.Interfaces.Entities.IEndGameResult;
+
+public class EndGameResult implements IEndGameResult
 {
     private int environmentPoint;
     private int sustainabilityPoint;

@@ -4,6 +4,11 @@ import javafx.scene.image.Image;
 
 public class ImageReturner
 {
+    /**
+     *
+     * @param countryName name of the country you want to get culture room image from
+     * @return a image of the culture room from the specified country
+     */
     public static Image cultureRoom(String countryName)
     {
         switch (countryName.toLowerCase())
@@ -25,6 +30,11 @@ public class ImageReturner
         return null;
     }
 
+    /**
+     *
+     * @param countryName name of the country you want to get outside room image from
+     * @return a image of the outside room from the specified country
+     */
     public static Image outsideRoom(String countryName)
     {
         switch (countryName.toLowerCase())
@@ -46,6 +56,11 @@ public class ImageReturner
         return null;
     }
 
+    /**
+     *
+     * @param countryName name of the country you want to get global map image from
+     * @return a image of the global map room from the specified country
+     */
     public static Image globalMap(String countryName)
     {
         switch (countryName.toLowerCase())

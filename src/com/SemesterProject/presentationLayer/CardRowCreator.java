@@ -1,6 +1,7 @@
 package com.SemesterProject.presentationLayer;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.Interfaces.Entities.IDeal;
 import com.SemesterProject.presentationLayer.Controllers.Card.CountryCardController;
 import com.SemesterProject.presentationLayer.Controllers.Card.DealCardController;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
@@ -45,7 +46,7 @@ public class CardRowCreator
         return gridPane;
     }
 
-    public GridPane generateDeals(List<Deal> deals)
+    public GridPane generateDeals(List<IDeal> deals)
     {
         addDeals(deals);
         return gridPane;
@@ -156,7 +157,7 @@ public class CardRowCreator
         }
     }
 
-    private void addDeals(List<Deal> deals)
+    private void addDeals(List<IDeal> deals)
     {
         if (deals == null) return;
         if (deals.size() > maxRow)
@@ -171,7 +172,7 @@ public class CardRowCreator
 
     }
 
-    private void fillDealGridPane(List<Deal> deals)
+    private void fillDealGridPane(List<IDeal> deals)
     {
         int row = 0;
 
@@ -179,7 +180,7 @@ public class CardRowCreator
         {
             if (numberIsOdd(i))
             {
-                Deal deal = deals.get(row);
+                var deal = deals.get(row);
                 addDealCardColumn(deal, i);
                 row++;
             }
@@ -217,7 +218,7 @@ public class CardRowCreator
         return number % 2 != 0;
     }
 
-    private void addDealCardColumn(Deal deal, int index)
+    private void addDealCardColumn(IDeal deal, int index)
     {
         try {
             var fxmlLoader = new FXMLLoader();
@@ -264,6 +265,12 @@ public class CardRowCreator
         gridPane.getColumnConstraints().add(columnConstraints);
     }
 
+    /**
+     *
+     * @param size
+     * @param percentPerEmptyRow
+     * @return
+     */
     private  double getCardPercent(int size, double percentPerEmptyRow)
     {
         var emptyRows = 2 + size - 1;

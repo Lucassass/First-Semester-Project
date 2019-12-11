@@ -6,14 +6,12 @@
 package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.Countries;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import javafx.scene.image.Image;
 
 import java.util.UUID;
 
-/**
- * @author tes_7
- */
-public class Item {
+public class Item implements IItem {
 
     private String name; //Name of item
     private Countries countryGood; // Name of the country the item has a good effect on
@@ -51,7 +49,8 @@ public class Item {
         this.index = index;
     }
 
-    public Image getImage() {
+    public Image getImage()
+    {
         return image;
     }
 
@@ -67,13 +66,7 @@ public class Item {
     {
         return textBad;
     }
-    /**
-     * @param textBad
-     */
-    public void setTextBad(String textBad)
-    {
-        this.textBad = textBad;
-    }
+
     /**
      * @return TextGood
      */
@@ -81,13 +74,7 @@ public class Item {
     {
         return textGood;
     }
-    /**
-     * @param textGood
-     */
-    public void setTextGood(String textGood)
-    {
-        this.textGood = textGood;
-    }
+
     /**
      * @return countryGood
      */

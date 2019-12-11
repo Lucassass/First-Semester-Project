@@ -6,14 +6,12 @@
 package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.Interfaces.Entities.IDeal;
 import javafx.scene.image.Image;
 
 import java.util.UUID;
 
-/**
- * @author tes_7
- */
-public class Deal {
+public class Deal implements IDeal {
 
     private String name; // Name of deal
     private DealCategory category; //Catogery of deals

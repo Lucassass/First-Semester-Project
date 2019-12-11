@@ -1,9 +1,9 @@
 package com.SemesterProject.DomainLogic.Entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Set;
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
+
+import java.util.*;
 
 /*
 *                               Map of rooms 
@@ -20,8 +20,8 @@ public class Room
     private HashMap<String, Room> exits; /** Stores exits of the room. */
     private HashMap<String, Country> flyExits; /** Stores countries exits of the room. */
     private HashMap<String, Country> trainExits;
-    private ArrayList<Item> items;
-    private ArrayList<Deal> Deals;
+    private ArrayList<IItem> items;
+    private ArrayList<IDeal> Deals;
     private String name;
 
     /**
@@ -43,11 +43,11 @@ public class Room
         return name;
     }
 
-    public ArrayList<Deal> getDeals() {
+    public List<IDeal> getDeals() {
         return Deals;
     }
 
-    public void setDeals(ArrayList<Deal> Deals) {
+    public void setDeals(ArrayList<IDeal> Deals) {
         this.Deals = Deals;
     }
 
@@ -82,21 +82,21 @@ public class Room
      * Set items for the room
      * @param items Arraylist of items you wanna add to the room
      */
-    public void addItem(Item[] items)
+    public void addItem(IItem[] items)
     {
         for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
+            var item = items[i];
             item.setIndex(i);
             this.items.add(item);
         }
     }
 
-    public void addItem(Item item)
+    public void addItem(IItem item)
     {
         this.items.add(item);
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<IItem> getItems() {
         return items;
     }
 

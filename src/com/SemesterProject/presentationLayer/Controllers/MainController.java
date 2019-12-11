@@ -1,9 +1,10 @@
 package com.SemesterProject.presentationLayer.Controllers;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
-import com.SemesterProject.DomainLogic.Entities.Item;
 import com.SemesterProject.DomainLogic.GameStage;
 import com.SemesterProject.DomainLogic.Inventory;
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import com.SemesterProject.Interfaces.IGameStage;
 import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
@@ -37,8 +38,8 @@ public class MainController extends Application implements Initializable {
 
     @FXML private TextArea dialog;
 
-    @FXML private ListView<Item> inventoryItems;
-    @FXML private ListView<Deal> inventoryDeals;
+    @FXML private ListView<IItem> inventoryItems;
+    @FXML private ListView<IDeal> inventoryDeals;
 
 
     @FXML private Label sustainabilityPoint;
@@ -78,7 +79,7 @@ public class MainController extends Application implements Initializable {
     }
 
     private void setStageName(){
-        stage.setTitle(gameStage.getRoomName() + " | " + gameStage.getCountryName());
+        stage.setTitle(gameStage.getCurrentRoomName() + " | " + gameStage.getCurrentCountryName());
     }
 
     public CardRowController getCardRowController() {
@@ -120,7 +121,7 @@ public class MainController extends Application implements Initializable {
                 "for more information, try “Help”");
         updateMoney();
         setupOutsideRoom();
-        globalMap.setImage(ImageReturner.globalMap(gameStage.getCountryName()));
+        globalMap.setImage(ImageReturner.globalMap(gameStage.getCurrentCountryName()));
         configureInventory();
 
     }
@@ -144,7 +145,7 @@ public class MainController extends Application implements Initializable {
     {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
 
-        if (gameStage.getRoomName().equalsIgnoreCase("culture"))
+        if (gameStage.getCurrentRoomName().equalsIgnoreCase("culture"))
         {
             var replacedItem = cultureController.replaceItem(item);
 
@@ -163,7 +164,7 @@ public class MainController extends Application implements Initializable {
             }
 
             removeItemFromInventory(item);
-            gameStage.addItemToRoom(item);
+            gameStage.addItemToCurrentRoom(item);
         }
         else{
             appendDialog("You can't switch items outside of the culture room");
@@ -177,10 +178,10 @@ public class MainController extends Application implements Initializable {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
         if (item == null) return;
 
-        if (gameStage.getRoomName().equalsIgnoreCase("government"))
+        if (gameStage.getCurrentRoomName().equalsIgnoreCase("government"))
         {
             appendDialog("You have used " + (item).getName());
-            appendDialog(getGameStage().quoteFromItemUsed(item));
+            appendDialog(getGameStage().getQuoteFromItemUsed(item));
             removeItemFromInventory(item);
             governmentController.setItemUsed(item);
 
@@ -191,7 +192,7 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    public void addDeal(Deal deal)
+    public void addDeal(IDeal deal)
     {
         if (!inventory.isFullOfDeals(deal))
         {
@@ -208,7 +209,7 @@ public class MainController extends Application implements Initializable {
                 {
                     appendDialog("You didn't get the deal :(");
                 }
-                gameStage.removeDealFromRoom(deal.getUuid());
+                gameStage.removeDealFromCurrentRoom(deal.getUuid());
             }
             else
             {
@@ -229,14 +230,14 @@ public class MainController extends Application implements Initializable {
      *
      * @param item
      */
-    public void addItem(Item item)
+    public void addItem(IItem item)
     {
         if (!inventory.isFullOfItems() && item != null)
         {
             inventory.addItem(item);
             appendDialog("Added item: " + item.getName());
             inventoryItems.getItems().add(item);
-            gameStage.removeItemFromRoom(item.getUuid());
+            gameStage.removeItemFromCurrentRoom(item.getUuid());
         }
         else
         {
@@ -268,10 +269,10 @@ public class MainController extends Application implements Initializable {
         train.setVisible(false);
         setStageName();
         cardRowController.anchorPane.setVisible(false);
-        appendDialog("Moving to: " + getGameStage().getCountryName());
-        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCountryName()));
+        appendDialog("Moving to: " + getGameStage().getCurrentCountryName());
+        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCurrentCountryName()));
 
-        globalMap.setImage(ImageReturner.globalMap(gameStage.getCountryName()));
+        globalMap.setImage(ImageReturner.globalMap(gameStage.getCurrentCountryName()));
     }
 
     /**
@@ -279,14 +280,14 @@ public class MainController extends Application implements Initializable {
      */
     public void goToAirport()
     {
-        if (gameStage.goRoom("up"))
+        if (gameStage.goToRoom("up"))
         {
             cardRowController.loadAirportChoice();
             outside.setVisible(false);
             airport.setVisible(true);
 
             setStageName();
-            appendDialog(getGameStage().getRoomDescription());
+            appendDialog(getGameStage().getCurrentRoomDescription());
             localMap.setImage(new Image (getClass().getResourceAsStream("/images/Airport.png")));
         }
 
@@ -298,7 +299,7 @@ public class MainController extends Application implements Initializable {
      */
     public void goToOutsideFrom(String direction)
     {
-        if (gameStage.goRoom(direction))
+        if (gameStage.goToRoom(direction))
         {
             setupOutsideRoom();
             localMap.setImage(new Image (getClass().getResourceAsStream("/images/Outside.png")));
@@ -311,7 +312,7 @@ public class MainController extends Application implements Initializable {
      */
     public void goToGovernment()
     {
-        if (gameStage.goRoom("left"))
+        if (gameStage.goToRoom("left"))
         {
             cardRowController.loadDeals();
             outside.setVisible(false);
@@ -319,7 +320,7 @@ public class MainController extends Application implements Initializable {
             governmentController.setItemUsed(null);
 
             setStageName();
-            appendDialog(getGameStage().getRoomDescription());
+            appendDialog(getGameStage().getCurrentRoomDescription());
             localMap.setImage(new Image (getClass().getResourceAsStream("/images/Goverment.png")));
         }
 
@@ -330,14 +331,14 @@ public class MainController extends Application implements Initializable {
      */
     public void goToTrainStation()
     {
-        if (gameStage.goRoom("right"))
+        if (gameStage.goToRoom("right"))
         {
             cardRowController.loadTrainCountries();
             outside.setVisible(false);
             train.setVisible(true);
 
             setStageName();
-            appendDialog(getGameStage().getRoomDescription());
+            appendDialog(getGameStage().getCurrentRoomDescription());
             localMap.setImage(new Image (getClass().getResourceAsStream("/images/Trainstation.png")));
         }
 
@@ -348,10 +349,10 @@ public class MainController extends Application implements Initializable {
      */
     public void  goToCulture()
     {
-        if (gameStage.goRoom("down"))
+        if (gameStage.goToRoom("down"))
         {
-            var items = getGameStage().getItemFromRoom();
-            cultureController.setBackgroundImage(ImageReturner.cultureRoom(gameStage.getCountryName()));
+            var items = getGameStage().getItemFromCurrentRoom();
+            cultureController.setBackgroundImage(ImageReturner.cultureRoom(gameStage.getCurrentCountryName()));
 
             cultureController.setItem(items);
 
@@ -359,7 +360,7 @@ public class MainController extends Application implements Initializable {
             outside.setVisible(false);
             culture.setVisible(true);
             setStageName();
-            appendDialog(getGameStage().getRoomDescription());
+            appendDialog(getGameStage().getCurrentRoomDescription());
             localMap.setImage(new Image (getClass().getResourceAsStream("/images/Culture.png")));
         }
     }
@@ -374,8 +375,8 @@ public class MainController extends Application implements Initializable {
         government.setVisible(false);
         train.setVisible(false);
         outside.setVisible(true);
-        appendDialog(getGameStage().getRoomDescription());
-        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCountryName()));
+        appendDialog(getGameStage().getCurrentRoomDescription());
+        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCurrentCountryName()));
         setStageName();
     }
 
@@ -383,7 +384,7 @@ public class MainController extends Application implements Initializable {
      * Remove item from inventory both in backend and frontend
      * @param item Item to be removed
      */
-    private void removeItemFromInventory(Item item)
+    private void removeItemFromInventory(IItem item)
     {
         inventory.removeItem(item);
         inventoryItems.getItems().remove(item);
@@ -446,7 +447,7 @@ public class MainController extends Application implements Initializable {
     private void configureInventory() {
         inventoryDeals.setCellFactory(param -> new ListCell<>(){
             @Override
-            protected void updateItem(Deal item, boolean empty) {
+            protected void updateItem(IDeal item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -459,7 +460,7 @@ public class MainController extends Application implements Initializable {
         inventoryItems.setCellFactory(param -> new ListCell<>()
         {
             @Override
-            protected void updateItem(Item item, boolean empty) {
+            protected void updateItem(IItem item, boolean empty) {
                 super.updateItem( item, empty);
 
                 if (empty || item == null) {

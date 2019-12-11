@@ -8,7 +8,5 @@ public interface IConfig
     int getCommercialFlyingCost();
     int getPrivateFlyingCost();
     int getTrainCost();
-
-
     int getLowestCost();
 }

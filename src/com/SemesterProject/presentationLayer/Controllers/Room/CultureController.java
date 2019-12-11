@@ -1,6 +1,7 @@
 package com.SemesterProject.presentationLayer.Controllers.Room;
 
 import com.SemesterProject.DomainLogic.Entities.Item;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.fxml.FXML;
@@ -61,7 +62,7 @@ public class CultureController extends Injection<MainController>
         imageItems.add(new ImageItem(thirdItemImage, null));
     }
 
-    public void setItem(ArrayList<Item> items)
+    public void setItem(ArrayList<IItem> items)
     {
         clearItems();
 
@@ -80,13 +81,13 @@ public class CultureController extends Injection<MainController>
 
     }
 
-    public Item replaceItem(Item item)
+    public IItem replaceItem(IItem item)
     {
-        for (var itemImage: imageItems)
-        {
-            if (itemImage.getItem() == null)
-            {
+        for (int i = 0; i < imageItems.size(); i++) {
+            ImageItem itemImage = imageItems.get(i);
+            if (itemImage.getItem() == null) {
                 itemImage.setItem(item);
+                itemImage.updateIndex(i);
                 return null;
             }
         }
@@ -141,7 +142,7 @@ public class CultureController extends Injection<MainController>
 
     private void updateItem()
     {
-        var itemsInRoom = getController().getGameStage().getItemFromRoom();
+        var itemsInRoom = getController().getGameStage().getItemFromCurrentRoom();
 
         for (var item : imageItems)
         {
@@ -169,7 +170,7 @@ public class CultureController extends Injection<MainController>
 class ImageItem
 {
     private ImageView image;
-    private Item item;
+    private IItem item;
 
     ImageItem(ImageView image, Item item) {
         this.image = image;
@@ -184,11 +185,16 @@ class ImageItem
         }
     }
 
-    Item getItem() {
+    IItem getItem() {
         return item;
     }
 
-    void setItem(Item item) {
+    void updateIndex(int i)
+    {
+        item.setIndex(i);
+    }
+
+    void setItem(IItem item) {
         this.item = item;
         if (item == null){
             image.setImage(null);

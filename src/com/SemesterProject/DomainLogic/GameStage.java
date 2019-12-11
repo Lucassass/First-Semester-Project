@@ -3,6 +3,8 @@ package com.SemesterProject.DomainLogic;
 import com.SemesterProject.DomainLogic.Entities.*;
 import com.SemesterProject.DomainLogic.Enum.Countries;
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import com.SemesterProject.Interfaces.Entities.IDeal;
+import com.SemesterProject.Interfaces.Entities.IItem;
 import com.SemesterProject.Interfaces.IConfig;
 import com.SemesterProject.Interfaces.IGameStage;
 
@@ -30,20 +32,20 @@ public class GameStage implements IGameStage
 
 
 
-    public String getRoomName() {
+    public String getCurrentRoomName() {
         return currentRoom.getName();
     }
 
-    public String getCountryName() {
+    public String getCurrentCountryName() {
         return currentCountry.getName();
     }
 
     @Override
-    public String getRoomDescription() {
+    public String getCurrentRoomDescription() {
         return currentRoom.getDescription();
     }
 
-    public boolean goRoom(String direction)
+    public boolean goToRoom(String direction)
     {
         var nextRoom = currentRoom.getExit(direction);
         if (nextRoom != null)
@@ -56,14 +58,14 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public List<Deal> getDealsFromRoom() {
+    public List<IDeal> getDealsFromCurrentRoom() {
         return currentRoom.getDeals();
     }
 
 
     @Override
-    public boolean takeDeal(Deal deal, Item itemUsed) {
-        return successfullyNegotiateDeal(deal, itemUsed);
+    public boolean takeDeal(IDeal deal, IItem itemUsed) {
+        return successfullyNegotiateDeal(itemUsed);
 
     }
 
@@ -92,7 +94,7 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public String quoteFromItemUsed(Item item)
+    public String getQuoteFromItemUsed(IItem item)
     {
         if (currentCountry.getName().equalsIgnoreCase(item.getCountryGood().getName()))
         {
@@ -124,7 +126,7 @@ public class GameStage implements IGameStage
         return new EndGameResult(environmentPoint, sustainabilityPoint, energyPoint);
     }
 
-    private boolean successfullyNegotiateDeal(Deal deal, Item itemUsed) {
+    private boolean successfullyNegotiateDeal(IItem itemUsed) {
         int diceResult;
         int roll = random.nextInt(6) + 1;
 
@@ -133,7 +135,7 @@ public class GameStage implements IGameStage
     }
 
 
-    private int advantages(Item item)
+    private int advantages(IItem item)
     {
         if (item == null) return 0;
         if (currentCountry.getName().equalsIgnoreCase(item.getCountryGood().getName()))
@@ -150,7 +152,7 @@ public class GameStage implements IGameStage
 
 
     @Override
-    public boolean goCountry(String country, int price)
+    public boolean goToCountry(String country, int price)
     {
         if (!config.gotEnoughMoney(price)) return false;
 
@@ -174,16 +176,16 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public boolean goRandomCountry(int price) {
+    public boolean goToRandomCountry(int price) {
         if (currentRoom.getFlyExits().isEmpty()) return false;
 
         var random = new Random().nextInt(currentRoom.getFlyExits().size());
-        return goCountry(currentRoom.getFlyExits().get(random).getName(), price);
+        return goToCountry(currentRoom.getFlyExits().get(random).getName(), price);
 
     }
 
     @Override
-    public List<String> getFlyExist() {
+    public List<String> getFlyExistFromCurrentRoom() {
         ArrayList<String> list = new ArrayList<>();
         for (var country : currentRoom.getFlyExits())
         {
@@ -194,7 +196,7 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public List<String> getTrainExist() {
+    public List<String> getTrainExistFromCurrentRoom() {
         ArrayList<String> list = new ArrayList<>();
         for (var country : currentRoom.getTrainExits())
         {
@@ -205,7 +207,7 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public void removeDealFromRoom(UUID id) {
+    public void removeDealFromCurrentRoom(UUID id) {
         for (var deal : currentRoom.getDeals())
         {
             if (deal.getUuid() == id)
@@ -217,7 +219,7 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public void removeItemFromRoom(UUID uuid)
+    public void removeItemFromCurrentRoom(UUID uuid)
     {
         for (var item : currentRoom.getItems())
         {
@@ -230,7 +232,7 @@ public class GameStage implements IGameStage
 
     }
 
-    public void addItemToRoom(Item item)
+    public void addItemToCurrentRoom(IItem item)
     {
         if (currentRoom.getName().equalsIgnoreCase("culture"))
         {
@@ -247,7 +249,7 @@ public class GameStage implements IGameStage
     }
 
     @Override
-    public ArrayList<Item> getItemFromRoom() {
+    public ArrayList<IItem> getItemFromCurrentRoom() {
         return currentRoom.getItems();
     }
 
@@ -257,34 +259,34 @@ public class GameStage implements IGameStage
         var usaItem = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
         var usaItem2 = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
         var usaItem3 = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
-        var usaDeals = new ArrayList<Deal>();
+        var usaDeals = new ArrayList<IDeal>();
         usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
         usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
         usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
 
         var chinaItem = new Item("Vodka", Countries.Germany,2, Countries.Japan,-2, "vodka.png");
-        var chinaDeals = new ArrayList<Deal>();
+        var chinaDeals = new ArrayList<IDeal>();
         chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
         chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var germanyItem = new Item("Flute", Countries.Japan,2, Countries.USA,-2, "flute.png");
-        var germanyDeals = new ArrayList<Deal>();
+        var germanyDeals = new ArrayList<IDeal>();
         germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
         germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var russiaItem = new Item("Katana", Countries.India,2, Countries.Russia,-2, "katana.png");
-        var russiaDeals = new ArrayList<Deal>();
+        var russiaDeals = new ArrayList<IDeal>();
         russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
         russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var indiaItem = new Item("Sausage", Countries.India,2, Countries.Russia,-2, "sausage.png");
-        var indiaDeals = new ArrayList<Deal>();
+        var indiaDeals = new ArrayList<IDeal>();
         indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
         indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 
         var japanItem = new Item("Gun", Countries.Japan,2, Countries.USA,-2, "gun.png");
-        var japanDeals = new ArrayList<Deal>();
+        var japanDeals = new ArrayList<IDeal>();
         japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
         japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
 

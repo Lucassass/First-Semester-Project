@@ -1,6 +1,7 @@
 package com.SemesterProject.presentationLayer.Controllers.Card;
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
+import com.SemesterProject.Interfaces.Entities.IDeal;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ public class DealCardController extends Injection<MainController>
     public Label cardPrice;
     @FXML private Label cardCategory;
 
-    private Deal deal;
+    private IDeal deal;
 
     public void onCardClicked(ActionEvent actionEvent)
     {
@@ -30,7 +31,7 @@ public class DealCardController extends Injection<MainController>
         getController().getCardRowController().anchorPane.setVisible(false);
     }
 
-    public void populateCard(Deal deal)
+    public void populateCard(IDeal deal)
     {
         this.deal = deal;
         cardDescription.setText(deal.getDescription());

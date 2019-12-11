@@ -7,6 +7,10 @@ public abstract class Injection<T>
 {
     private T controller;
 
+    /**
+     * Injects the controller
+     * @param controller the controller type to inject
+     */
     public void injectController(T controller)
     {
 
@@ -15,6 +19,10 @@ public abstract class Injection<T>
     }
 
 
+    /**
+     * Return the controller, if controller wasn't injected it throws an exception
+     * @return a controller of your type
+     */
     public T getController()
     {
         if (controller == null) {
@@ -30,6 +38,9 @@ public abstract class Injection<T>
         return controller;
     }
 
+    /**
+     * Method gets called after controller injection
+     */
     public void postInjection(){
 
 

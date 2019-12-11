@@ -17,7 +17,7 @@ public class CountryCardController extends Injection<MainController>
 
     public void onCommercialClick(ActionEvent actionEvent)
     {
-        if (MainController.getGameStage().goRandomCountry(getPrice()))
+        if (MainController.getGameStage().goToRandomCountry(getPrice()))
         {
             getController().goToNewCountry();
         }
@@ -60,7 +60,7 @@ public class CountryCardController extends Injection<MainController>
 
     private void goToCountry(String country)
     {
-        if (MainController.getGameStage().goCountry(country,getPrice()))
+        if (MainController.getGameStage().goToCountry(country,getPrice()))
         {
             getController().goToNewCountry();
         }
