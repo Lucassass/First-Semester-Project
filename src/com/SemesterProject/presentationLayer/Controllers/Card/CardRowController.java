@@ -20,6 +20,10 @@ public class CardRowController extends Injection<MainController>
     @FXML private SplitPane splitPane;
     @FXML private AnchorPane anchorPane;
 
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
     /**
      * loads the deal to the grid pane
      */

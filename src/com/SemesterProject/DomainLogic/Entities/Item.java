@@ -41,20 +41,35 @@ public class Item implements IItem {
         textGood = textGood0;
     }
 
+    /**
+     *
+     * @return index at culture room
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     *
+     * @param index the index
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     *
+     * @return image of item
+     */
     public Image getImage()
     {
         return image;
     }
 
-
+    /**
+     *
+     * @return uuid
+     */
     public UUID getUuid() {
         return uuid;
     }

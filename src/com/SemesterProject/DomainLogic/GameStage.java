@@ -30,21 +30,48 @@ public class GameStage implements IGameStage
     }
 
 
-
-
+    /**
+     *
+     * @return current room's name
+     */
+    @Override
     public String getCurrentRoomName() {
         return currentRoom.getName();
     }
 
+    /**
+     *
+     * @return current country name
+     */
+    @Override
     public String getCurrentCountryName() {
         return currentCountry.getName();
     }
 
+    /**
+     *
+     * @return items from current room
+     */
+    @Override
+    public ArrayList<IItem> getItemFromCurrentRoom() {
+        return currentRoom.getItems();
+    }
+
+    /**
+     *
+     * @return current room's description
+     */
     @Override
     public String getCurrentRoomDescription() {
         return currentRoom.getDescription();
     }
 
+    /**
+     * Go to room
+     * @param direction the direction is room is in
+     * @return true if room existed and successfully moved to that room
+     */
+    @Override
     public boolean goToRoom(String direction)
     {
         var nextRoom = currentRoom.getExit(direction);
@@ -57,18 +84,32 @@ public class GameStage implements IGameStage
         return false;
     }
 
+    /**
+     *
+     * @return deal from current room
+     */
     @Override
     public List<IDeal> getDealsFromCurrentRoom() {
         return currentRoom.getDeals();
     }
 
 
+    /**
+     * trying to take the deal
+     * @param deal
+     * @param itemUsed item that have been used
+     * @return return true if you got the deal
+     */
     @Override
     public boolean takeDeal(IDeal deal, IItem itemUsed) {
         return successfullyNegotiateDeal(itemUsed);
 
     }
 
+    /**
+     * Calculate if you have enough money to do anything
+     * @return true if you got enough money to keep playing
+     */
     @Override
     public boolean gotEnoughMoneyToKeepPlaying()
     {
@@ -78,21 +119,22 @@ public class GameStage implements IGameStage
                 config.getMoney() > config.getLowestCost();
     }
 
-    private int getCheapestDealInCountry()
-    {
-        int lowestCost = 0;
 
-        for (var deal : currentCountry.getGovernmentRoom().getDeals())
-        {
-            if (deal.getPrice() > lowestCost)
-            {
-                lowestCost = deal.getPrice();
-            }
-        }
-
-        return lowestCost;
+    /**
+     *
+     * @return config class
+     */
+    @Override
+    public IConfig getConfig() {
+        return config;
     }
 
+
+    /**
+     * get the correct quote from item
+     * @param item item to get the quote from
+     * @return quote from item used
+     */
     @Override
     public String getQuoteFromItemUsed(IItem item)
     {
@@ -107,6 +149,10 @@ public class GameStage implements IGameStage
         return "It did nothing";
     }
 
+    /**
+     * Generate EndGameResult object with the correct information
+     * @return the endgame result
+     */
     @Override
     public EndGameResult getEndGameResult()
     {
@@ -126,31 +172,14 @@ public class GameStage implements IGameStage
         return new EndGameResult(environmentPoint, sustainabilityPoint, energyPoint);
     }
 
-    private boolean successfullyNegotiateDeal(IItem itemUsed) {
-        int diceResult;
-        int roll = random.nextInt(6) + 1;
-
-        diceResult = roll + advantages(itemUsed);
-        return diceResult > 3; //returns true or false
-    }
 
 
-    private int advantages(IItem item)
-    {
-        if (item == null) return 0;
-        if (currentCountry.getName().equalsIgnoreCase(item.getCountryGood().getName()))
-        {
-            return item.getPointsGood();
-        }
-        else if (currentCountry.getName().equalsIgnoreCase(item.getCountryBad().getName()))
-        {
-            return item.getPointsBad();
-        }
-
-        return 0;
-    }
-
-
+    /**
+     * go to country
+     * @param country The name of the country
+     * @param price the price of the county
+     * @return true if successfully got to the specified country
+     */
     @Override
     public boolean goToCountry(String country, int price)
     {
@@ -175,6 +204,11 @@ public class GameStage implements IGameStage
         return false;
     }
 
+    /**
+     * go to random country
+     * @param price of going to random country
+     * @return true if successfully got to the specified country
+     */
     @Override
     public boolean goToRandomCountry(int price) {
         if (currentRoom.getFlyExits().isEmpty()) return false;
@@ -184,6 +218,10 @@ public class GameStage implements IGameStage
 
     }
 
+    /**
+     *
+     * @return list of countries to fly to from current room
+     */
     @Override
     public List<String> getFlyExistFromCurrentRoom() {
         ArrayList<String> list = new ArrayList<>();
@@ -195,6 +233,10 @@ public class GameStage implements IGameStage
         return list;
     }
 
+    /**
+     *
+     * @return list of countries to take the train to from current room
+     */
     @Override
     public List<String> getTrainExistFromCurrentRoom() {
         ArrayList<String> list = new ArrayList<>();
@@ -206,6 +248,10 @@ public class GameStage implements IGameStage
         return list;
     }
 
+    /**
+     * remove deal from the current room
+     * @param id the deal ID
+     */
     @Override
     public void removeDealFromCurrentRoom(UUID id) {
         for (var deal : currentRoom.getDeals())
@@ -218,6 +264,10 @@ public class GameStage implements IGameStage
         }
     }
 
+    /**
+     *  remove item from current room
+     * @param uuid the item id
+     */
     @Override
     public void removeItemFromCurrentRoom(UUID uuid)
     {
@@ -232,6 +282,10 @@ public class GameStage implements IGameStage
 
     }
 
+    /**
+     * add item to current room
+     * @param item to be added to the current room
+     */
     public void addItemToCurrentRoom(IItem item)
     {
         if (currentRoom.getName().equalsIgnoreCase("culture"))
@@ -241,18 +295,63 @@ public class GameStage implements IGameStage
     }
 
 
+    /**
+     * Finds the cheapest deal in the current country
+     * @return the price of the cheapest deal in country
+     */
+    private int getCheapestDealInCountry()
+    {
+        int lowestCost = 0;
 
+        for (var deal : currentCountry.getGovernmentRoom().getDeals())
+        {
+            if (deal.getPrice() > lowestCost)
+            {
+                lowestCost = deal.getPrice();
+            }
+        }
 
-    @Override
-    public IConfig getConfig() {
-        return config;
+        return lowestCost;
     }
 
-    @Override
-    public ArrayList<IItem> getItemFromCurrentRoom() {
-        return currentRoom.getItems();
+
+    /**
+     * rolls a dice, and add advantages if the item that was used, was correctly used
+     * @param itemUsed item being used under negotiation
+     * @return true if you successfully negotiated the deal
+     */
+    private boolean successfullyNegotiateDeal(IItem itemUsed) {
+        int diceResult;
+        int roll = random.nextInt(6) + 1;
+
+        diceResult = roll + advantages(itemUsed);
+        return diceResult > 3; //returns true or false
     }
 
+
+    /**
+     * calculate the advantages an item gives you
+     * @param item item to check
+     * @return return the advantages the item gave (can give minus)
+     */
+    private int advantages(IItem item)
+    {
+        if (item == null) return 0;
+        if (currentCountry.getName().equalsIgnoreCase(item.getCountryGood().getName()))
+        {
+            return item.getPointsGood();
+        }
+        else if (currentCountry.getName().equalsIgnoreCase(item.getCountryBad().getName()))
+        {
+            return item.getPointsBad();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Creates the game
+     */
     private void createRooms()
     {
 

@@ -40,11 +40,19 @@ public class Deal implements IDeal {
     }
 
 
+    /**
+     *
+     * @return price of deal
+     */
     public int getPrice()
     {
         return price;
     }
 
+    /**
+     *
+     * @return uuid of deal
+     */
     public UUID getUuid() {
         return uuid;
     }
@@ -93,10 +101,17 @@ public class Deal implements IDeal {
         return environmentPoints;
     }
 
+    /**
+     *
+     * @return image of deal
+     */
     public Image getImage() {
         return image;
     }
 
+    /**
+     * sets image of deal based on category
+     */
     private void setImage()
     {
         switch (category)

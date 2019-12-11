@@ -5,14 +5,6 @@ import com.SemesterProject.Interfaces.Entities.IItem;
 
 import java.util.*;
 
-/*
-*                               Map of rooms 
-* 
-*                               Computer Lab ------------- Computer admin Office 
-*                                  |                        
-*                                  |                         
-*       Campus Pub ------------ Main entrence ------------- Lecture hall \
-*/
 
 public class Room
 {
@@ -39,22 +31,30 @@ public class Room
         items = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return name of room
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return deals in room
+     */
     public List<IDeal> getDeals() {
         return Deals;
     }
 
-    public void setDeals(ArrayList<IDeal> Deals) {
+    void setDeals(ArrayList<IDeal> Deals) {
         this.Deals = Deals;
     }
 
     /**
      * Defines an exit from the room.
      */
-    public void setExit(String direction, Room neighbor)
+    void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -64,7 +64,7 @@ public class Room
      * @param countryName The name of the country you wanna set as flight exits
      * @param country The country it self
      */
-    public void setFlight(String countryName, Country country)
+    void setFlight(String countryName, Country country)
     {
         flyExits.put(countryName, country);
     }
@@ -74,7 +74,7 @@ public class Room
      * @param countryName The name of the country you wanna set as train exits
      * @param country The country it self
      */
-    public void setTrainExits(String countryName, Country country) {
+    void setTrainExits(String countryName, Country country) {
         trainExits.put(countryName, country);
     }
 
@@ -82,7 +82,7 @@ public class Room
      * Set items for the room
      * @param items Arraylist of items you wanna add to the room
      */
-    public void addItem(IItem[] items)
+    void addItem(IItem[] items)
     {
         for (int i = 0; i < items.length; i++) {
             var item = items[i];
@@ -91,11 +91,19 @@ public class Room
         }
     }
 
+    /**
+     * add item
+     * @param item to be added
+     */
     public void addItem(IItem item)
     {
         this.items.add(item);
     }
 
+    /**
+     *
+     * @return items of current room
+     */
     public ArrayList<IItem> getItems() {
         return items;
     }
@@ -112,47 +120,6 @@ public class Room
         return description;
     }
 
-
-    /**
-     * Returns a String describing the room's exits, for example:
-     * "Exits: north west".
-     */
-    private String getExitString()
-    {
-        return getFormattedString(exits.keySet());
-    }
-
-    /**
-     *
-     * @return formatted string with fly exits
-     */
-    private String getFlightString()
-    {
-        return getFormattedString(flyExits.keySet());
-    }
-
-    /**
-     *
-     * @return formatted string with train exits
-     */
-    private String getTrainString()
-    {
-        return getFormattedString(trainExits.keySet());
-    }
-
-    /**
-     * Added a space between all elements in a set
-     * @param set The set of strings to be formatted
-     * @return return a formatted string
-     */
-    private String getFormattedString(Set<String> set){
-        String returnString = "Exits:";
-        Set<String> keys = set;
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
-    }
 
     /**
      * Return the room that is reached, if we go from this room in direction x

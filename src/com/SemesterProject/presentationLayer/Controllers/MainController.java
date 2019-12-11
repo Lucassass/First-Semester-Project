@@ -211,7 +211,7 @@ public class MainController extends Application implements Initializable {
      */
     public void takeDeal(IDeal deal)
     {
-        if (!inventory.isFullOfDeals(deal))
+        if (!inventory.isFullOfDeals(deal.getCategory()))
         {
             if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
             {
@@ -285,7 +285,7 @@ public class MainController extends Application implements Initializable {
         culture.setVisible(false);
         train.setVisible(false);
         setStageName();
-        cardRowController.anchorPane.setVisible(false);
+        cardRowController.getAnchorPane().setVisible(false);
         appendDialog("Moving to: " + getGameStage().getCurrentCountryName());
         outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCurrentCountryName()));
 

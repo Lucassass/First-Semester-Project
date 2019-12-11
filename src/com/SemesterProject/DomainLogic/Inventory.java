@@ -41,18 +41,28 @@ public class Inventory implements IInventory {
         deals.add(knowledge);
     }
 
+    /**
+     * @return the instance
+     */
+    public static Inventory getInstance(){return instance;}
+
+    /**
+     * check if inventory is full of given category
+     * @param dealCategory the category to check for
+     * @return true if inventory is full
+     */
     @Override
-    public boolean isFullOfDeals(IDeal deal)
+    public boolean isFullOfDeals(DealCategory dealCategory)
     {
-        if (deal.getCategory() == DealCategory.Energy && energy.size() <= maxEnergy)
+        if (dealCategory == DealCategory.Energy && energy.size() <= maxEnergy)
         {
             return false;
         }
-        else if (deal.getCategory() == DealCategory.Food && food.size() <= maxFood)
+        else if (dealCategory == DealCategory.Food && food.size() <= maxFood)
         {
             return false;
         }
-        else if (deal.getCategory() == DealCategory.Knowledge && knowledge.size() <= maxKnowledge)
+        else if (dealCategory == DealCategory.Knowledge && knowledge.size() <= maxKnowledge)
         {
             return false;
         }
@@ -60,12 +70,20 @@ public class Inventory implements IInventory {
         return true;
     }
 
+    /**
+     * checks if inventory is full of items
+     * @return true if inventory is full
+     */
     @Override
     public boolean isFullOfItems() {
         return items.size() >= maxItem;
     }
 
 
+    /**
+     * adds deal to inventory
+     * @param deal to be added
+     */
     @Override
     public void addDeal(IDeal deal)
     {
@@ -84,7 +102,10 @@ public class Inventory implements IInventory {
     }
 
 
-
+    /**
+     * adds item to inventory
+     * @param item to be added
+     */
     @Override
     public void addItem(IItem item)
     {
@@ -92,6 +113,10 @@ public class Inventory implements IInventory {
     }
 
 
+    /**
+     * removed item from inventory
+     * @param item item to be removed
+     */
     public void removeItem(IItem item)
     {
         for (var tempItems : items)
@@ -104,6 +129,10 @@ public class Inventory implements IInventory {
         }
     }
 
+    /**
+     * removes deal from inventory
+     * @param deal to be removed
+     */
     @Override
     public void removeDeal(IDeal deal)
     {
@@ -121,14 +150,6 @@ public class Inventory implements IInventory {
         }
 
     }
-
-
-    /**
-     * ---> TO BE USED EVERY TIME YOU WANT TO CALL A METHOD FROM ITEM <---
-     * @return
-     */
-    public static Inventory getInstance(){return instance;}
-
 
     /**
      * @return inventory Deals

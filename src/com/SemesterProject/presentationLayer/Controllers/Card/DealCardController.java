@@ -26,7 +26,7 @@ public class DealCardController extends Injection<MainController>
     public void onCardClicked(ActionEvent actionEvent)
     {
         getController().takeDeal(deal);
-        getController().getCardRowController().anchorPane.setVisible(false);
+        getController().getCardRowController().getAnchorPane().setVisible(false);
     }
 
     /**

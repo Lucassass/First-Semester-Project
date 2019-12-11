@@ -42,6 +42,10 @@ public class Country {
         setTrainStation(trainStation);
     }
 
+    /**
+     *
+     * @return governmentRoom
+     */
     public Room getGovernmentRoom() {
         return governmentRoom;
     }

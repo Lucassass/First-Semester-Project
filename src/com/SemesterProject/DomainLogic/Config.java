@@ -14,30 +14,59 @@ public class Config implements IConfig
     private int privateFlyingCost = 250;
     private int trainCost = 50;
 
+    /**
+     *
+     * @param amount amount to check
+     * @return true if got enought damage
+     */
     public boolean gotEnoughMoney(int amount){
         return money > amount;
     }
 
+    /**
+     *
+     * @param amount amount to subtract
+     */
     public void subtractMoney(int amount){
         money -= amount;
     }
 
+    /**
+     *
+     * @return money
+     */
     public int getMoney() {
         return money;
     }
 
+    /**
+     *
+     * @return commercial flight cost
+     */
     public int getCommercialFlyingCost() {
         return commercialFlyingCost;
     }
 
+    /**
+     *
+     * @return private flight cost
+     */
     public int getPrivateFlyingCost() {
         return privateFlyingCost;
     }
 
+    /**
+     *
+     * @return train cost
+     */
     public int getTrainCost() {
         return trainCost;
     }
 
+    /**
+     *
+     * @return the lowest cost out of commercial flight, private flight and train
+     */
     @Override
     public int getLowestCost()
     {

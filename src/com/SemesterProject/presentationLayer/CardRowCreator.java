@@ -152,41 +152,41 @@ public class CardRowCreator
     {
         if (CardAirportType.PRIVATE.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onPrivateClick);
+            cardController.getChooseButton().setOnAction(cardController::onPrivateClick);
         }
         else if (CardAirportType.CHINA.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onChinaClick);
+            cardController.getChooseButton().setOnAction(cardController::onChinaClick);
 
         }
         else if (CardAirportType.COMMERCIAL.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onCommercialClick);
+            cardController.getChooseButton().setOnAction(cardController::onCommercialClick);
 
         }
         else if (CardAirportType.GERMANY.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onGermanyClick);
+            cardController.getChooseButton().setOnAction(cardController::onGermanyClick);
 
         }
         else if (CardAirportType.INDIA.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onIndiaClick);
+            cardController.getChooseButton().setOnAction(cardController::onIndiaClick);
 
         }
         else if (CardAirportType.JAPAN.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onJapanClick);
+            cardController.getChooseButton().setOnAction(cardController::onJapanClick);
 
         }
         else if (CardAirportType.USA.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onUSAClick);
+            cardController.getChooseButton().setOnAction(cardController::onUSAClick);
 
         }
         else if (CardAirportType.RUSSIA.getName().equalsIgnoreCase(name))
         {
-            cardController.chooseButton.setOnAction(cardController::onRussiaClick);
+            cardController.getChooseButton().setOnAction(cardController::onRussiaClick);
 
         }
     }

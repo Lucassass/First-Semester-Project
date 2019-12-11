@@ -14,18 +14,34 @@ public class EndGameResult implements IEndGameResult
         this.energyPoint = energyPoint;
     }
 
+    /**
+     *
+     * @return energyPoint
+     */
     public int getEnergyPoint() {
         return energyPoint;
     }
 
+    /**
+     *
+     * @return environment points
+     */
     public int getEnvironmentPoint() {
         return environmentPoint;
     }
 
+    /**
+     *
+     * @return sustainability point
+     */
     public int getSustainabilityPoint() {
         return sustainabilityPoint;
     }
 
+    /**
+     *
+     * @return sum of all points
+     */
     public int getSum()
     {
         return sustainabilityPoint + energyPoint + environmentPoint;

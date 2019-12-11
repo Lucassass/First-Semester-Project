@@ -16,6 +16,10 @@ public class CountryCardController extends Injection<MainController>
     @FXML private Button chooseButton;
 
 
+    public Button getChooseButton() {
+        return chooseButton;
+    }
+
     /**
      * goes to a random country
      */
