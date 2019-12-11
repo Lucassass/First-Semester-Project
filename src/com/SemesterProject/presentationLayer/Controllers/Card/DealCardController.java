@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 public class DealCardController extends Injection<MainController>
 {
@@ -21,6 +20,7 @@ public class DealCardController extends Injection<MainController>
 
     @FXML
     public Label cardPrice;
+    @FXML private Label cardCategory;
 
     private Deal deal;
 
@@ -36,6 +36,8 @@ public class DealCardController extends Injection<MainController>
         cardDescription.setText(deal.getDescription());
         cardName.setText(deal.getName());
         cardPrice.setText("Price: " + deal.getPrice());
+        cardImage.setImage(deal.getImage());
+        cardCategory.setText("Category:" + deal.getCategory());
     }
 
 

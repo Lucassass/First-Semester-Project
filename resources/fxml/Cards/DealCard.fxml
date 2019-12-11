@@ -9,14 +9,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="card" prefHeight="556.0" prefWidth="191.0" style="-fx-background-color: rgba(191,123,40,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.DealCardController">
+<AnchorPane fx:id="card" prefHeight="556.0" prefWidth="191.0" style="-fx-background-color: rgba(32,191,57,0.8);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.Card.DealCardController">
    <children>
       <Label fx:id="cardName" alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="46.0" prefWidth="133.0" text="Card name:" textAlignment="CENTER" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="cardImage" fitHeight="186.0" fitWidth="150.0" layoutX="33.0" layoutY="77.0" pickOnBounds="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <ImageView fx:id="cardImage" fitHeight="127.0" fitWidth="150.0" layoutX="33.0" layoutY="136.0" pickOnBounds="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <image>
             <Image url="/images" />
          </image>
@@ -40,6 +40,11 @@
                </stops>
             </RadialGradient>
          </textFill>
+      </Label>
+      <Label fx:id="cardCategory" alignment="CENTER" layoutX="39.0" layoutY="82.0" prefHeight="46.0" prefWidth="133.0" text="Category:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>

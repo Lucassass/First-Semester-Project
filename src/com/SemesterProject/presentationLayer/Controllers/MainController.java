@@ -8,6 +8,7 @@ import com.SemesterProject.Interfaces.IGameStage;
 import com.SemesterProject.Interfaces.IInventory;
 import com.SemesterProject.presentationLayer.Controllers.Card.CardRowController;
 import com.SemesterProject.presentationLayer.Controllers.Room.*;
+import com.SemesterProject.presentationLayer.ImageReturner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,139 +116,20 @@ public class MainController extends Application implements Initializable {
         governmentController.injectController(this);
         trainController.injectController(this);
         cardRowController.injectController(this);
+        appendDialog("This is a game of choice. Everything you do has an effect so choose wisely. But here's the catch you won’t know how you did until you finish the game\n" +
+                "for more information, try “Help”");
         updateMoney();
         setupOutsideRoom();
-        globalMap.setImage(getGlobalMap());
+        globalMap.setImage(ImageReturner.globalMap(gameStage.getCountryName()));
         configureInventory();
-        appendDialog("This is a game of choice. Everything you do has an effect so choose wisely. But here's the catch you won’t know how you did until you finish the game\n" +
-                "for more information, try “Help”\n");
+
     }
 
-    private void configureInventory() {
-        inventoryDeals.setCellFactory(param -> new ListCell<>(){
-            @Override
-            protected void updateItem(Deal item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.getName() + " | " + item.getCategory());
-                }
-            }
-        });
 
-        inventoryItems.setCellFactory(param -> new ListCell<>()
-        {
-            @Override
-            protected void updateItem(Item item, boolean empty) {
-                super.updateItem( item, empty);
-
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.getName());
-                }
-
-            }
-        });
-    }
 
     public void onQuitButton(ActionEvent actionEvent) {
         endGame();
     }
-
-    private void endGame()
-    {
-        endScreenImage.setImage(getEndGameImage());
-        endScreen.setVisible(true);
-        appendDialog("Game have ended");
-        var result = getGameStage().getEndGameResult();
-        energyPoint.setText(String.valueOf(result.getEnergyPoint()));
-        environmentPoint.setText(String.valueOf(result.getEnvironmentPoint()));
-        sustainabilityPoint.setText(String.valueOf(result.getSustainabilityPoint()));
-
-    }
-
-    private Image getEndGameImage()
-    {
-        var points = getGameStage().getEndGameResult().getSum();
-        if (points > 700)
-        {
-            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGamePARADISE.png"));
-        }
-        else if (points > 300)
-        {
-            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameStillBREATHING.png"));
-
-        }
-        else
-        {
-            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameHelloHell.png"));
-        }
-    }
-
-    public void updateMoney()
-    {
-        money.setText("Money: " + gameStage.getConfig().getMoney());
-        if (!getGameStage().gotEnoughMoneyToKeepPlaying())
-        {
-            //GAME SHOULD END HERE
-            appendDialog("You dont have enough money to do anything");
-            endGame();
-        }
-    }
-
-    public void addDeal(Deal deal)
-    {
-        if (!inventory.isFullOfDeals(deal))
-        {
-            if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
-            {
-                getGameStage().getConfig().subtractMoney(deal.getPrice());
-                if (gameStage.takeDeal(deal, governmentController.getItemUsed()))
-                {
-                    inventory.addDeal(deal);
-                    appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
-                    inventoryDeals.getItems().add(deal);
-                }
-                else
-                {
-                    appendDialog("You didn't get the deal :(");
-                }
-                gameStage.removeDealFromRoom(deal.getUuid());
-            }
-            else
-            {
-                appendDialog("You dont have enough money for this deal :(");
-            }
-
-
-        }
-        else {
-            appendDialog("You can't hold more deal of " + deal.getCategory() + ". Please remove \na deal of the " +
-                    "same category and try again.");
-        }
-
-        updateMoney();
-    }
-
-    public void addItem(Item item)
-    {
-        if (!inventory.isFullOfItems() && item != null)
-        {
-            inventory.addItem(item);
-            appendDialog("Added item: " + item.getName());
-            inventoryItems.getItems().add(item);
-            gameStage.removeItemFromRoom(item.getUuid());
-        }
-        else
-        {
-            appendDialog("Inventory is full. Please remove an item from your inventory\n" +
-                    "if you want to pick this one up");
-        }
-
-    }
-
 
     public void onDealRemove(ActionEvent actionEvent)
     {
@@ -290,8 +172,6 @@ public class MainController extends Application implements Initializable {
 
     }
 
-
-
     public void onItemUse(ActionEvent actionEvent)
     {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
@@ -311,14 +191,73 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    private void removeItemFromInventory(Item item)
+    public void addDeal(Deal deal)
     {
-        inventory.removeItem(item);
-        inventoryItems.getItems().remove(item);
-        appendDialog("Removed item: " + item.getName());
+        if (!inventory.isFullOfDeals(deal))
+        {
+            if (getGameStage().getConfig().gotEnoughMoney(deal.getPrice()))
+            {
+                getGameStage().getConfig().subtractMoney(deal.getPrice());
+                if (gameStage.takeDeal(deal, governmentController.getItemUsed()))
+                {
+                    inventory.addDeal(deal);
+                    appendDialog("Added deal: " + deal.getName() + " | " + deal.getCategory());
+                    inventoryDeals.getItems().add(deal);
+                }
+                else
+                {
+                    appendDialog("You didn't get the deal :(");
+                }
+                gameStage.removeDealFromRoom(deal.getUuid());
+            }
+            else
+            {
+                appendDialog("You dont have enough money for this deal :(");
+            }
+
+
+        }
+        else {
+            appendDialog("You can't hold more deal of " + deal.getCategory() + ". Please remove \na deal of the " +
+                    "same category and try again.");
+        }
+
+        updateMoney();
     }
 
+    /**
+     *
+     * @param item
+     */
+    public void addItem(Item item)
+    {
+        if (!inventory.isFullOfItems() && item != null)
+        {
+            inventory.addItem(item);
+            appendDialog("Added item: " + item.getName());
+            inventoryItems.getItems().add(item);
+            gameStage.removeItemFromRoom(item.getUuid());
+        }
+        else
+        {
+            appendDialog("Inventory is full. Please remove an item from your inventory\n" +
+                    "if you want to pick this one up");
+        }
 
+    }
+
+    /**
+     * Writes to dialog area
+     * @param text The text you want to display
+     */
+    public void appendDialog(String text)
+    {
+        dialog.appendText(text + "\n");
+    }
+
+    /**
+     * Go to a new country, updates stage name, money and dialog
+     */
     public void goToNewCountry()
     {
         updateMoney();
@@ -330,11 +269,14 @@ public class MainController extends Application implements Initializable {
         setStageName();
         cardRowController.anchorPane.setVisible(false);
         appendDialog("Moving to: " + getGameStage().getCountryName());
-        //outsideController.setBackgroundImage(getImageOfOutsideRoom());
+        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCountryName()));
 
-        globalMap.setImage(getGlobalMap());
+        globalMap.setImage(ImageReturner.globalMap(gameStage.getCountryName()));
     }
 
+    /**
+     * Goes to airport room, sets background and display its description
+     */
     public void goToAirport()
     {
         if (gameStage.goRoom("up"))
@@ -350,6 +292,10 @@ public class MainController extends Application implements Initializable {
 
     }
 
+    /**
+     * Goes to outside room, sets background and display its description
+     * @param direction Which direction you are coming from
+     */
     public void goToOutsideFrom(String direction)
     {
         if (gameStage.goRoom(direction))
@@ -360,6 +306,9 @@ public class MainController extends Application implements Initializable {
 
     }
 
+    /**
+     * Goes to government room, sets background and display its description
+     */
     public void goToGovernment()
     {
         if (gameStage.goRoom("left"))
@@ -376,6 +325,9 @@ public class MainController extends Application implements Initializable {
 
     }
 
+    /**
+     *Goes to train station room, sets background and display its description
+     */
     public void goToTrainStation()
     {
         if (gameStage.goRoom("right"))
@@ -391,12 +343,15 @@ public class MainController extends Application implements Initializable {
 
     }
 
+    /**
+     * Goes to culture room, sets background and display its description
+     */
     public void  goToCulture()
     {
         if (gameStage.goRoom("down"))
         {
             var items = getGameStage().getItemFromRoom();
-            //cultureController.setBackgroundImage(getImageOfCultureRoom());
+            cultureController.setBackgroundImage(ImageReturner.cultureRoom(gameStage.getCountryName()));
 
             cultureController.setItem(items);
 
@@ -409,6 +364,9 @@ public class MainController extends Application implements Initializable {
         }
     }
 
+    /**
+     * Setup the background of the outside room and display its description
+     */
     private void setupOutsideRoom()
     {
         airport.setVisible(false);
@@ -417,33 +375,102 @@ public class MainController extends Application implements Initializable {
         train.setVisible(false);
         outside.setVisible(true);
         appendDialog(getGameStage().getRoomDescription());
-        //outsideController.setBackgroundImage(getImageOfOutsideRoom());
+        outsideController.setBackgroundImage(ImageReturner.outsideRoom(gameStage.getCountryName()));
         setStageName();
     }
 
-    public void appendDialog(String text)
+    /**
+     * Remove item from inventory both in backend and frontend
+     * @param item Item to be removed
+     */
+    private void removeItemFromInventory(Item item)
     {
-        dialog.appendText(text + "\n");
+        inventory.removeItem(item);
+        inventoryItems.getItems().remove(item);
+        appendDialog("Removed item: " + item.getName());
     }
 
-    private Image getGlobalMap()
+    /**
+     * Update display of your money
+     */
+    private void updateMoney()
     {
-        switch (gameStage.getCountryName().toLowerCase())
+        money.setText("Money: " + gameStage.getConfig().getMoney());
+        if (!getGameStage().gotEnoughMoneyToKeepPlaying())
         {
-            case "usa":
-                return new Image(getClass().getResourceAsStream("/images/USA.png"));
-            case "russia":
-                return new Image(getClass().getResourceAsStream("/images/Russia.png"));
-            case "japan":
-                return new Image(getClass().getResourceAsStream("/images/Japan.png"));
-            case "germany":
-                return new Image(getClass().getResourceAsStream("/images/Germany.png"));
-            case "india":
-                return new Image(getClass().getResourceAsStream("/images/India.png"));
-            case "china":
-                return new Image(getClass().getResourceAsStream("/images/China.png"));
+            //GAME SHOULD END HERE
+            appendDialog("You dont have enough money to do anything");
+            endGame();
         }
-        return null;
     }
+
+    /**
+     * return what endgame image should be displayed by points
+     * @return end game image
+     */
+    private Image getEndGameImage()
+    {
+        var points = getGameStage().getEndGameResult().getSum();
+        if (points > 700)
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGamePARADISE.png"));
+        }
+        else if (points > 300)
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameStillBREATHING.png"));
+
+        }
+        else
+        {
+            return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameHelloHell.png"));
+        }
+    }
+
+    /**
+     *  Change mainscreen to the endgame screen
+     */
+    private void endGame()
+    {
+        endScreenImage.setImage(getEndGameImage());
+        endScreen.setVisible(true);
+        appendDialog("Game have ended");
+        var result = getGameStage().getEndGameResult();
+        energyPoint.setText(String.valueOf(result.getEnergyPoint()));
+        environmentPoint.setText(String.valueOf(result.getEnvironmentPoint()));
+        sustainabilityPoint.setText(String.valueOf(result.getSustainabilityPoint()));
+    }
+
+    /**
+     * Sets up listview for deal and item inventory
+     */
+    private void configureInventory() {
+        inventoryDeals.setCellFactory(param -> new ListCell<>(){
+            @Override
+            protected void updateItem(Deal item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName() + " | " + item.getCategory());
+                }
+            }
+        });
+
+        inventoryItems.setCellFactory(param -> new ListCell<>()
+        {
+            @Override
+            protected void updateItem(Item item, boolean empty) {
+                super.updateItem( item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName());
+                }
+
+            }
+        });
+    }
+
 
 }

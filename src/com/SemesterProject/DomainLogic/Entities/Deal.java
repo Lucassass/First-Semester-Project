@@ -6,6 +6,7 @@
 package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.DomainLogic.Enum.DealCategory;
+import javafx.scene.image.Image;
 
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ public class Deal {
     private String description; //Information about deal
     private int price;// price on deal
     private UUID uuid;
+    private Image image;
 
     //Hoved Deal objektet der gerne skulle bruges
     public Deal(String name, DealCategory category, int sustainabilityPoints,
@@ -35,6 +37,8 @@ public class Deal {
         this.description = info;
         this.price = price;
         uuid = UUID.randomUUID();
+        setImage();
+
     }
 
 
@@ -91,4 +95,26 @@ public class Deal {
         return environmentPoints;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    private void setImage()
+    {
+        switch (category)
+        {
+            case Knowledge:
+                image = new Image(getClass().getResourceAsStream("/images/deal/environment.png"));
+                break;
+            case Food:
+                image = new Image(getClass().getResourceAsStream("/images/deal/sustainability.png"));
+                break;
+            case Energy:
+                image = new Image(getClass().getResourceAsStream("/images/deal/energy.png"));
+                break;
+            default:
+                image = null;
+                break;
+        }
+    }
 }

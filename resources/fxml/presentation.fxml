@@ -64,7 +64,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <TextArea fx:id="dialog" editable="false" layoutX="30.0" layoutY="472.0" prefHeight="173.0" prefWidth="300.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+            <TextArea fx:id="dialog" editable="false" layoutX="30.0" layoutY="472.0" prefHeight="173.0" prefWidth="300.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" wrapText="true"/>
             <ListView fx:id="inventoryDeals" layoutX="30.0" layoutY="321.0" prefHeight="139.0" prefWidth="119.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="240.0">
                <contextMenu>
                   <ContextMenu>
