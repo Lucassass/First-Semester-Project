@@ -1,6 +1,5 @@
 package com.SemesterProject.presentationLayer.Controllers.Card;
 
-import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.Interfaces.Entities.IDeal;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
@@ -12,25 +11,28 @@ import javafx.scene.image.ImageView;
 
 public class DealCardController extends Injection<MainController>
 {
-    @FXML
-    public TextArea cardDescription;
-    @FXML
-    public ImageView cardImage;
-    @FXML
-    public Label cardName;
+    @FXML private TextArea cardDescription;
+    @FXML private ImageView cardImage;
+    @FXML private Label cardName;
 
-    @FXML
-    public Label cardPrice;
+    @FXML private Label cardPrice;
     @FXML private Label cardCategory;
 
     private IDeal deal;
 
+    /**
+     * tries to take the deal.
+     */
     public void onCardClicked(ActionEvent actionEvent)
     {
-        getController().addDeal(deal);
+        getController().takeDeal(deal);
         getController().getCardRowController().anchorPane.setVisible(false);
     }
 
+    /**
+     * sets up the card data
+     * @param deal the deal to populate the card with
+     */
     public void populateCard(IDeal deal)
     {
         this.deal = deal;

@@ -127,11 +127,16 @@ public class MainController extends Application implements Initializable {
     }
 
 
-
+    /**
+     * Opens the endgame screen when clicked
+     */
     public void onQuitButton(ActionEvent actionEvent) {
         endGame();
     }
 
+    /**
+     * Remove the selected deal
+     */
     public void onDealRemove(ActionEvent actionEvent)
     {
         var item = inventoryDeals.getSelectionModel().getSelectedItem();
@@ -141,6 +146,11 @@ public class MainController extends Application implements Initializable {
         appendDialog("Removed deal: " + ((Deal) item).getName() + "| " + ((Deal) item).getCategory());
     }
 
+    /**
+     * If player is located in the culture room, the selected item will be switched, if the room is full of items.
+     * The selected item will be switched with one of the item in the culture room. If there is an empty room
+     * the selected item will be places there insted.
+     */
     public void onItemSwitch(ActionEvent actionEvent)
     {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
@@ -173,6 +183,9 @@ public class MainController extends Application implements Initializable {
 
     }
 
+    /**
+     * When using an item, if player are located in the government room, the item will be used
+     */
     public void onItemUse(ActionEvent actionEvent)
     {
         var item = inventoryItems.getSelectionModel().getSelectedItem();
@@ -192,7 +205,11 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    public void addDeal(IDeal deal)
+    /**
+     * Takes the deal, check if you have room in inventory, money and then makes the dice rool
+     * @param deal the deal you want to try to take
+     */
+    public void takeDeal(IDeal deal)
     {
         if (!inventory.isFullOfDeals(deal))
         {
@@ -227,8 +244,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param item
+     * adds the item to the inventory. Both in domain layer and presentation layer
+     * @param item the item that shall be added
      */
     public void addItem(IItem item)
     {

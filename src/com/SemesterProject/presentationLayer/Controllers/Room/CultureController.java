@@ -27,7 +27,7 @@ public class CultureController extends Injection<MainController>
 
 
     /**
-     *
+     * get called after controller injection
      */
     @Override
     public void postInjection() {
@@ -45,7 +45,7 @@ public class CultureController extends Injection<MainController>
     }
 
     /**
-     * 
+     *  clears items from the room
      */
     private void clearItems()
     {
@@ -62,6 +62,10 @@ public class CultureController extends Injection<MainController>
         imageItems.add(new ImageItem(thirdItemImage, null));
     }
 
+    /**
+     * sets item in the room
+     * @param items the items you want to be set
+     */
     public void setItem(ArrayList<IItem> items)
     {
         clearItems();
@@ -81,6 +85,11 @@ public class CultureController extends Injection<MainController>
 
     }
 
+    /**
+     * replace item in the room
+     * @param item the item you want to replace
+     * @return return the replaced item
+     */
     public IItem replaceItem(IItem item)
     {
         for (int i = 0; i < imageItems.size(); i++) {
@@ -103,9 +112,28 @@ public class CultureController extends Injection<MainController>
     }
 
 
+    /**
+     * go to outside room
+     */
     public void onClickOutside(MouseEvent mouseEvent)
     {
         getController().goToOutsideFrom("up");
+    }
+
+
+    public void onFirstItemClicked(MouseEvent mouseEvent)
+    {
+        if (imageItems.isEmpty()) return;
+
+        clickItem(imageItems.get(0));
+    }
+
+
+    public void onSecondItemClicked(MouseEvent mouseEvent)
+    {
+        if (imageItems.size() < 1) return;
+
+        clickItem(imageItems.get(1));
     }
 
 
@@ -117,20 +145,10 @@ public class CultureController extends Injection<MainController>
 
     }
 
-    public void onFirstItemClicked(MouseEvent mouseEvent)
-    {
-        if (imageItems.isEmpty()) return;
-
-        clickItem(imageItems.get(0));
-    }
-
-    public void onSecondItemClicked(MouseEvent mouseEvent)
-    {
-        if (imageItems.size() < 1) return;
-
-        clickItem(imageItems.get(1));
-    }
-
+    /**
+     * add clicked item to inventory if got space
+     * @param item item clicked
+     */
     private void clickItem(ImageItem item)
     {
         if (item != null && item.getImage() != null)
@@ -140,6 +158,9 @@ public class CultureController extends Injection<MainController>
         }
     }
 
+    /**
+     * updates the items, if items doesnt exist in the domain layer inventory, the item will be removed from culture room
+     */
     private void updateItem()
     {
         var itemsInRoom = getController().getGameStage().getItemFromCurrentRoom();
@@ -167,45 +188,3 @@ public class CultureController extends Injection<MainController>
     }
 }
 
-class ImageItem
-{
-    private ImageView image;
-    private IItem item;
-
-    ImageItem(ImageView image, Item item) {
-        this.image = image;
-        this.item = item;
-        if (item == null)
-        {
-            image.setImage(null);
-        }
-        else
-        {
-            image.setImage(item.getImage());
-        }
-    }
-
-    IItem getItem() {
-        return item;
-    }
-
-    void updateIndex(int i)
-    {
-        item.setIndex(i);
-    }
-
-    void setItem(IItem item) {
-        this.item = item;
-        if (item == null){
-            image.setImage(null);
-        }
-        else
-        {
-            image.setImage(item.getImage());
-        }
-    }
-
-    public Image getImage() {
-        return image.getImage();
-    }
-}

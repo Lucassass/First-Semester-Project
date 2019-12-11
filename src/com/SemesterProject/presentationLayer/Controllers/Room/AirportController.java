@@ -11,13 +11,18 @@ public class AirportController extends Injection<MainController>
 {
 
 
-
+    /**
+     * go to outside room
+     */
     public void onClickOutside(MouseEvent mouseEvent)
     {
         getController().goToOutsideFrom("down");
     }
 
 
+    /**
+     * loads airport choice gridpane
+     */
     public void onMouseClickGirl(MouseEvent mouseEvent)
     {
         getController().getCardRow().setVisible(true);

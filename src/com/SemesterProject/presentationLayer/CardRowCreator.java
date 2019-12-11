@@ -40,24 +40,42 @@ public class CardRowCreator
         return dealCardControllers;
     }
 
+    /**
+     * Generates airport choices on the grid pane
+     * @return the grid pane
+     */
     public GridPane generateAirportChoice()
     {
         addAirportChoice();
         return gridPane;
     }
 
+    /**
+     * generates deals on the grid pane
+     * @param deals
+     * @return the grid pane
+     */
     public GridPane generateDeals(List<IDeal> deals)
     {
         addDeals(deals);
         return gridPane;
     }
 
+    /**
+     * Genereates countries on the gridpane
+     * @param countries the countries
+     * @param price price for flying
+     * @return the grid pane
+     */
     public GridPane generateCountries(List<String> countries, int price)
     {
         addCountries(countries, price);
         return gridPane;
     }
 
+    /**
+     * Setup the gridpane for airport choices
+     */
     private void addAirportChoice()
     {
         clearGridPane();
@@ -69,6 +87,11 @@ public class CardRowCreator
         addAirportChoiceCard(3, "Commercial", MainController.getGameStage().getConfig().getCommercialFlyingCost());
     }
 
+    /**
+     *
+     * @param countries the countries to be added
+     * @param price the price
+     */
     private void addCountries(List<String> countries, int price)
     {
         clearGridPane();
@@ -91,6 +114,12 @@ public class CardRowCreator
 
     }
 
+    /**
+     *
+     * @param index at what index to for the card to be places
+     * @param name Name of the card
+     * @param price Price of the card
+     */
     private void addAirportChoiceCard(int index, String name, int price)
     {
         try {
@@ -114,6 +143,11 @@ public class CardRowCreator
         }
     }
 
+    /**
+     * sets airport button's onAction event handler
+     * @param cardController a reference to a card controller
+     * @param name the name of the card
+     */
     private void setAirportButtonAction(CountryCardController cardController, String name)
     {
         if (CardAirportType.PRIVATE.getName().equalsIgnoreCase(name))
@@ -157,6 +191,10 @@ public class CardRowCreator
         }
     }
 
+    /**
+     * Adds deals to the grid pane
+     * @param deals The deals that shall be added
+     */
     private void addDeals(List<IDeal> deals)
     {
         if (deals == null) return;
@@ -172,6 +210,10 @@ public class CardRowCreator
 
     }
 
+    /**
+     * Fills the gridPane with deals
+     * @param deals the deals the gridPane shall be filled with
+     */
     private void fillDealGridPane(List<IDeal> deals)
     {
         int row = 0;
@@ -187,6 +229,10 @@ public class CardRowCreator
         }
     }
 
+    /**
+     * creates column in the gridpane
+     * @param size the number of column to create
+     */
     private void CreateGridPane(int size)
     {
         double percentPerEmptyRow = 1;
@@ -206,6 +252,10 @@ public class CardRowCreator
         addEmptyColumn(percentPerEmptyRow);
     }
 
+    /**
+     * Adds column constraints
+     * @param widthPercent what width percent the column should have
+     */
     private void addColumnConstraints(double widthPercent)
     {
         ColumnConstraints column = new ColumnConstraints();
@@ -213,11 +263,21 @@ public class CardRowCreator
         gridPane.getColumnConstraints().add(column);
     }
 
+    /**
+     * checks if number is odd
+     * @param number number to check
+     * @return return true if number is odd
+     */
     private  boolean numberIsOdd(int number)
     {
         return number % 2 != 0;
     }
 
+    /**
+     * adds a deal to an column based on the index
+     * @param deal The deal you want to be added
+     * @param index at which index of the gridpane, the card should be placed
+     */
     private void addDealCardColumn(IDeal deal, int index)
     {
         try {
@@ -242,6 +302,10 @@ public class CardRowCreator
 
     }
 
+    /**
+     * Add an empty column in grid pane
+     * @param widthPercent the width percent you want the empty column to be
+     */
     private  void addEmptyColumn(double widthPercent)
     {
         ColumnConstraints column = new ColumnConstraints();
@@ -250,6 +314,9 @@ public class CardRowCreator
         gridPane.getColumnConstraints().add(column);
     }
 
+    /**
+     * Clears grid pane and set it up with default values
+     */
     private void clearGridPane()
     {
         gridPane.getChildren().clear();
@@ -266,15 +333,15 @@ public class CardRowCreator
     }
 
     /**
-     *
-     * @param size
-     * @param percentPerEmptyRow
-     * @return
+     * Calculate what width percent the cards should have
+     * @param size number of cards
+     * @param percentPerEmptyColumn the empty columns width in percentage
+     * @return return percentage value
      */
-    private  double getCardPercent(int size, double percentPerEmptyRow)
+    private  double getCardPercent(int size, double percentPerEmptyColumn)
     {
         var emptyRows = 2 + size - 1;
-        return (100 - (emptyRows*percentPerEmptyRow)) / size;
+        return (100 - (emptyRows*percentPerEmptyColumn)) / size;
     }
 
 

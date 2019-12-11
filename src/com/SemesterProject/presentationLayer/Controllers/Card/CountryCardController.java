@@ -3,18 +3,22 @@ package com.SemesterProject.presentationLayer.Controllers.Card;
 import com.SemesterProject.presentationLayer.Controllers.MainController;
 import com.SemesterProject.presentationLayer.Injection;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class CountryCardController extends Injection<MainController>
 {
-    public Label cardName;
-    public AnchorPane card;
-    public Label cardPrice;
-    public Button chooseButton;
+    @FXML private Label cardName;
+    @FXML private AnchorPane card;
+    @FXML private Label cardPrice;
+    @FXML private Button chooseButton;
 
 
+    /**
+     * goes to a random country
+     */
     public void onCommercialClick(ActionEvent actionEvent)
     {
         if (MainController.getGameStage().goToRandomCountry(getPrice()))
@@ -23,6 +27,9 @@ public class CountryCardController extends Injection<MainController>
         }
     }
 
+    /**
+     * load all countries options
+     */
     public void onPrivateClick(ActionEvent actionEvent)
     {
         getController().getCardRowController().loadAirportPrivateCountries();
@@ -58,6 +65,12 @@ public class CountryCardController extends Injection<MainController>
        goToCountry("germany");
     }
 
+    public void populateCard(String name, int price)
+    {
+        cardName.setText(name);
+        cardPrice.setText("Price: " + price);
+    }
+
     private void goToCountry(String country)
     {
         if (MainController.getGameStage().goToCountry(country,getPrice()))
@@ -69,13 +82,7 @@ public class CountryCardController extends Injection<MainController>
         }
     }
 
-    public void populateCard(String name, int price)
-    {
-        cardName.setText(name);
-        cardPrice.setText("Price: " + price);
-    }
-
-    public int getPrice()
+    private int getPrice()
     {
         return Integer.parseInt(cardPrice.getText().split(" ")[1]);
 

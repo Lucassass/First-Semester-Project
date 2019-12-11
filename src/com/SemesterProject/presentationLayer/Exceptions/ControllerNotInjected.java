@@ -1,5 +1,6 @@
 package com.SemesterProject.presentationLayer.Exceptions;
 
+
 public class ControllerNotInjected extends Exception
 {
     @Override

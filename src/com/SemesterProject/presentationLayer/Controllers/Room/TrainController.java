@@ -12,6 +12,9 @@ public class TrainController  extends Injection<MainController> {
         getController().goToOutsideFrom("left");
     }
 
+    /**
+     * loads grid pane for trains
+     */
     public void onTrainManClick(MouseEvent mouseEvent)
     {
         getController().getCardRow().setVisible(true);
