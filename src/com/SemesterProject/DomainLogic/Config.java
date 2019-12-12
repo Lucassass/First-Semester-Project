@@ -9,7 +9,7 @@ import com.SemesterProject.Interfaces.IConfig;
 
 public class Config implements IConfig
 {
-    private int money = 3000;
+    private int money = 2500;
     private int commercialFlyingCost = 100;
     private int privateFlyingCost = 250;
     private int trainCost = 50;
