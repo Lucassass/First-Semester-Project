@@ -436,45 +436,27 @@ public class GameStage implements IGameStage
         germany.setFlyExit("Russia", russia);
         germany.setFlyExit("India", india);
 
-        japan.setFlyExit("USA", usa);
         japan.setFlyExit("China", china);
-        japan.setFlyExit("Germany", germany);
-        japan.setFlyExit("Russia", russia);
         japan.setFlyExit("India", india);
 
         //Train exit
         china.setTrainExit("USA", usa);
-        china.setTrainExit("Germany", germany);
         china.setTrainExit("Japan", japan);
-        china.setTrainExit("Russia", russia);
-        china.setTrainExit("India", india);
 
         usa.setTrainExit("China", china);
         usa.setTrainExit("Russia", russia);
 
         germany.setTrainExit("Russia",russia);
         germany.setTrainExit("India", india);
-        germany.setTrainExit("China", china);
-        germany.setTrainExit("Japan", japan);
-        germany.setTrainExit("Usa", usa);
 
-        japan.setTrainExit("Russia",russia);
         japan.setTrainExit("India", india);
         japan.setTrainExit("China", china);
-        japan.setTrainExit("Germany", japan);
-        japan.setTrainExit("Usa", usa);
 
-        russia.setTrainExit("India", india);
         russia.setTrainExit("Germany", germany);
-        russia.setTrainExit("China", china);
-        russia.setTrainExit("Japan", japan);
         russia.setTrainExit("Usa", usa);
 
         india.setTrainExit("Japan", japan);
         india.setTrainExit("Germany", germany);
-        india.setTrainExit("China", china);
-        india.setTrainExit("Japan", japan);
-        india.setTrainExit("Usa", usa);
 
         currentCountry = usa;
         currentRoom = currentCountry.getStartRoom();
