@@ -457,6 +457,9 @@ public class GameStage implements IGameStage
 
         japan.setFlyExit("China", china);
         japan.setFlyExit("India", india);
+        japan.setFlyExit("Germany", germany);
+        japan.setFlyExit("Russia",russia);
+        japan.setFlyExit("USA", usa);
 
         //Train exit
         china.setTrainExit("USA", usa);
