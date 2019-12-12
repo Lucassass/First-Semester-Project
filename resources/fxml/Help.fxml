@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SemesterProject.presentationLayer.Controllers.HelpController">
+   <children>
+      <TextArea layoutX="76.0" layoutY="56.0" prefHeight="664.0" prefWidth="800.0" text="Help&#10;Game guide&#10;--Goal--&#10;The world is your oyster. Go through the countries to and make deals to create your own sustainable, &#10;environmental and energy friendly utopia. &#10;--Deals--&#10;Each country has a set of deals that you can try to make, but be careful people are tricky and complicated. &#10;Diplomacy is a complicated affair and might as well be decided by a coin toss(Hint Hint) &#10;and should the deal go through?&#10;too bad, no do overs in the real world. &#10;--Items--&#10;While cruising through the countries, take a moment to appreciate the culture&#10;(Culture room) and  see if you find any lucky items. These might help you out with a deal, &#10;or destroy your chances. &#10;Just make sure you don’t offend anybody with the wrong items.&#10;--Transportation--&#10;The way we travel have an effect on our environment. &#10;A train uses less fuel but can unfortunately only take us so far. &#10;Commercial plane can go all around the world, however the destination is random &#10;and even though a private plane can get us wherever we want no matter where, &#10;it is a waste of fuel, energy and is bad for the environment, &#10;which is why it cost A LOT more than everything else. &#10;--Actions--&#10;Keep an eye on your cursor to see what actions you can take. &#10;--Quit--&#10;You can quit the game by choice or when you are too broke to afford anything. &#10;--Rooms--&#10;-Outside-&#10;Whenever you visit a new country, you will start outside, where you will be welcomed by the nations flag. &#10;-Government-&#10;This is the room where it happens. click on the guy in the suit and make your deals. Here’s a tip, &#10;try using your items before making a deal. &#10;-Culture room-&#10;each country has a culturally relevant room. See if you can learn something new and &#10;you might see something else too. &#10;-Airport-&#10;Click on the stewardess and get your flight ticket. &#10;-Trainstation-&#10;Try the conductor and see where he will let you go.&#10;" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="closeHelpId" layoutY="664.0" mnemonicParsing="false" onAction="#closeHelp" prefHeight="36.0" prefWidth="801.0" text="I Know It All Now! Close This Window">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

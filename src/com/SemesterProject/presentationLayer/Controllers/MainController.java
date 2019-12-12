@@ -21,9 +21,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -445,5 +448,22 @@ public class MainController extends Application implements Initializable {
         }
         return null;
     }
+    public void helpWindow(ActionEvent event) throws IOException {
+
+        Stage helpWin = new Stage();
+        helpWin.setTitle("Help Window");
+
+        helpWin.initModality(Modality.APPLICATION_MODAL);
+
+        //Making a popup window
+        Parent root = FXMLLoader.load(HelpController.class.getResource("/fxml/Help.fxml"));
+        Scene scene = new Scene(root);
+        helpWin.setResizable(false);
+        helpWin.setScene(scene);
+        helpWin.showAndWait();
+
+
+    }
+
 
 }

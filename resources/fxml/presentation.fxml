@@ -93,6 +93,11 @@
                   </ContextMenu>
                </contextMenu>
             </ListView>
+            <Button layoutX="313.0" layoutY="655.0" mnemonicParsing="false" onAction="#helpWindow" prefHeight="31.0" prefWidth="52.0" text="Help">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
 
