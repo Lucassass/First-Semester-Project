@@ -117,10 +117,10 @@ public class Deal implements IDeal {
         switch (category)
         {
             case Knowledge:
-                image = new Image(getClass().getResourceAsStream("/images/deal/environment.png"));
+                image = new Image(getClass().getResourceAsStream("/images/deal/knowledge.png"));
                 break;
             case Food:
-                image = new Image(getClass().getResourceAsStream("/images/deal/sustainability.png"));
+                image = new Image(getClass().getResourceAsStream("/images/deal/food.png"));
                 break;
             case Energy:
                 image = new Image(getClass().getResourceAsStream("/images/deal/energy.png"));

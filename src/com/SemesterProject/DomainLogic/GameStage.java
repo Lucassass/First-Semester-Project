@@ -405,6 +405,7 @@ public class GameStage implements IGameStage
         germany = new Country("Germany", "Airport", "Train",
                 "outside", "government", "culture", germanyDeals, germanyItem);
 
+        //Fly exist
         china.setFlyExit("USA", usa);
         china.setFlyExit("Russia", russia);
         china.setFlyExit("Japan", japan);
@@ -441,6 +442,7 @@ public class GameStage implements IGameStage
         japan.setFlyExit("Russia", russia);
         japan.setFlyExit("India", india);
 
+        //Train exit
         china.setTrainExit("USA", usa);
         china.setTrainExit("Germany", germany);
         china.setTrainExit("Japan", japan);

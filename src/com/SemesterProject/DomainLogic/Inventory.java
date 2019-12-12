@@ -5,9 +5,6 @@
  */
 package com.SemesterProject.DomainLogic;
 
-/**
- * @author tes_7
- */
 
 import com.SemesterProject.DomainLogic.Entities.Deal;
 import com.SemesterProject.DomainLogic.Entities.Item;

@@ -21,7 +21,7 @@
             <Image url="/images" />
          </image>
       </ImageView>
-      <TextArea fx:id="cardDescription" disable="true" layoutX="33.0" layoutY="316.0" prefHeight="176.0" prefWidth="275.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="316.0" />
+      <TextArea wrapText="true" fx:id="cardDescription" disable="true" layoutX="33.0" layoutY="316.0" prefHeight="176.0" prefWidth="275.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="316.0" />
       <Label alignment="CENTER" layoutX="51.0" layoutY="270.0" prefHeight="39.0" prefWidth="212.0" text="Description:" textAlignment="CENTER" AnchorPane.bottomAnchor="247.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="280.0">
          <font>
             <Font size="19.0" />
