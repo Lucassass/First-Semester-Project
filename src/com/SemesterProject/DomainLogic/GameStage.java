@@ -354,56 +354,61 @@ public class GameStage implements IGameStage
      */
     private void createRooms()
     {
-
-        var usaItem = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
-        var usaItem2 = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
-        var usaItem3 = new Item("jadeDragon", Countries.Russia, 2, Countries.India, -2, "jadeDragon.png");
+        var usaJadeDragon = new Item("Jade Dragon", Countries.China, 2, Countries.Japan, -2, "jadeDragon.png");
         var usaDeals = new ArrayList<IDeal>();
-        usaDeals.add(new Deal("Friendship", DealCategory.Energy,1,1,1,290 ,"Friendship is magic"));
-        usaDeals.add(new Deal("Huuu", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
-        usaDeals.add(new Deal("Huuu2", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
-        usaDeals.add(new Deal("Huuu3", DealCategory.Food,1,1,1,290, "Huuuuuuuuuuuuu"));
+        usaDeals.add(new Deal("Nuclear Energy", DealCategory.Energy,100,200,-100,250 ,"USA produces more nuclear-generated electricity that any other country, nearly ⅓ of the world’s total. Which is good, considering they also use 18% of the world’s energy"));
+        usaDeals.add(new Deal("Pool party", DealCategory.Energy,-100,-200,-50,150, "Living in sunny weather means, you need to cool down. And what better way to do that besides, getting your own pool. This way, you save energy on transportation and use a lot of water, which should help with the whole greenhouse effect"));
+        usaDeals.add(new Deal("Ivy league Schools", DealCategory.Knowledge,200,200,200,300, "High prices colleges equals better education. With self payed education, the state cannot cut the curriculum or budget. This system is what makes the future"));
 
-        var chinaItem = new Item("Vodka", Countries.Germany,2, Countries.Japan,-2, "vodka.png");
+        var chinaVodka = new Item("Vodka", Countries.Russia,2, Countries.India,-2, "vodka.png");
         var chinaDeals = new ArrayList<IDeal>();
-        chinaDeals.add(new Deal("Coal", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        chinaDeals.add(new Deal("Huawei spyware", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        chinaDeals.add(new Deal("The three Gorges Dam", DealCategory.Energy,300,300,250,600, "The most powerful hydroelectric project in the world is China’s Three Gorges Dam. The controversial and enormous power plant brings power to millions of Chinese villagers and will generate more than 22,000 megawatts from six generators"));
+        chinaDeals.add(new Deal("Solar cell and Manufacturing", DealCategory.Energy,250,300,350,450, "China is one of the largest Solar manufacturing and installation, even surpassing Germany with 174 GW of solar energy"));
+        chinaDeals.add(new Deal("Fossil Fuel", DealCategory.Energy,-100,300,-200,250, "God old burning of dinosaurs"));
 
-        var germanyItem = new Item("Flute", Countries.Japan,2, Countries.USA,-2, "flute.png");
+        var germanyFlute = new Item("Flute", Countries.India,2, Countries.USA,-2, "flute.png");
+        var germanyMatrojska = new Item("Matrojska", Countries.Russia,3, Countries.India,-2, "matrjosjka.png");
         var germanyDeals = new ArrayList<IDeal>();
-        germanyDeals.add(new Deal("waterfacility", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        germanyDeals.add(new Deal("German car manufacturering secrets", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        germanyDeals.add(new Deal("Solar Energy", DealCategory.Energy,250,250,150,550, "Germany wants to invest in clean energy, the best way for their country to do so are by solar energy are the best option. By investing in solar Energy in Germany the usage of fossil fuel will drop by 15%"));
+        germanyDeals.add(new Deal("Coal reserves", DealCategory.Energy,-200,250,100,550, "Germany is willing to sell you some of their coal reserves, and even for a good price, by the amount of coal they’re selling  you can make enough energy to fuel your country for the next ten years"));
+        germanyDeals.add(new Deal("New Universities", DealCategory.Knowledge,150,200,-200,350, "Germany wants to invest in their universities where they’re researching in the environment   "));
 
-        var russiaItem = new Item("Katana", Countries.India,2, Countries.Russia,-2, "katana.png");
+        var russiaKatana = new Item("Katana", Countries.Japan,2, Countries.China,-2, "katana.png");
+        var russiaPanda = new Item("Panda", Countries.China,2, Countries.Germany,-1, "panda.png");
         var russiaDeals = new ArrayList<IDeal>();
-        russiaDeals.add(new Deal("garbage collection system", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        russiaDeals.add(new Deal("FSB", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        russiaDeals.add(new Deal("Hydropower", DealCategory.Food,100,200,100,550, "Russia wants to invest in clean energy, the best way for their country to do so are by Hydro power. By investing in hydro power in Russia the usage of fossil fuel will drop by 25%"));
+        russiaDeals.add(new Deal("Oil", DealCategory.Energy,-250,400,-150,400, "Russia is willing to sell you some of their oil, and even for a good price, by the amount of coal they’re selling  you can make enough energy to fuel your country for the next fifteen years. "));
+        russiaDeals.add(new Deal("Research", DealCategory.Knowledge,300,150,300,150, "Russia wants to invest in research for clean energy  the money will go to the universities so they can study  more sustainable clean energy sources"));
 
-        var indiaItem = new Item("Sausage", Countries.India,2, Countries.Russia,-2, "sausage.png");
+        var indiaSausage = new Item("Sausage", Countries.Germany,3, Countries.Russia,-1, "sausage.png");
         var indiaDeals = new ArrayList<IDeal>();
-        indiaDeals.add(new Deal("Organic farming", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        indiaDeals.add(new Deal("Mumbai", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        indiaDeals.add(new Deal("Wind Energy", DealCategory.Energy,100,200,100,600, "India wants to invest in clean energy, the best way for their country to do so windmills are the best option. By investing in Wind Energy in India the usage of fossil fuel will drop by 20%"));
+        indiaDeals.add(new Deal("Coal reserves", DealCategory.Energy,-200,300,-200,350, "India is willing to sell you some of their coal reserves, and even for a good price, by the amount of coal they’re selling  you can make enough energy to fuel your country for the next ten years"));
+        indiaDeals.add(new Deal("Greater fundings for education and research", DealCategory.Food,200,100,150,400, "India wants to invest in education the money will go to the elementary schools and research about  options for more sustainable clean energy"));
 
-        var japanItem = new Item("Gun", Countries.Japan,2, Countries.USA,-2, "gun.png");
+        var japanGun = new Item("Gun", Countries.USA,2, Countries.Japan,-2, "gun.png");
+        var japanCheeseBurger = new Item("Cheeseburger", Countries.USA,1, Countries.China,-1, "cheeseburger.png");
+        var japanPretzel = new Item("Pretzel", Countries.Germany,2, Countries.USA,-2, "pretzel.png");
         var japanDeals = new ArrayList<IDeal>();
-        japanDeals.add(new Deal("nucler reactor", DealCategory.Energy,1,1,1,400, "Trololololo"));
-        japanDeals.add(new Deal("Sushi secret", DealCategory.Knowledge,1,1,1,150, "Huhuhuhuhuh"));
+        japanDeals.add(new Deal("Hydropower", DealCategory.Energy,100,200,100,550, "Japan wants to invest in clean energy, the best way for their country to do so are by Hydro power. By investing in hydro power in japan the usage of fossil fuel will drop by 25%"));
+        japanDeals.add(new Deal("Oil", DealCategory.Energy,-250,400,-150,400, "Japan is willing to sell you some of their oil, and even for a good price, by the amount of coal they’re selling  you can make enough energy to fuel your country for the next fifteen years"));
+        japanDeals.add(new Deal("Research", DealCategory.Food,300,150,150,350, "Japan wants to invest in research for clean energy  the money will go to the universities so they can study  more sustainable clean energy sources."));
 
 
         Country usa, china, russia, japan, india, germany;
         china = new Country("China", "Airport", "Train",
-                "outside", "government", "culture", chinaDeals, chinaItem );
+                "outside", "government", "culture", chinaDeals, chinaVodka );
         usa = new Country("USA", "Airport Description", "Train ff",
                 "outside gg", "government Jo", "culture qq",
-                usaDeals, usaItem, usaItem2, usaItem3);
+                usaDeals, usaJadeDragon);
         russia = new Country("Russia", "Airport", "Train",
-                "outside", "government", "culture",  russiaDeals,russiaItem);
+                "outside", "government", "culture",  russiaDeals,russiaKatana, russiaPanda);
         japan = new Country("Japan", "Airport", "Train",
-                "outside", "government", "culture" ,japanDeals, japanItem);
+                "outside", "government", "culture" ,japanDeals, japanGun, japanCheeseBurger, japanPretzel);
         india = new Country("India", "Airport", "Train",
-                "outside", "government", "culture", indiaDeals, indiaItem);
+                "outside", "government", "culture", indiaDeals, indiaSausage);
         germany = new Country("Germany", "Airport", "Train",
-                "outside", "government", "culture", germanyDeals, germanyItem);
+                "outside", "government", "culture", germanyDeals, germanyFlute, germanyMatrojska);
 
         //Fly exist
         china.setFlyExit("USA", usa);

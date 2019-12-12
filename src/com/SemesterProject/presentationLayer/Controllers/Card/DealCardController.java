@@ -40,7 +40,7 @@ public class DealCardController extends Injection<MainController>
         cardName.setText(deal.getName());
         cardPrice.setText("Price: " + deal.getPrice());
         cardImage.setImage(deal.getImage());
-        cardCategory.setText("Category:" + deal.getCategory());
+        cardCategory.setText(String.valueOf(deal.getCategory()));
     }
 
 
