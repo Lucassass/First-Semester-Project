@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class HelpController {
     @FXML private javafx.scene.control.Button closeHelpId;
+
+
     @FXML
     public void closeHelp(ActionEvent event) {
 
