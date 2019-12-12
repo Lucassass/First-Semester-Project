@@ -297,18 +297,29 @@ public class GameStage implements IGameStage
 
         Country usa, china, russia, japan, india, germany;
         china = new Country("China", "Airport", "Train",
-                "outside", "government", "culture", chinaDeals, chinaItem );
-        usa = new Country("USA", "Airport Description", "Train ff",
-                "outside gg", "government Jo", "culture qq",
-                usaDeals, usaItem);
+                "outside", "government", "The Great Wall of China is" +
+                " the collective name of a series of fortification systems generally built across the historical northern borders" +
+                " of China to protect and consolidate territories of Chinese states and empires against various nomadic groups of the" +
+                " steppe and their polities", chinaDeals, chinaItem );
+        usa = new Country("USA", "Airport Description", "Train",
+                "outside", "government", "The White House is the official residence of the President" +
+                " of the United State. This historic structure has been the home of every president except George Washington.", usaDeals, usaItem);
         russia = new Country("Russia", "Airport", "Train",
-                "outside", "government", "culture",  russiaDeals,russiaItem);
+                "outside", "government", "The rich history of Red Square is reflected in paintings" +
+                " by Vasily Surikov, Konstantin Yuon and others. The square was meant to serve as Moscow's main marketplace. It was also the site of" +
+                " various public ceremonies and proclamations, and occasionally a coronation for Russia's Tsars would take place",  russiaDeals,russiaItem);
         japan = new Country("Japan", "Airport", "Train",
-                "outside", "government", "culture" ,japanDeals, japanItem);
+                "outside", "government", "Mount Fuji is one of Japan's Three Holy Mountains along" +
+                " with Mount Tate and Mount Haku. It is also a Special Place of Scenic Beauty and one of Japan's Historic Sites" ,japanDeals, japanItem);
         india = new Country("India", "Airport", "Train",
-                "outside", "government", "culture", indiaDeals, indiaItem);
+                "outside", "government", "Taj Mahal was built by Shah Jahan  for his wife Arjumans Bano Begum," +
+                " after she died in childbirth. The construction of Taj Mahal began in 1632 and was finished in 1653. The Taj Mahal was designated as a UNESCO World" +
+                " Heritage Site in 1983 for being the jewel of Muslim art in India and one of the universally admired masterpieces of the world's" +
+                " heritage", indiaDeals, indiaItem);
         germany = new Country("Germany", "Airport", "Train",
-                "outside", "government", "culture", germanyDeals, germanyItem);
+                "outside", "government", "The town of Quedlinburg is known to have existed since at least the early" +
+                " 9th century, when there was a settlement known as Gross Orden on the eastern bank of the River Bode.According to legend, Henry had been offered the German" +
+                " crown at Quedlinburg in 919 by Franconian nobles, giving rise to the town being called the cradle of the German Reich", germanyDeals, germanyItem);
 
         china.setFlyExit("USA", usa);
         china.setFlyExit("Russia", russia);
