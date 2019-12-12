@@ -35,7 +35,8 @@ public class Item implements IItem {
         this.uuid = UUID.randomUUID();
         this.image = new Image(getClass().getResourceAsStream("/images/items/"+ imageName));
 
-        String textBad0 = "this is the reason why the item gives negative points in a dice roll";
+        String textBad0 = "Sorry, but you chose poorly. This item does not belong to this country and therefore you pissed off the government." +
+                " Try again another time";
         textBad = textBad0;
         String textGood0 = "This is the reason why the item gives positive points in a dice roll";
         textGood = textGood0;
