@@ -432,11 +432,11 @@ public class MainController extends Application implements Initializable {
     private Image getEndGameImage()
     {
         var points = getGameStage().getEndGameResult().getSum();
-        if (points > 700)
+        if (points > 2000)
         {
             return new Image(getClass().getResourceAsStream("/images/endGameImages/endGamePARADISE.png"));
         }
-        else if (points > 300)
+        else if (points > 1000)
         {
             return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameStillBREATHING.png"));
 
