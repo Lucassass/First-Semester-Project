@@ -88,3 +88,4 @@ nbdist/
 # VSCODE
 
 .vscode/
+/test/

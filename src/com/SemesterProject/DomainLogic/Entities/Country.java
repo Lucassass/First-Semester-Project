@@ -1,3 +1,4 @@
+
 package com.SemesterProject.DomainLogic.Entities;
 
 import com.SemesterProject.Interfaces.Entities.IDeal;
