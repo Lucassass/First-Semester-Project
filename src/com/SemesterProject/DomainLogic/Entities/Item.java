@@ -37,7 +37,7 @@ public class Item implements IItem {
 
         textBad = "Sorry, but you chose poorly. This item does not belong to this country and therefore you pissed off the government." +
                 " Try again another time";
-        textGood = "This is the reason why the item gives positive points in a dice roll";;
+        textGood = "Awesome, you impressed the diplomats with your amazing item. Way to go.";;
     }
 
     /**
