@@ -436,7 +436,7 @@ public class MainController extends Application implements Initializable {
         {
             return new Image(getClass().getResourceAsStream("/images/endGameImages/endGamePARADISE.png"));
         }
-        else if (points > 1000)
+        else if (points > 1500)
         {
             return new Image(getClass().getResourceAsStream("/images/endGameImages/endGameStillBREATHING.png"));
 
